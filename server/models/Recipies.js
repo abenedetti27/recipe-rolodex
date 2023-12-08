@@ -7,12 +7,12 @@ name: {
   type: String,
   required: true,
   unique: true,
-  trim: true,
+  trim: true
 },
 photo: {
   type: String,
   required: true,
-  trim: true,
+  trim: true
 },
 cookingTime: {
   type: Number,
@@ -20,19 +20,19 @@ cookingTime: {
 },
 instructions:{
   type: String,
-  required: true,
+  required: true
 },
 ingredients: {
   type: String,
-  required: true,
+  required: true
 },
 serving_size: {
   type: Number,
-  required: true,
+  required: true
 },
 author:{ 
   type: String,
-  required: true,
+  required: true
 },
 createdAt:{
   type: Date,
