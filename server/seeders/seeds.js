@@ -19,7 +19,7 @@ db.once('open', async () => {
         "name": "Kanat-Alexander"
       },
       {
-        "name": "Beck"
+        "name": "Bull"
       },
       {
         "name": "Berard"
@@ -44,7 +44,7 @@ db.once('open', async () => {
         "lastName": "Kernighan",
         "email": "bkernighan@techfriends.dev",
         "password": "password01",
-        "families": ["Kernighan"]
+        "families": [families[0]._id]
       },
       {
         "username": "MaxCannotSpell",
@@ -52,7 +52,7 @@ db.once('open', async () => {
         "lastName": "Kanat-Alexander",
         "email": "mkanatalexander@techfriends.dev",
         "password": "password02",
-        "families": ["Kanat-Alexander"]
+        "families": [families[1]._id]
       },
       {
         "username": "Barbie",
@@ -60,7 +60,7 @@ db.once('open', async () => {
         "lastName": "Bull",
         "email": "bbull@techfriends.dev",
         "password": "password03",
-        "families": ["Bull"]
+        "families": [families[2]._id]
       },
       {
         "username": "Superman",
@@ -68,7 +68,7 @@ db.once('open', async () => {
         "lastName": "Bull",
         "email": "kbull@techfriends.dev",
         "password": "password04",
-        "families": ["Bull"]
+        "families": [families[2]._id]
       },
       {
         "username": "EVBcooks",
@@ -76,7 +76,7 @@ db.once('open', async () => {
         "lastName": "Berard",
         "email": "evberard@techfriends.dev",
         "password": "password05",
-        "families": ["Berard"]
+        "families": [families[3]._id]
       },
       {
         "username": "KissAuntKay",
@@ -84,7 +84,7 @@ db.once('open', async () => {
         "lastName": "Kay",
         "email": "akay@techfriends.dev",
         "password": "password06",
-        "families": ["Kay"]
+        "families": [families[4]._id]
       },
       {
         "username": "KissUncleKay",
@@ -92,7 +92,7 @@ db.once('open', async () => {
         "lastName": "Kay",
         "email": "akay2@techfriends.dev",
         "password": "password07",
-        "families": ["Kay"]
+        "families": [families[4]._id]
       },
       {
         "username": "D-Time",
@@ -100,7 +100,7 @@ db.once('open', async () => {
         "lastName": "Thomas",
         "email": "dthomas@techfriends.dev",
         "password": "password08",
-        "families": ["Thomas"]
+        "families": [families[5]._id]
       },
       {
         "username": "TheRealDonald",
@@ -108,7 +108,7 @@ db.once('open', async () => {
         "lastName": "Knuth",
         "email": "dknuth@techfriends.dev",
         "password": "password09",
-        "families": ["Knuth"]
+        "families": [families[6]._id]
       }
     ])
 
