@@ -110,38 +110,81 @@ db.once('open', async () => {
         "password": "password09",
         "families": [families[6]._id]
       }
-    ])
+    ]);
 
-    await User.create(userSeeds);
+    console.log('👨‍🍳 users seeded 👩‍🍳');
 
-    for (let i = 0; i < familySeeds.length; i++) {
-      const { _id, name } = await Family.create(familySeeds[i]);
-      const user = await User.findOneAndUpdate(
-        { username: name },
-        {
-          $addToSet: {
-            families: _id,
-          },
-        }
-      );
-    }
+    const recipes = await Recipe.insertMany([
+      {
+        "name": "Spaghetti Bolognese",
+        "photo": "https://github.com/abenedetti27/recipe-rolodex/assets/117195025/360b8d3c-3927-4889-819b-062629e20bee",
+        "cooking_time": 30,
+        "instructions": "Boil spaghetti. Brown ground beef. Mix with tomato sauce. Serve over spaghetti.",
+        "ingredients": "Spaghetti, ground beef, tomato sauce",
+        "serving_size": 4,
+        "author": "Brian Kernighan",
+        "families": [families[0]._id]
+      },
+      {
+        "name": "Chicken Alfredo",
+        "photo": "https://github.com/abenedetti27/recipe-rolodex/assets/117195025/7b6ab1fa-3ad0-4cff-aa32-1c256f23a5f5",
+        "cooking_time": 40,
+        "instructions": "Cook chicken. Prepare Alfredo sauce. Mix with cooked pasta. Garnish with parsley.",
+        "ingredients": "Chicken breasts, fettuccine pasta, Alfredo sauce",
+        "serving_size": 6,
+        "author": "Kent Bull",
+        "families": [families[2]._id]
+      },
+      {
+        "name": "Vegetarian Stir Fry",
+        "photo": "https://github.com/abenedetti27/recipe-rolodex/assets/117195025/d7ca02dd-7afe-494c-b0e0-f06c9e62a996",
+        "cooking_time": 25,
+        "instructions": "Stir-fry assorted vegetables. Add tofu. Season with soy sauce. Serve hot.",
+        "ingredients": "Broccoli, bell peppers, tofu, soy sauce",
+        "serving_size": 3,
+        "author": "Edward V. Berard",
+        "families": [families[3]._id]
+      },
+      {
+          "name": "Chicken Parmesan",
+          "photo": "https://github.com/abenedetti27/recipe-rolodex/assets/117195025/f19b9879-c8fd-448a-a896-0e39e31c94b4",
+          "cooking_time": 45,
+          "instructions": "Bread chicken. Fry chicken. Add tomato sauce and cheese. Bake until cheese is melted.",
+          "ingredients": "Chicken breasts, bread crumbs, tomato sauce, mozzarella cheese",
+          "serving_size": 4,
+          "author": "Alana Kay",
+          "families": [families[4]._id]
+      },
+      {
+          "name": "Chicken Tikka Masala",
+          "photo": "https://github.com/abenedetti27/recipe-rolodex/assets/117195025/4abe79c7-2f43-4615-87af-acc3626f6bf9",
+          "cooking_time": 60,
+          "instructions": "Marinate chicken. Bake chicken. Add tomato sauce and spices. Serve with rice.",
+          "ingredients": "Chicken breasts, tomato sauce, spices, rice",
+          "serving_size": 4,
+          "author": "David Thomas",
+          "families": [families[5]._id]
+      }
+      ,
+      {
+          "name": "Roast Beef",
+          "photo": "https://github.com/abenedetti27/recipe-rolodex/assets/117195025/36621a27-f49d-4db4-b2dd-b31768211721",
+          "cooking_time": 120,
+          "instructions": "Season beef. Bake beef. Serve with potatoes and vegetables.",
+          "ingredients": "Beef, potatoes, vegetables",
+          "serving_size": 6,
+          "author": "Barbara Bull",
+          "families": [families[2]._id]
+      }
+    ]);
 
-    for (let i = 0; i < recipeSeeds.length; i++) {
-      const { _id, name } = await Recipe.create(recipeSeeds[i]);
-      const user = await User.findOneAndUpdate(
-        { username: name },
-        {
-          $addToSet: {
-            recipes: _id,
-          },
-        }
-      );
-    }
+    console.log('🍝 recipes seeded 🍝');
+
   } catch (err) {
     console.error(err);
     process.exit(1);
   }
 
-  console.log('all done!');
+  console.log('🌱🌱🌱seeding all done!🌱🌱🌱');
   process.exit(0);
 });
