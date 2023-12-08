@@ -45,7 +45,7 @@ const userSchema = new Schema({
       ref: 'Recipe'
     },
   ],
-  pinned_recipes: [
+  pinnedRecipes: [
     {
       type: Schema.Types.ObjectId,
       ref: 'Recipe'
