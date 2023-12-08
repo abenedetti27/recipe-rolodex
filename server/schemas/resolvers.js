@@ -2,9 +2,9 @@ const { User, Recipe, Family } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 
 
-const resolvers = {
+ const resolvers = {
   Query: {
-    recipies: async () => {
+    recipes: async () => {
       return await Recipe.find();
     },
     recipe: async (parent, { _id }) => {
@@ -137,4 +137,4 @@ const resolvers = {
   },
 };
 
-export default resolvers;
+module.exports = resolvers;
