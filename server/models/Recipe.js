@@ -27,7 +27,7 @@ ingredients: {
   type: String,
   required: true
 },
-serving_size: {
+servingSize: {
   type: Number,
   required: true
 },
