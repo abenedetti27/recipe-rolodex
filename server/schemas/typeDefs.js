@@ -13,7 +13,7 @@ const typeDefs = `
     ingredients: String!
     servingSize: Int!
     author: String!
-    createdAt: std::chrono::system_clock::time_point Date
+    createdAt: String!
     families: [Family]
   }
 
@@ -25,7 +25,7 @@ const typeDefs = `
     email: String!
     password: String!
     families: [Family]
-    recipies: [Recipe]
+    recipes: [Recipe]
     pinnedRecipes: [Recipe]
   }
 
@@ -35,7 +35,7 @@ const typeDefs = `
   }
 
   type Query {
-    recipies: [Recipe]
+    recipes: [Recipe]
     recipe(_id: ID!): Recipe
     families: [Family]
     family(_id: ID!): Family
