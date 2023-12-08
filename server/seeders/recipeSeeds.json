@@ -1,7 +1,7 @@
 [
     {
       "name": "Spaghetti Bolognese",
-      "photo": "spaghetti.jpg",
+      "photo": "https://github.com/abenedetti27/recipe-rolodex/assets/117195025/360b8d3c-3927-4889-819b-062629e20bee",
       "cooking_time": 30,
       "instructions": "Boil spaghetti. Brown ground beef. Mix with tomato sauce. Serve over spaghetti.",
       "ingredients": "Spaghetti, ground beef, tomato sauce",
@@ -11,7 +11,7 @@
     },
     {
       "name": "Chicken Alfredo",
-      "photo": "chicken_alfredo.jpg",
+      "photo": "https://github.com/abenedetti27/recipe-rolodex/assets/117195025/7b6ab1fa-3ad0-4cff-aa32-1c256f23a5f5",
       "cooking_time": 40,
       "instructions": "Cook chicken. Prepare Alfredo sauce. Mix with cooked pasta. Garnish with parsley.",
       "ingredients": "Chicken breasts, fettuccine pasta, Alfredo sauce",
@@ -21,7 +21,7 @@
     },
     {
       "name": "Vegetarian Stir Fry",
-      "photo": "vegetarian_stir_fry.jpg",
+      "photo": "https://github.com/abenedetti27/recipe-rolodex/assets/117195025/d7ca02dd-7afe-494c-b0e0-f06c9e62a996",
       "cooking_time": 25,
       "instructions": "Stir-fry assorted vegetables. Add tofu. Season with soy sauce. Serve hot.",
       "ingredients": "Broccoli, bell peppers, tofu, soy sauce",
@@ -31,7 +31,7 @@
     },
     {
         "name": "Chicken Parmesan",
-        "photo": "chicken_parmesan.jpg",
+        "photo": "https://github.com/abenedetti27/recipe-rolodex/assets/117195025/f19b9879-c8fd-448a-a896-0e39e31c94b4",
         "cooking_time": 45,
         "instructions": "Bread chicken. Fry chicken. Add tomato sauce and cheese. Bake until cheese is melted.",
         "ingredients": "Chicken breasts, bread crumbs, tomato sauce, mozzarella cheese",
@@ -41,7 +41,7 @@
     },
     {
         "name": "Chicken Tikka Masala",
-        "photo": "chicken_tikka_masala.jpg",
+        "photo": "https://github.com/abenedetti27/recipe-rolodex/assets/117195025/4abe79c7-2f43-4615-87af-acc3626f6bf9",
         "cooking_time": 60,
         "instructions": "Marinate chicken. Bake chicken. Add tomato sauce and spices. Serve with rice.",
         "ingredients": "Chicken breasts, tomato sauce, spices, rice",
@@ -52,7 +52,7 @@
     ,
     {
         "name": "Roast Beef",
-        "photo": "roast_beef.jpg",
+        "photo": "https://github.com/abenedetti27/recipe-rolodex/assets/117195025/36621a27-f49d-4db4-b2dd-b31768211721",
         "cooking_time": 120,
         "instructions": "Season beef. Bake beef. Serve with potatoes and vegetables.",
         "ingredients": "Beef, potatoes, vegetables",
