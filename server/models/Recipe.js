@@ -3,7 +3,7 @@ const dateFormat = require('../utils/dateFormat');
 
 const { Schema } = mongoose;
 
-const recipieSchema = new Schema({
+const recipeSchema = new Schema({
 name: {
   type: String,
   required: true,
@@ -48,6 +48,6 @@ families: [
 ]
 });
 
-const Order = mongoose.model('Recipie', recipieSchema);
+const Recipe = mongoose.model('Recipe', recipeSchema);
 
-module.exports = Recipie;
+module.exports = Recipe;

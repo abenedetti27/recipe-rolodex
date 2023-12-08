@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
-const recipe = require('./Recipie');
+const recipe = require('./Recipe');
 const family = require('./Family');
 
 const userSchema = new Schema({

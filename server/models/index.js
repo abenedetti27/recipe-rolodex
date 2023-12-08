@@ -1,5 +1,5 @@
 const User = require('./User');
-const Recipe = require('./Recipes');
+const Recipe = require('./Recipe');
 const Family = require('./Family');
 
 

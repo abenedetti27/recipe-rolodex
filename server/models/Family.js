@@ -11,6 +11,6 @@ const familySchema = new Schema({
   }
 });
 
-const Category = mongoose.model('Families', familySchema);
+const Family = mongoose.model('Family', familySchema);
 
 module.exports = Family;
