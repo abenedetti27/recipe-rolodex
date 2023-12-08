@@ -137,4 +137,4 @@ const { signToken, AuthenticationError } = require('../utils/auth');
   },
 };
 
-module.export = resolvers;
+module.exports = resolvers;
