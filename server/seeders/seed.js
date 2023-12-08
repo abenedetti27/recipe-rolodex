@@ -21,7 +21,19 @@ db.once('open', async () => {
         { username: name },
         {
           $addToSet: {
-            thoughts: _id,
+            families: _id,
+          },
+        }
+      );
+    }
+
+    for (let i = 0; i < recipeSeeds.length; i++) {
+      const { _id, name } = await Recipe.create(recipeSeeds[i]);
+      const user = await User.findOneAndUpdate(
+        { username: name },
+        {
+          $addToSet: {
+            recipes: _id,
           },
         }
       );
