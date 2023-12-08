@@ -30,7 +30,7 @@ export const QUERY_USER = gql`
                     name
                 }
             }
-            pinned_recipes  {
+            pinnedRecipes  {
                 _id
                 name
                 photo
