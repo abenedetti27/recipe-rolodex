@@ -1,52 +1,74 @@
 [
   {
-    "username": "Brian Kernighan",
+    "username": "B-King",
+    "firstName": "Brian",
+    "lastName": "Kernighan",
     "email": "bkernighan@techfriends.dev",
-    "password": "password01"
+    "password": "password01",
+    "families": ["Kernighan"]
   },
   {
-    "username": "Max Kanat-Alexander",
+    "username": "MaxCannotSpell",
+    "firstName": "Max",
+    "lastName": "Kanat-Alexander",
     "email": "mkanatalexander@techfriends.dev",
-    "password": "password02"
+    "password": "password02",
+    "families": ["Kanat-Alexander"]
   },
   {
-    "username": "Why The Lucky Stiff",
-    "email": "wtls@techfriends.dev",
-    "password": "password03"
+    "username": "Barbie",
+    "firstName": "Barbara",
+    "lastName": "Bull",
+    "email": "bbull@techfriends.dev",
+    "password": "password03",
+    "families": ["Bull"]
   },
   {
-    "username": "Kent Beck",
-    "email": "kbeck@techfriends.dev",
-    "password": "password04"
+    "username": "Superman",
+    "firstName": "Kent",
+    "lastName": "Bull",
+    "email": "kbull@techfriends.dev",
+    "password": "password04",
+    "families": ["Bull"]
   },
   {
-    "username": "Edward V. Berard",
+    "username": "EVBcooks",
+    "firstName": "Edward V.",
+    "lastName": "Berard",
     "email": "evberard@techfriends.dev",
-    "password": "password05"
+    "password": "password05",
+    "families": ["Berard"]
   },
   {
-    "username": "Alan Kay",
+    "username": "KissAuntKay",
+    "firstName": "Alana",
+    "lastName": "Kay",
     "email": "akay@techfriends.dev",
-    "password": "password06"
+    "password": "password06",
+    "families": ["Kay"]
   },
   {
-    "username": "C.A.R. Hoare",
-    "email": "choare@techfriends.dev",
-    "password": "password07"
+    "username": "KissUncleKay",
+    "firstName": "Albert",
+    "lastName": "Kay",
+    "email": "akay2@techfriends.dev",
+    "password": "password07",
+    "families": ["Kay"]
   },
   {
-    "username": "David Thomas",
+    "username": "D-Time",
+    "firstName": "David",
+    "lastName": "Thomas",
     "email": "dthomas@techfriends.dev",
-    "password": "password08"
+    "password": "password08",
+    "families": ["Thomas"]
   },
   {
-    "username": "Donald Knuth",
+    "username": "TheRealDonald",
+    "firstName": "Donald",
+    "lastName": "Knuth",
     "email": "dknuth@techfriends.dev",
-    "password": "password09"
-  },
-  {
-    "username": "Lernantino",
-    "email": "lernantino@techfriends.dev",
-    "password": "password10"
+    "password": "password09",
+    "families": ["Knuth"]
   }
 ]

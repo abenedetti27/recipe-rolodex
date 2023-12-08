@@ -1,0 +1,64 @@
+[
+    {
+      "name": "Spaghetti Bolognese",
+      "photo": "spaghetti.jpg",
+      "cooking_time": 30,
+      "instructions": "Boil spaghetti. Brown ground beef. Mix with tomato sauce. Serve over spaghetti.",
+      "ingredients": "Spaghetti, ground beef, tomato sauce",
+      "serving_size": 4,
+      "author": "Brian Kernighan",
+      "families": ["Kernighan"]
+    },
+    {
+      "name": "Chicken Alfredo",
+      "photo": "chicken_alfredo.jpg",
+      "cooking_time": 40,
+      "instructions": "Cook chicken. Prepare Alfredo sauce. Mix with cooked pasta. Garnish with parsley.",
+      "ingredients": "Chicken breasts, fettuccine pasta, Alfredo sauce",
+      "serving_size": 6,
+      "author": "Kent Bull",
+      "families": ["Bull"]
+    },
+    {
+      "name": "Vegetarian Stir Fry",
+      "photo": "vegetarian_stir_fry.jpg",
+      "cooking_time": 25,
+      "instructions": "Stir-fry assorted vegetables. Add tofu. Season with soy sauce. Serve hot.",
+      "ingredients": "Broccoli, bell peppers, tofu, soy sauce",
+      "serving_size": 3,
+      "author": "Edward V. Berard",
+      "families": ["Berard"]
+    },
+    {
+        "name": "Chicken Parmesan",
+        "photo": "chicken_parmesan.jpg",
+        "cooking_time": 45,
+        "instructions": "Bread chicken. Fry chicken. Add tomato sauce and cheese. Bake until cheese is melted.",
+        "ingredients": "Chicken breasts, bread crumbs, tomato sauce, mozzarella cheese",
+        "serving_size": 4,
+        "author": "Alana Kay",
+        "families": ["Kay"]
+    },
+    {
+        "name": "Chicken Tikka Masala",
+        "photo": "chicken_tikka_masala.jpg",
+        "cooking_time": 60,
+        "instructions": "Marinate chicken. Bake chicken. Add tomato sauce and spices. Serve with rice.",
+        "ingredients": "Chicken breasts, tomato sauce, spices, rice",
+        "serving_size": 4,
+        "author": "David Thomas",
+        "families": ["Thomas"]
+    }
+    ,
+    {
+        "name": "Roast Beef",
+        "photo": "roast_beef.jpg",
+        "cooking_time": 120,
+        "instructions": "Season beef. Bake beef. Serve with potatoes and vegetables.",
+        "ingredients": "Beef, potatoes, vegetables",
+        "serving_size": 6,
+        "author": "Barbara Bull",
+        "families": ["Bull"]
+    }
+  ]
+  
