@@ -37,17 +37,21 @@ export const NavBar = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
             <ScrollLink to="home" spy={true} smooth={true} duration={500}>
+                    {/* what pages do we want to link to from the homepage- when logged out. need to figure out logic for this logged in/ logged out*/}
                                 Home
                             </ScrollLink>
-                            {/* what pages do we want to link to from the homepage */}
                             <ScrollLink to="link1" spy={true} smooth={true} duration={500}>
-                                Link 1
+                                login
+                            </ScrollLink>
+                            {/* what pages do we want to link to from the homepage- when logged in*/}
+                            <ScrollLink to="link1" spy={true} smooth={true} duration={500}>
+                                Dashboard
                             </ScrollLink>
                             <ScrollLink to="link2" spy={true} smooth={true} duration={500}>
-                                Link 2
+                                Pinned Recipes
                             </ScrollLink>
                             <ScrollLink to="link2" spy={true} smooth={true} duration={500}>
-                                Link 3
+                                logout
                             </ScrollLink>
                         </Nav>
             <span className="navbar-text">
