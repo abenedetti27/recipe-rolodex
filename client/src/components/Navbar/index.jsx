@@ -5,8 +5,8 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Link as ScrollLink } from 'react-scroll';
 
 export const NavBar = () => {
-    const [] = useState('home');
-    const [scrolled, seScrolled] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
         const onScroll = e => {
