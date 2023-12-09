@@ -71,8 +71,8 @@ export const LEAVE_FAMILY = gql`
 `
 
 export const ADD_RECIPE = gql`
-    mutation addRecipe($name: String!, $photo: String!, $cookingTime: Int!, $instructions: String!, $ingredients: String!, $servingSize: Int!, $author: String!) {
-        addRecipe(name: $name, photo: $photo, cookingTime: $cookingTime, instructions: $instructions, ingredients: $ingredients, servingSize: $servingSize, author: $author) {
+    mutation addRecipe($name: String!, $photo: String!, $cookingTime: Int!, $instructions: String!, $ingredients: String!, $servingSize: Int!, $author: String!, $familyId: ID) {
+        addRecipe(name: $name, photo: $photo, cookingTime: $cookingTime, instructions: $instructions, ingredients: $ingredients, servingSize: $servingSize, author: $author, familyId: $familyId) {
             _id
             name
             photo
@@ -84,7 +84,6 @@ export const ADD_RECIPE = gql`
             createdAt
             families {
                 _id
-                name
             }
         }
     }

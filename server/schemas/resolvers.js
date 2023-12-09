@@ -92,33 +92,41 @@ const { signToken, AuthenticationError } = require('../utils/auth');
       throw new AuthenticationError('You need to be logged in!');
     },
 
-    addRecipe: async (parent, args) => {
+    addRecipe: async (parent, args, context) => {
       const newRecipe = await Recipe.create(args);
       if (args.familyId) {
         const addRecipeToFamily = await Recipe.findByIdAndUpdate(
           { _id: newRecipe._id },
-          { $addToSet: {families: args.familyId} },
+          { $set: {families: { _id: args.familyId }} },
           {new: true})
         return addRecipeToFamily;
       };
+      const addRecipeToUser = await User.findByIdAndUpdate(
+        { _id: context.user._id },
+        { $addToSet: { recipes: newRecipe._id }  },
+        { new: true }
+      )
+
       return newRecipe;
     },
 
     updateRecipe: async (parent, { _id, name, photo, cookingTime, instructions, ingredients, servingSize, author, familyId }) => {
       const updateRecipe = await Recipe.findByIdAndUpdate(
         { _id: _id },
-        { name: name, photo: photo, cookingTime: cookingTime, instructions: instructions, ingredients: ingredients, servingSize: servingSize, author: author},
+        { name: name, photo: photo, cookingTime: cookingTime, instructions: instructions, ingredients: ingredients, servingSize: servingSize, author: author, families: familyId},
         { new: true }
-      );
-      const updateRecipeFamily = await Recipe.findByIdAndUpdate(
-        { _id: _id },
-        { $set: {families: familyId} },
-        {new: true})
-      return updateRecipeFamily;
+      ).populate('families');
+      console.log(updateRecipe);
+      return updateRecipe;
     },
 
     deleteRecipe: async (parent, { _id }) => {
       const recipe = await Recipe.findByIdAndDelete(_id);
+      const deleteRecipeFromUser = await User.findByIdAndUpdate(
+        { _id: context.user._id },
+        { $pull: { recipes:_id }  },
+        { new: true }
+      );
       return recipe;
     },
 

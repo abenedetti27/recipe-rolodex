@@ -39,12 +39,11 @@ createdAt:{
   default: Date.now,
   get: (timestamp) => dateFormat(timestamp),
 },
-families: [
+families: 
   {
     type: Schema.Types.ObjectId,
     ref: 'Family'
   }
-]
 });
 
 const Recipe = mongoose.model('Recipe', recipeSchema);
