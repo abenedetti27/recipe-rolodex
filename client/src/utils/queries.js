@@ -117,3 +117,13 @@ export const QUERY_FAMILY_RECIPE = gql`
         }
     }
 `
+export const QUERY_FAMILY_MEMBER = gql`
+    query familyMembers($familyId: ID!) {
+        familyMembers(familyId: $familyId) {
+            _id
+            username
+            firstName
+            lastName
+        }
+    }
+`
