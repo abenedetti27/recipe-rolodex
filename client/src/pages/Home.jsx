@@ -1,8 +1,10 @@
 import RecipeCard from '../components/RecipeCard';
+import './Home.css';
+
 
 function Home() {
     return (
-        <main>
+        <main className="cardContainer">
             <RecipeCard />
         </main>
     );

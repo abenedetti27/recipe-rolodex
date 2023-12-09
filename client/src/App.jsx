@@ -1,16 +1,43 @@
 import { Outlet } from 'react-router-dom';
+import { ApolloProvider, InMemoryCache, } from '@apollo/client';
+import { ApolloClient, createHttpLink} from '@apollo/client/core';
+import { setContext } from '@apollo/client/link/context';
+
 
 
 function App() {
-  // The Outlet component will conditionally swap between the different pages according to the URL
+
+  const client = new ApolloClient({
+    // Set up our client to execute the `authLink` middleware prior to making the request to our GraphQL API
+    link: authLink.concat(httpLink),
+    cache: new InMemoryCache(),
+  });
+
+  // Construct our main GraphQL API endpoint
+  const httpLink = createHttpLink({
+    uri: '/graphql',
+  });
+  // Construct request middleware that will attach the JWT token to every request as an `authorization` header
+  const authLink = setContext((_, { headers }) => {
+    // get the authentication token from local storage if it exists
+    const token = localStorage.getItem('id_token');
+    // return the headers to the context so httpLink can read them
+    return {
+      headers: {
+        ...headers,
+        authorization: token ? `Bearer ${token}` : '',
+      },
+    };
+  });
+
   return (
-    <>
-      <main className="mx-3">
-      {/*https://reactrouter.com/en/main/components/outlet*/}
-      {/*An <Outlet> should be used in parent route elements to render their child route elements. This allows nested UI to show up when child routes are rendered. If the parent route matched exactly, it will render a child index route or nothing if there is no index route.*/}
-        <Outlet />
-      </main>
-    </>
+    <ApolloProvider client={client}>
+      <div className="flex-column justify-flex-start min-100-vh">
+        <div className="container">
+          <Outlet />
+        </div>
+      </div>
+    </ApolloProvider>
   );
 }
 
