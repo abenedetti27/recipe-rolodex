@@ -5,10 +5,10 @@ const { signToken, AuthenticationError } = require('../utils/auth');
  const resolvers = {
   Query: {
     recipes: async () => {
-      return await Recipe.find();
+      return await Recipe.find().populate('families');
     },
     recipe: async (parent, { _id }) => {
-      return await Recipe.findById(_id).populate('family');
+      return await Recipe.findById(_id).populate('families');
     },
 
     families: async () => {
@@ -19,12 +19,12 @@ const { signToken, AuthenticationError } = require('../utils/auth');
     },
 
     famRecipe: async (parent, { familyId }) => {
-      return await Recipe.find({ 'families._id': familyId });
+      return await Recipe.find({ families: { _id : familyId }}).populate('families');
     },
 
     user: async (parent, { username }) => {
 
-      return await User.findById(username).populate('families', 'recipes');
+      return await User.findOne( { username: username } ).populate(['families', 'recipes']);
     },
   },
 
@@ -55,9 +55,9 @@ const { signToken, AuthenticationError } = require('../utils/auth');
       return { token, user };
     },
 
-    addFamily: async (parent, args) => {
-      const Family = await Family.create(args);
-      return Family;
+    addFamily: async (parent, { name }) => {
+      const newFamily = await Family.create({ name : name });
+      return newFamily;
     },
 
     joinFamily: async (parent, { familyId }, context) => {
@@ -89,16 +89,23 @@ const { signToken, AuthenticationError } = require('../utils/auth');
     },
 
     addRecipe: async (parent, args) => {
-      const recipe = await Recipe.create(args);
-      return recipe;
+      const newRecipe = await Recipe.create(args);
+      if (args.familyId) {
+        const addRecipeToFamily = await Recipe.findByIdAndUpdate(
+          { _id: newRecipe._id },
+          { $addToSet: {families: args.familyId} },
+          {new: true})
+        return addRecipeToFamily;
+      };
+      return newRecipe;
     },
 
     updateRecipe: async (parent, { _id, name, photo, cookingTime, instructions, ingredients, servingSize, author, familyId }) => {
       const recipe = await Recipe.findByIdAndUpdate(
         { _id: _id },
-        { name: name, photo: photo, cookingTime: cookingTime, instructions: instructions, ingredients: ingredients, servingSize: servingSize, author: author, familyId: familyId },
+        { name: name, photo: photo, cookingTime: cookingTime, instructions: instructions, ingredients: ingredients, servingSize: servingSize, author: author, families: { _id : familyId }},
         { new: true }
-      );
+      ).populate('families');
       return recipe;
     },
 
