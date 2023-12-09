@@ -2,6 +2,18 @@
 import { Input, Ripple, initMDB } from "mdb-ui-kit";
 import './style.css';
 
+import { QUERY_FAMILY } from "../../utils/queries";
+const { data } = useQuery(QUERY_FAMILY, {
+    variables: {
+      userId: user?.data?._id,
+    },
+  });
+
+function getFamilies() {
+    const families = data?.families || [];
+    return families;
+}
+
 initMDB({ Input, Ripple });
 
 export default function RecipeForm() {
@@ -44,7 +56,11 @@ export default function RecipeForm() {
           <div data-mdb-input-init class="form-outline m-4 row">
             <label class="visually-hidden" for="families">Family</label>
             <select data-mdb-select-init class="select">
-              <option value="{families[i]._id}">Websterasdfdfsdafasdfasdfasdfasdfsad</option>
+            {getFamilies().map((family) => (
+                <option key={family._id} value={family._id}>
+                    {family.name} {/* Assuming family name property exists */}
+                </option>
+                ))}
             </select>
             <sub class="text-muted mt-2">Select a family to share this recipe</sub>
           </div>
