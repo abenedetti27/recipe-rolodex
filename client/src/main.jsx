@@ -1,8 +1,9 @@
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './index.css';
 import App from './App.jsx';
 import Home from './pages/Home.jsx';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 
 // import Dashboard from './pages/Dashboard.jsx';
@@ -17,19 +18,37 @@ import Home from './pages/Home.jsx';
 import * as mdb from 'mdb-ui-kit'; // lib
 window.mdb = mdb;
 
-const rootElement = document.getElementById('root');
+// const rootElement = document.getElementById('root');
 
-ReactDOM.createRoot(rootElement).render(
-  <Router>
-    <Routes>
-      <Route path="/" element={<App />} />
-      <Route path="/home" element={<Home />} />
+// ReactDOM.createRoot(rootElement).render(
+//   <Router>
+//     <Routes>
+//       <Route path="/" element={<App />} />
+//       <Route path="/home" element={<Home />} />
       {/* <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/add" element={<AddRecipe />} />
       <Route path="/family-recipes" element={<FamilyRecipes />} />
       <Route path="/family-search" element={<FamilySearch />} />
       <Route path="/login" element={<Login />} />
       <Route path="/recipe/:id" element={<Recipe />} /> */}
-    </Routes>
+    {/* </Routes>
   </Router>
-);
+); */}
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />,
+    // error: <NoMatch />,
+    children: [
+      {
+        index: true, 
+        element: <Home />
+      }
+    ]
+  }
+]);
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <RouterProvider router={router} />
+)
