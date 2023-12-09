@@ -26,6 +26,10 @@ const { signToken, AuthenticationError } = require('../utils/auth');
 
       return await User.findOne( { username: username } ).populate(['families', 'recipes']);
     },
+
+    familyMembers: async (parent, { familyId }) => {
+      return await User.find({ families: { _id : familyId }}).populate('families');
+    }
   },
 
 
@@ -101,12 +105,16 @@ const { signToken, AuthenticationError } = require('../utils/auth');
     },
 
     updateRecipe: async (parent, { _id, name, photo, cookingTime, instructions, ingredients, servingSize, author, familyId }) => {
-      const recipe = await Recipe.findByIdAndUpdate(
+      const updateRecipe = await Recipe.findByIdAndUpdate(
         { _id: _id },
-        { name: name, photo: photo, cookingTime: cookingTime, instructions: instructions, ingredients: ingredients, servingSize: servingSize, author: author, families: { _id : familyId }},
+        { name: name, photo: photo, cookingTime: cookingTime, instructions: instructions, ingredients: ingredients, servingSize: servingSize, author: author},
         { new: true }
-      ).populate('families');
-      return recipe;
+      );
+      const updateRecipeFamily = await Recipe.findByIdAndUpdate(
+        { _id: _id },
+        { $set: {families: familyId} },
+        {new: true})
+      return updateRecipeFamily;
     },
 
     deleteRecipe: async (parent, { _id }) => {

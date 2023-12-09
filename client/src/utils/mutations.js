@@ -6,22 +6,25 @@ import { gql } from '@apollo/client';
 export const LOGIN = gql`
     mutation login($email: String!, $password: String!) {
         login(email: $email, password: $password) {
-        token
-        user {
-            _id
-        }
+            token
+            user {
+                _id
+            }
         }
     }
 `;
 
 export const ADD_USER = gql`
-    mutation addUser($username: String!, $email: String!, $password: String!) {
-        addUser(username: $username, email: $email, password: $password) {
-        token
-        user {
-            _id
-            username
-        }
+    mutation addUser($firstName: String!, $lastName: String!, $username: String!, $email: String!, $password: String!) {
+        addUser(firstName: $firstName, lastName: $lastName, username: $username, email: $email, password: $password) {
+            token
+            user {
+                _id
+                email
+                firstName
+                lastName
+                username
+            }
         }
     }
 `;
@@ -36,26 +39,40 @@ export const ADD_FAMILY = gql`
 `
 
 export const JOIN_FAMILY = gql`
-    mutation joinFamily($username: String!, $familyId: ID! ) {
-        joinFamily(user: $username, familyID: $familyId) {
+    mutation joinFamily($familyId: ID!) {
+        joinFamily(familyId: $familyId) {
             _id
-            name   
+            firstName
+            lastName
+            username
+            email
+            families {
+                _id
+                name
+            }
         }
     }
 `
 
 export const LEAVE_FAMILY = gql`
-    mutation leaveFamily($username: String!, $familyId: ID! ) {
-        leaveFamily(user: $username, familyID: $familyId) {
+    mutation leaveFamily($familyId: ID!) {
+        leaveFamily(familyId: $familyId) {
             _id
-            name   
+            firstName
+            lastName
+            username
+            email
+            families {
+                _id
+                name
+            }
         }
     }
 `
 
 export const ADD_RECIPE = gql`
-    mutation addRecipe(name:  String!, photo: String, cookingTime: Int, instructions: String, ingredients: Int, servingSize: Int, author: String, familyId: ID! ) {
-        addRecipe(name: $name, photo: $photo, cookingTime: $cookingTime, instructions: $instructions, ingredients: $ingredients, servingSize: $servingSize, author: $author, familyID: $familyId) {
+    mutation addRecipe($name: String!, $photo: String!, $cookingTime: Int!, $instructions: String!, $ingredients: String!, $servingSize: Int!, $author: String!) {
+        addRecipe(name: $name, photo: $photo, cookingTime: $cookingTime, instructions: $instructions, ingredients: $ingredients, servingSize: $servingSize, author: $author) {
             _id
             name
             photo
@@ -74,8 +91,8 @@ export const ADD_RECIPE = gql`
 `
 
 export const UPDATE_RECIPE = gql`
-    mutation addRecipe(recipeId: ID!, name: String!, photo: String, cookingTime: Int, instructions: String, ingredients: Int, servingSize: Int, author: String, familyId: ID! ) {
-        addRecipe(recipeId: $recipeId, name: $name, photo: $photo, cookingTime: $cookingTime, instructions: $instructions, ingredients: $ingredients, servingSize: $servingSize, author: $author, familyID: $familyId) {
+    mutation updateRecipe($id: ID!, $name: String, $photo: String, $cookingTime: Int, $instructions: String, $ingredients: String, $servingSize: Int, $author: String, $familyId: [ID]) {
+        updateRecipe(_id: $id, name: $name, photo: $photo, cookingTime: $cookingTime, instructions: $instructions, ingredients: $ingredients, servingSize: $servingSize, author: $author, familyId: $familyId) {
             _id
             name
             photo
@@ -94,26 +111,31 @@ export const UPDATE_RECIPE = gql`
 `
 
 export const DELETE_RECIPE = gql`
-    mutation deleteRecipe($recipeId: ID! ) {
-        leaveFamily(recipeId: $recipeId) {
+    mutation deleteRecipe($id: ID!) {
+        deleteRecipe(_id: $id) {
             _id
-            name   
+            name
+            photo
+            cookingTime
+            instructions
+            ingredients
+            servingSize
+            author
+            createdAt
+            families {
+                _id
+                name
+            }
         }
     }
 `
+
 export const PIN_RECIPE = gql`
-    mutation pinRecipe($username: String!, $recipeId: ID!) {
-        pinRecipe(username: $username, recipeId: $recipeId) {
+    mutation pinRecipe($id: ID!) {
+        pinRecipe(_id: $id) {
             _id
-            firstName
-            lastName
             username
-            email
-            families {
-                _id
-                name
-            } 
-            recipes {
+            pinnedRecipes {
                 _id
                 name
                 photo
@@ -124,41 +146,20 @@ export const PIN_RECIPE = gql`
                 author
                 createdAt
                 families {
-                    _id
-                    name
-                }
-            }
-            pinnedRecipes  {
                 _id
                 name
-                photo
-                cookingTime
-                instructions
-                ingredients
-                servingSize
-                author
-                createdAt
-                families {
-                    _id
-                    name
                 }
             }
         }
     }
 `
+
 export const UNPIN_RECIPE = gql`
-    mutation unpinRecipe($username: String!, $recipeId: ID!) {
-        unpinRecipe(username: $username, recipeId: $recipeId) {
+    mutation unpinRecipe$id: ID!) {
+        unpinRecipe(_id: $id) {
             _id
-            firstName
-            lastName
             username
-            email
-            families {
-                _id
-                name
-            } 
-            recipes {
+            pinnedRecipes {
                 _id
                 name
                 photo
@@ -169,23 +170,8 @@ export const UNPIN_RECIPE = gql`
                 author
                 createdAt
                 families {
-                    _id
-                    name
-                }
-            }
-            pinnedRecipes  {
                 _id
                 name
-                photo
-                cookingTime
-                instructions
-                ingredients
-                servingSize
-                author
-                createdAt
-                families {
-                    _id
-                    name
                 }
             }
         }
