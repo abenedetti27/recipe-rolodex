@@ -14,7 +14,7 @@ export const QUERY_USER = gql`
             families {
                 _id
                 name
-            } 
+            }
             recipes {
                 _id
                 name
@@ -25,12 +25,8 @@ export const QUERY_USER = gql`
                 servingSize
                 author
                 createdAt
-                families {
-                    _id
-                    name
-                }
             }
-            pinnedRecipes  {
+            pinnedRecipes {
                 _id
                 name
                 photo
@@ -40,17 +36,14 @@ export const QUERY_USER = gql`
                 servingSize
                 author
                 createdAt
-                families {
-                    _id
-                    name
-                }
             }
+        }
     }
 `;
 
 export const QUERY_ALL_RECIPES = gql`
     query getRecipes {
-        recipes  {
+        recipes {
             _id
             name
             photo
@@ -61,15 +54,15 @@ export const QUERY_ALL_RECIPES = gql`
             author
             createdAt
             families {
-                _id
-                name
+              _id
+              name
             }
         }
     }
 `
 export const QUERY_RECIPE = gql`
-    query getSingleRecipe($recipeId: ID!) {
-        recipe(recipeId: $recipeId){
+    query getSingleRecipe($id: ID!) {
+        recipe(_id: $id) {
             _id
             name
             photo
@@ -91,13 +84,14 @@ export const QUERY_ALL_FAMILIES = gql`
     query getFamilies {
         families  {
             _id
+            name
         }
     }
 `
 
 export const QUERY_FAMILY = gql`
-    query getSingleFamily($familyId: ID!) {
-        family(familyId: $familyId) {
+    query getSingleFamily($id: ID!) {
+        family(_id: $id) {
             _id
             name
         }

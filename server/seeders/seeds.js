@@ -45,7 +45,7 @@ db.once('open', async () => {
         instructions: "Boil spaghetti. Brown ground beef. Mix with tomato sauce. Serve over spaghetti.",
         ingredients: "Spaghetti, ground beef, tomato sauce",
         servingSize: 4,
-        author: "Brian Kernighan",
+        author: "B-King",
         families: [families[0]._id]
       },
       {
@@ -55,7 +55,7 @@ db.once('open', async () => {
         instructions: "Cook chicken. Prepare Alfredo sauce. Mix with cooked pasta. Garnish with parsley.",
         ingredients: "Chicken breasts, fettuccine pasta, Alfredo sauce",
         servingSize: 6,
-        author: "Kent Bull",
+        author: "Superman",
         families: [families[2]._id]
       },
       {
@@ -65,7 +65,7 @@ db.once('open', async () => {
         instructions: "Stir-fry assorted vegetables. Add tofu. Season with soy sauce. Serve hot.",
         ingredients: "Broccoli, bell peppers, tofu, soy sauce",
         servingSize: 3,
-        author: "Edward V. Berard",
+        author: "EVBcooks",
         families: [families[3]._id]
       },
       {
@@ -75,7 +75,7 @@ db.once('open', async () => {
           instructions: "Bread chicken. Fry chicken. Add tomato sauce and cheese. Bake until cheese is melted.",
           ingredients: "Chicken breasts, bread crumbs, tomato sauce, mozzarella cheese",
           servingSize: 4,
-          author: "Alana Kay",
+          author: "KissUncleKay",
           families: [families[4]._id]
       },
       {
@@ -85,7 +85,7 @@ db.once('open', async () => {
           instructions: "Marinate chicken. Bake chicken. Add tomato sauce and spices. Serve with rice.",
           ingredients: "Chicken breasts, tomato sauce, spices, rice",
           servingSize: 4,
-          author: "David Thomas",
+          author: "D-Time",
           families: [families[5]._id]
       }
       ,
@@ -96,11 +96,10 @@ db.once('open', async () => {
           instructions: "Season beef. Bake beef. Serve with potatoes and vegetables.",
           ingredients: "Beef, potatoes, vegetables",
           servingSize: 6,
-          author: "Barbara Bull",
+          author: "KissAuntKay",
           families: [families[2]._id]
       }
     ]);
-
     console.log('🍝 recipes seeded 🍝');
 
     const users = await User.insertMany([
@@ -156,7 +155,7 @@ db.once('open', async () => {
         email: "akay@techfriends.dev",
         password: "password06",
         families: [families[4]._id],
-        recipes: [recipes[0]._id],
+        recipes: [recipes[5]._id],
       },
       {
         username: "KissUncleKay",
@@ -186,7 +185,6 @@ db.once('open', async () => {
         recipes: [],
       }
     ]);
-
     console.log('👨‍🍳 users seeded 👩‍🍳');
 
   } catch (err) {

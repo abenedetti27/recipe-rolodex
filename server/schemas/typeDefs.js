@@ -39,8 +39,8 @@ const typeDefs = `
     recipe(_id: ID!): Recipe
     families: [Family]
     family(_id: ID!): Family
-    famRecipe(familyId: ID!): [Recipe]
-    user: User
+    famRecipe( familyId : ID!): [Recipe]
+    user(username: String!): User
   }
 
   type Mutation {
@@ -49,7 +49,7 @@ const typeDefs = `
     addFamily(name: String!): Family
     joinFamily(familyId: ID!): User
     leaveFamily(familyId: ID!): User
-    addRecipe(name: String!, photo: String!, cookingTime: Int!, instructions: String!, ingredients: String!, servingSize: Int!, author: String!): Recipe
+    addRecipe(name: String!, photo: String!, cookingTime: Int!, instructions: String!, ingredients: String!, servingSize: Int!, author: String!, familyId: ID): Recipe
     updateRecipe(_id: ID!, name: String, photo: String, cookingTime: Int, instructions: String, ingredients: String, servingSize: Int, author: String, familyId: ID): Recipe
     deleteRecipe(_id: ID!): Recipe
     pinRecipe(_id: ID!): Recipe
