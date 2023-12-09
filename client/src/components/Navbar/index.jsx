@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+// Import necessary dependencies
+import React, { useEffect, useState } from 'react';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import Logo from './assets/logo/logo.png';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
@@ -59,14 +60,11 @@ const NavBar = () => {
                                 )}
                             </Nav>
                             <span className="navbar-text">
-                                {/* ... (existing code) ... */}
                                 <div className="icons">
-                                    {/* Add your external site links here */}
                                     <a href=""><img src={navIcon1} alt="" style={{ width: '10%', height: 'auto' }} /></a>
                                     <a href=""><img src={navIcon2} alt="" style={{ width: '10%', height: 'auto' }} /></a>
                                     <a href=""><img src={navIcon3} alt="" style={{ width: '10%', height: 'auto' }} /></a>
                                 </div>
-                                {/* <button className="vvd" onClick={() => console.log('connect')}><span>Let's Connect</span></button> */}
                             </span>
                         </Navbar.Collapse>
                     </Container>
