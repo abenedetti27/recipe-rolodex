@@ -1,10 +1,10 @@
 import { Outlet } from 'react-router-dom';
-import {   
+import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
-  createHttpLink, } from '@apollo/client';
-// import { ApolloClient, createHttpLink} from '@apollo/client/core';
+  createHttpLink,
+} from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
 // Construct request middleware that will attach the JWT token to every request as an `authorization` header
@@ -34,13 +34,11 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <div className="flex-column justify-flex-start min-100-vh">
-        <div className="container">
+
           <Outlet />
-        </div>
-      </div>
+
     </ApolloProvider>
   );
 }
 
-export default App
+export default App;
