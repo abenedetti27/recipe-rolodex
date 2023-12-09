@@ -1,9 +1,19 @@
-#cardContainer{
+.cardContainer{
     width: 80%;
     height: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     padding: 1%;
+    margin: auto;
+}
+
+.login{
+    width: 25%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 1.75%;
     margin: auto;
 }
