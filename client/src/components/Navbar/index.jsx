@@ -39,6 +39,7 @@ export const NavBar = () => {
             <ScrollLink to="home" spy={true} smooth={true} duration={500}>
                                 Home
                             </ScrollLink>
+                            {/* what pages do we want to link to from the homepage */}
                             <ScrollLink to="link1" spy={true} smooth={true} duration={500}>
                                 Link 1
                             </ScrollLink>
@@ -50,7 +51,8 @@ export const NavBar = () => {
                             </ScrollLink>
                         </Nav>
             <span className="navbar-text">
-            <div className="social-icon">
+            {/* do we want to link to any external sites? */}
+            <div className="icons">
              <a href=""><img src={navIcon1} alt="" style={{ width: '10%', height: 'auto' }}/></a>  
              <a href=""><img src={navIcon2} alt="" style={{ width: '10%', height: 'auto' }}/></a>   
              <a href=""><img src={navIcon3} alt="" style={{ width: '10%', height: 'auto' }}/></a>   
