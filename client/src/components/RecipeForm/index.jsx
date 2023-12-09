@@ -1,4 +1,3 @@
-// Initialization for ES Users
 import { Input, Ripple, initMDB } from "mdb-ui-kit";
 import './style.css';
 
@@ -58,7 +57,7 @@ export default function RecipeForm() {
             <select data-mdb-select-init class="select">
             {getFamilies().map((family) => (
                 <option key={family._id} value={family._id}>
-                    {family.name} {/* Assuming family name property exists */}
+                    {family.name}
                 </option>
                 ))}
             </select>
