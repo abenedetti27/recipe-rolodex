@@ -1,52 +1,48 @@
-import { initMDB } from "mdb-ui-kit";
-import './style.css';
+import { useState, useEffect } from 'react';
+import { initMDB } from 'mdb-ui-kit';
+import { useQuery } from '@apollo/client';
+import { QUERY_ALL_RECIPES } from '../../utils/queries';
 
 initMDB();
 
-export default function RecipeCard() {
+const RecipeCard = () => {
+  const { loading, error, data } = useQuery(QUERY_ALL_RECIPES);
+  const [recipes, setRecipes] = useState([]);
+
+  useEffect(() => {
+    if (data && data.recipes) {
+      setRecipes(data.recipes);
+    }
+  }, [data]);
+
+  if (loading) return <p>Loading...</p>;
+
+  if (error) {
+    console.error('Error fetching data:', error);
+    return <p>Error: Unable to fetch data</p>;
+  }
+
   return (
-    <section id="cardContainer">
-      <div className="card" id="recipeCard">
-        <div className="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light">
-          <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp" className="img-fluid" alt="Nature" />
-          <a href="#!">
-            <div className="mask" style={{ backgroundColor: "rgba(251, 251, 251, 0.15)" }}></div>
-          </a>
+    <>
+      {recipes.map((recipe) => (
+        <div className="card" id="recipeCard" key={recipe.id}>
+          <div className="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light">
+            <img src={recipe?.image || ''} className="img-fluid" alt={recipe?.title || ''} />
+            <a href="#!">
+              <div className="mask" style={{ backgroundColor: "rgba(251, 251, 251, 0.15)" }}></div>
+            </a>
+          </div>
+          <div className="card-body">
+            <h5 className="card-title">{recipe?.title || 'No Title'}</h5>
+            <p className="card-text">{recipe?.description || 'No Description'}</p>
+            <a href="#!" className="btn btn-primary" data-mdb-ripple-init>
+              Button
+            </a>
+          </div>
         </div>
-        <div className="card-body">
-          <h5 className="card-title">Card title</h5>
-          <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#!" className="btn btn-primary" data-mdb-ripple-init>Button</a>
-        </div>
-      </div>
-
-      <div className="card" id="recipeCard">
-        <div className="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light">
-          <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp" className="img-fluid" alt="Nature" />
-          <a href="#!">
-            <div className="mask" style={{ backgroundColor: "rgba(251, 251, 251, 0.15)" }}></div>
-          </a>
-        </div>
-        <div className="card-body">
-          <h5 className="card-title">Card title</h5>
-          <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#!" className="btn btn-primary" data-mdb-ripple-init>Button</a>
-        </div>
-      </div>
-
-      <div className="card" id="recipeCard">
-        <div className="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light">
-          <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp" className="img-fluid" alt="Nature" />
-          <a href="#!">
-            <div className="mask" style={{ backgroundColor: "rgba(251, 251, 251, 0.15)" }}></div>
-          </a>
-        </div>
-        <div className="card-body">
-          <h5 className="card-title">Card title</h5>
-          <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#!" className="btn btn-primary" data-mdb-ripple-init>Button</a>
-        </div>
-      </div>
-    </section>
+      ))}
+    </>
   );
-}
+};
+
+export default RecipeCard;
