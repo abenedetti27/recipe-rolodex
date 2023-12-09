@@ -13,7 +13,7 @@ const typeDefs = `
     ingredients: String!
     servingSize: Int!
     author: String!
-    createdAt: std::chrono::system_clock::time_point Date
+    createdAt: String!
     families: [Family]
   }
 
@@ -25,7 +25,7 @@ const typeDefs = `
     email: String!
     password: String!
     families: [Family]
-    recipies: [Recipe]
+    recipes: [Recipe]
     pinnedRecipes: [Recipe]
   }
 
@@ -35,12 +35,13 @@ const typeDefs = `
   }
 
   type Query {
-    recipies: [Recipe]
+    recipes: [Recipe]
     recipe(_id: ID!): Recipe
     families: [Family]
     family(_id: ID!): Family
-    famRecipe(familyId: ID!): [Recipe]
-    user: User
+    famRecipe( familyId : ID!): [Recipe]
+    user(username: String!): User
+    familyMembers( familyId : ID!): [User]
   }
 
   type Mutation {
@@ -49,11 +50,11 @@ const typeDefs = `
     addFamily(name: String!): Family
     joinFamily(familyId: ID!): User
     leaveFamily(familyId: ID!): User
-    addRecipe(name: String!, photo: String!, cookingTime: Int!, instructions: String!, ingredients: String!, servingSize: Int!, author: String!): Recipe
-    updateRecipe(_id: ID!, name: String, photo: String, cookingTime: Int, instructions: String, ingredients: String, servingSize: Int, author: String, familyId: ID): Recipe
+    addRecipe(name: String!, photo: String!, cookingTime: Int!, instructions: String!, ingredients: String!, servingSize: Int!, author: String!, familyId: [ID]): Recipe
+    updateRecipe(_id: ID!, name: String, photo: String, cookingTime: Int, instructions: String, ingredients: String, servingSize: Int, author: String, familyId: [ID]): Recipe
     deleteRecipe(_id: ID!): Recipe
-    pinRecipe(_id: ID!): Recipe
-    unpinRecipe(_id: ID!): Recipe
+    pinRecipe(_id: ID!): User
+    unpinRecipe(_id: ID!): User
   }
 `;
 
