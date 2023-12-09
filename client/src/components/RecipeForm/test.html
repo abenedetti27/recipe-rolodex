@@ -26,60 +26,55 @@ rel="stylesheet"
     <div id="root"></div>
     
     <form>
-      <!-- 2 column grid layout with text inputs for the first and last names -->
       <div class="row mb-4">
-      <!-- Text input -->
-      <div data-mdb-input-init class="form-outline mb-4">
-        <input type="text" id="form6Example3" class="form-control" />
-        <label class="form-label" for="form6Example3">Recipe Name</label>
-      </div>
+        <div data-mdb-input-init class="form-outline mb-4">
+          <input type="text" id="recipeName" class="form-control" />
+          <label class="form-label" for="recipeName">Recipe Name</label>
+        </div>
+      
         <div class="col">
           <div data-mdb-input-init class="form-outline">
-            <input type="text" id="form6Example1" class="form-control" />
-            <label class="form-label" for="form6Example1">Cooking Time</label>
+            <input type="number" id="cookingTime" class="form-control" />
+            <label class="form-label" for="cookingTime">Cooking Time</label>
+            <sub class="text-muted">in minutes</sub>
           </div>
         </div>
+
         <div class="col">
           <div data-mdb-input-init class="form-outline">
-            <input type="text" id="form6Example2" class="form-control" />
-            <label class="form-label" for="form6Example2">Serving Size</label>
+            <input type="number" id="servingSize" class="form-control" />
+            <label class="form-label" for="servingSize">Serving Size</label>
+            <sub class="text-muted">in people</sub>
           </div>
         </div>
       </div>
     
-      <!-- Number input -->
       <div data-mdb-input-init class="form-outline mb-4">
-        <input type="number" id="form6Example6" class="form-control" />
-        <label class="form-label" for="form6Example6">Phone</label>
-      </div>
-    
-      <!-- Message input -->
-      <div data-mdb-input-init class="form-outline mb-4">
-        <textarea class="form-control" id="form6Example7" rows="4"></textarea>
-        <label class="form-label" for="form6Example7">Cooking Instructions</label>
+        <textarea class="form-control" id="instructions" rows="4"></textarea>
+        <label class="form-label" for="instructions">Cooking Instructions</label>
+        <sub class="text-muted">Separate each step with a new line</sub>
       </div>
 
-      <!-- Message input -->
       <div data-mdb-input-init class="form-outline mb-4">
-        <textarea class="form-control" id="form6Example7" rows="4"></textarea>
-        <label class="form-label" for="form6Example7">Ingredients</label>
+        <textarea class="form-control" id="ingredients" rows="4"></textarea>
+        <label class="form-label" for="ingredients">Ingredients</label>
+        <sub class="text-muted">Separate each ingredient with a new line</sub>
       </div>
 
-      <div class="">
-        <label class="visually-hidden" for="inlineFormSelectPref">Family</label>
+      <div data-mdb-input-init class="form-outline mb-4">
+        <label class="visually-hidden" for="families">Family</label>
         <select data-mdb-select-init class="select">
-          <option value="{families[i]._id}">One</option>
+          <option value="{families[i]._id}">Websterasdfdfsdafasdfasdfasdfasdfsad</option>
         </select>
+        <sub class="text-muted">Select a family to share this recipe with</sub>
       </div>
     
-      <!-- Image Import -->
       <div data-mdb-input-init class="form-outline mb-4">
-        <p>Upload an image of your recipe</p>
         <button type="button" class="btn btn-primary btn-sm">Upload</button>
+        <sub class="text-muted">Upload a picture of your recipe</sub>
       </div>
     
-      <!-- Submit button -->
-      <button data-mdb-ripple-init type="button" class="btn btn-primary btn-block mb-4">Place order</button>
+      <button data-mdb-ripple-init type="button" class="btn btn-primary btn-block mb-4 submit">Submit Recipe</button>
     </form>
     <!-- Scripts -->
     <!-- MDB -->
