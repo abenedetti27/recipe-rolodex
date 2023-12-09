@@ -10,18 +10,17 @@ export const NavBar = () => {
 
     useEffect(() => {
         const onScroll = e => {
-            if (window.scrollY > 300) {
-                seScrolled(true);
-            } else {
-                seScrolled(false);
-            }
-        }
+            setScrolled(window.scrollY > 300);
+    };
 
-        window.addEventListener("scroll", onScroll);
+    window.addEventListener('scroll', onScroll);
 
-        return () => window.removeEventListener("scroll", onScroll);
-    }, []);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
 
     return (
         <section className="header" id="home">
