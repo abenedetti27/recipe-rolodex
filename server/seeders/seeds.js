@@ -1,8 +1,5 @@
 const db = require('../config/connection');
 const { User, Family, Recipe } = require('../models');
-// const userSeeds = require('./userSeeds.json');
-// const familySeeds = require('./familySeeds.json');
-// const recipeSeeds = require('./recipeSeeds.json');
 const cleanDB = require('./cleanDB');
 
 db.once('open', async () => {
