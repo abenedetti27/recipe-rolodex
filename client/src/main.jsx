@@ -1,10 +1,29 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import './index.css';
+import App from './App.jsx';
+import Home from './pages/Home.jsx';
+import Dashboard from './pages/Dashboard.jsx';
+import AddRecipe from './pages/AddRecipe.jsx';
+import FamilyRecipes from './pages/FamilyRecipes.jsx';
+import FamilySearch from './pages/FamilySearch.jsx';
+import Login from './pages/Login.jsx';
+import Recipe from '../../server/models/Recipe.js';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+
+const rootElement = document.getElementById('root');
+
+ReactDOM.createRoot(rootElement).render(
+  <Router>
+    <Routes>
+      <Route path="/" element={<App />} />
+      <Route path="/home" element={<Home />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/add" element={<AddRecipe />} />
+      <Route path="/family-recipes" element={<FamilyRecipes />} />
+      <Route path="/family-search" element={<FamilySearch />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/recipe/:id" element={<Recipe />} />
+    </Routes>
+  </Router>
+);
