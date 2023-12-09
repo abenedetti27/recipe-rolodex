@@ -13,6 +13,7 @@ import Home from './pages/Home.jsx';
 // import Recipe from '../../server/models/Recipe.js';
 
 // Import MDB
+// Example: Adjust import path based on package structure or documentation
 import * as mdb from 'mdb-ui-kit'; // lib
 window.mdb = mdb;
 
