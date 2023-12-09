@@ -35,6 +35,41 @@ export const NavBar = () => {
           </Navbar.Toggle>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
+            <Link to="home" spy={true} smooth={true} duration={500}>
+                  Home
+                </Link>
+                {isLoggedIn ? (
+                  <>
+                    {/* Links for logged-in users */}
+                    <Link to="dashboard" spy={true} smooth={true} duration={500}>
+                      Dashboard
+                    </Link>
+                    <Link to="pinned-recipes" spy={true} smooth={true} duration={500}>
+                      Pinned Recipes
+                    </Link>
+                    <Link to="/" onClick={handleLogout}>
+                      Logout
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                  <Link to="login" spy={true} smooth={true} duration={500}>
+                      Login
+                    </Link>
+                  </>
+                )}
+              </Nav>
+              <span className="navbar-text">
+                {/* ... (existing code) ... */}
+              </span>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
+      </Router>
+    </section>
+  );
+};
+
             <ScrollLink to="home" spy={true} smooth={true} duration={500}>
                     {/* what pages do we want to link to from the homepage- when logged out. need to figure out logic for this logged in/ logged out*/}
                                 Home
