@@ -4,11 +4,11 @@ import './index.css';
 import App from './App.jsx';
 import Home from './pages/Home.jsx';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Dashboard from './pages/Dashboard.jsx';
-import AddRecipe from './pages/AddRecipe.jsx';
+// import Dashboard from './pages/Dashboard.jsx';
+// import AddRecipe from './pages/AddRecipe.jsx';
 // import FamilyRecipes from './pages/FamilyRecipes.jsx';
 // import FamilySearch from './pages/FamilySearch.jsx';
-import Login from './pages/Login.jsx';
+// import Login from './pages/Login.jsx';
 import Recipe from './pages/Recipe.jsx';
 
 // Import MDB
@@ -27,16 +27,16 @@ const router = createBrowserRouter([
         index: true, 
         element: <Home />
       },
-      {
-        path:'/dashboard',
-        index: false, 
-        element: <Dashboard />
-      },
-      {
-        path:'/addrecipe',
-        index: false, 
-        element: <AddRecipe />
-      },
+      // {
+      //   path:'/dashboard',
+      //   index: false, 
+      //   element: <Dashboard />
+      // },
+      // {
+      //   path:'/addrecipe',
+      //   index: false, 
+      //   element: <AddRecipe />
+      // },
       // {
       //   path:'/familyrecipes',
       //   index: false, 
@@ -47,11 +47,11 @@ const router = createBrowserRouter([
       //   index: false, 
       //   element: <FamilySearch />
       // },
-      {
-        path:'/login',
-        index: false, 
-        element: <Login />
-      },
+      // {
+      //   path:'/login',
+      //   index: false, 
+      //   element: <Login />
+      // },
       {
         path:'/recipe',
         index: false, 
