@@ -1,9 +1,8 @@
-.cardContainer{
-    width: 60%;
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
+#cardContainer{
+    width: 68%;
+    height: auto;
     padding: 1%;
+    justify-content: space-evenly;
     margin: auto;
 }
 
