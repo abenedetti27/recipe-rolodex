@@ -5,7 +5,7 @@ import Carousels from '../components/Carousel';
 
 function Home() {
     return (
-        <section className="container m-auto">
+        <section className="md-container m-auto">
          <Carousels />
         <div className="d-flex p-3 flex-wrap" id="cardContainer">
             <RecipeCard />
