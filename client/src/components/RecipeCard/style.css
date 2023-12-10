@@ -1,4 +1,4 @@
-#recipeCard {
+.card {
     width: 30%;
     height: auto;
     background-color: #fff;
@@ -15,4 +15,20 @@
 .btn {
     float: right;
     width: 100%;
+}
+
+.btn::before{
+    content: 'See Recipe';
+}
+
+@media (max-width: 768px) {
+    .card-body h5{
+        font-size: 1em;
+    }
+
+    .card {
+        width: 100%; /* Set the card width to 100% for small screens */
+        height: 100%;
+      }
+
 }
