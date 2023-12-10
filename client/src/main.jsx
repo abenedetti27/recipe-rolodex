@@ -8,7 +8,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 // import AddRecipe from './pages/AddRecipe.jsx';
 // import FamilyRecipes from './pages/FamilyRecipes.jsx';
 // import FamilySearch from './pages/FamilySearch.jsx';
-// import Login from './pages/Login.jsx';
+import Login from './pages/Login.jsx';
 import Recipe from './pages/Recipe.jsx';
 
 // Import MDB
@@ -47,11 +47,11 @@ const router = createBrowserRouter([
       //   index: false, 
       //   element: <FamilySearch />
       // },
-      // {
-      //   path:'/login',
-      //   index: false, 
-      //   element: <Login />
-      // },
+      {
+        path:'/login',
+        index: false, 
+        element: <Login />
+      },
       {
         path:'/recipe',
         index: false, 
