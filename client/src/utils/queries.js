@@ -137,3 +137,30 @@ export const QUERY_FAMILY_RECIPE_PHOTOS = gql`
         }
     }
 `
+
+export const LOGIN_USER = gql`
+  mutation loginUser($username: String!, $password: String!) {
+    loginUser(username: $username, password: $password) {
+      token
+      user {
+        _id
+        username
+        password
+      }
+    }
+  }
+`
+
+export const SIGNUP_USER = gql`
+  mutation signupUser($username: String!, $email: String!, $password: String!) {
+    signupUser(username: $username, email: $email, password: $password) {
+      token
+      user {
+        _id
+        username
+        email
+        password
+      }
+    }
+  }
+`
