@@ -34,6 +34,12 @@ const typeDefs = `
     user: User
   }
 
+  type Photos {
+    familyId: ID!
+    name: String!
+    photos: [String]
+  }
+
   type Query {
     recipes: [Recipe]
     recipe(_id: ID!): Recipe
@@ -42,6 +48,7 @@ const typeDefs = `
     famRecipe( familyId : ID!): [Recipe]
     user(username: String!): User
     familyMembers( familyId : ID!): [User]
+    familyRecipePhotos(username: String!): [Photos]
   }
 
   type Mutation {

@@ -127,3 +127,13 @@ export const QUERY_FAMILY_MEMBER = gql`
         }
     }
 `
+
+export const QUERY_FAMILY_RECIPE_PHOTOS = gql`
+    query familyRecipePhotos$username: String!) {
+        familyRecipePhotos(username: $username) {
+          familyId
+          name
+          photos
+        }
+    }
+`
