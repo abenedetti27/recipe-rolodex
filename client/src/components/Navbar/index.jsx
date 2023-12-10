@@ -1,10 +1,8 @@
-// Import necessary dependencies
 import React, { useEffect, useState } from 'react';
-import { Container, Nav } from 'mdb-ui-kit';
 import Logo from '../../assets/logo/logo.png';
-import { Collapse, Ripple, initMDB } from "mdb-ui-kit";
+import { initMDB } from "mdb-ui-kit";
 
-initMDB({ Collapse, Ripple });
+initMDB();
 
 const NavBar = () => {
     const [scrolled, setScrolled] = useState(false);
@@ -22,14 +20,11 @@ const NavBar = () => {
         };
     }, []);
 
-    const handleLogout = () => {
-        setIsLoggedIn(false);
-    };
-
     return (
-        <nav className={`navbar navbar-expand-lg navbar-light bg-${scrolled ? 'dark' : 'body-tertiary'}`}>
-            <Container fluid>
+        <nav className="navbar navbar-expand-lg navbar-light bg-body-tertiary">
+            <div className="container-fluid">
                 <button
+                    data-mdb-collapse-init
                     className="navbar-toggler"
                     type="button"
                     data-mdb-target="#navbarTogglerDemo03"
@@ -39,27 +34,19 @@ const NavBar = () => {
                 >
                     <i className="fas fa-bars"></i>
                 </button>
-                <a className="navbar-brand" href="#">
-                    <img src={Logo} alt="Logo" />
-                </a>
-                <Collapse navbar id="navbarTogglerDemo03">
-                    <Nav className="me-auto mb-2 mb-lg-0">
-                        <Nav.Item>
-                            <Nav.Link active aria-current="page" href="#">
-                                Home
-                            </Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link href="#">
-                                Link
-                            </Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link disabled>
-                                Disabled
-                            </Nav.Link>
-                        </Nav.Item>
-                    </Nav>
+                <a className="navbar-brand" href="#">Navbar</a>
+                <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li className="nav-item">
+                            <a className="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="#">Link</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link disabled">Disabled</a>
+                        </li>
+                    </ul>
                     <form className="d-flex input-group w-auto">
                         <input
                             type="search"
@@ -68,6 +55,7 @@ const NavBar = () => {
                             aria-label="Search"
                         />
                         <button
+                            data-mdb-ripple-init
                             className="btn btn-outline-primary"
                             type="button"
                             data-mdb-ripple-color="dark"
@@ -75,8 +63,8 @@ const NavBar = () => {
                             Search
                         </button>
                     </form>
-                </Collapse>
-            </Container>
+                </div>
+            </div>
         </nav>
     );
 };
