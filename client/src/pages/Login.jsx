@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { LOGIN_USER, SIGNUP_USER, QUERY_USER } from '../../utils/queries';
+import { LOGIN_USER, SIGNUP_USER, QUERY_USER } from '../utils/queries';
 import { initMDB, Tab } from "mdb-ui-kit";
 import './Home.css';
 
