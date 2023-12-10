@@ -1,9 +1,10 @@
 // Import necessary dependencies
 import React, { useEffect, useState } from 'react';
-import { Navbar, Container, Nav } from 'react-bootstrap';
-import Logo from './assets/logo/logo.png';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
-import { Link as ScrollLink } from 'react-scroll';
+import { Container, Nav } from 'mdb-ui-kit';
+import Logo from '../../assets/logo/logo.png';
+import { Collapse, Ripple, initMDB } from "mdb-ui-kit";
+
+initMDB({ Collapse, Ripple });
 
 const NavBar = () => {
     const [scrolled, setScrolled] = useState(false);
@@ -14,9 +15,11 @@ const NavBar = () => {
             setScrolled(window.scrollY > 300);
         };
 
-        window.addEventListener('scroll', onScroll);
+        window.addEventListener('scroll', handleScroll);
 
-        return () => window.removeEventListener('scroll', onScroll);
+        return () => {
+        window.removeEventListener('scroll', handleScroll);
+        };
     }, []);
 
     const handleLogout = () => {
@@ -24,54 +27,55 @@ const NavBar = () => {
     };
 
     return (
-        <section className="header" id="home">
-            <Router>
-                <Navbar expand="md" className={scrolled ? 'scrolled' : ''}>
-                    <Container>
-                        <Navbar.Brand as={ScrollLink} to="home" spy={true} smooth={true} duration={500}>
-                            <img src={Logo} alt="logo" style={{ width: '50%', height: 'auto' }} />
-                        </Navbar.Brand>
-                        <Navbar.Toggle aria-controls="basic-navbar-nav">
-                            <span className="navbar-toggler-icon"></span>
-                        </Navbar.Toggle>
-                        <Navbar.Collapse id="basic-navbar-nav">
-                            <Nav className="ms-auto">
-                                <ScrollLink to="home" spy={true} smooth={true} duration={500}>
-                                    Home
-                                </ScrollLink>
-                                {isLoggedIn ? (
-                                    <>
-                                        <ScrollLink to="dashboard" spy={true} smooth={true} duration={500}>
-                                            Dashboard
-                                        </ScrollLink>
-                                        <ScrollLink to="pinned-recipes" spy={true} smooth={true} duration={500}>
-                                            Pinned Recipes
-                                        </ScrollLink>
-                                        <Link to="/" onClick={handleLogout}>
-                                            Logout
-                                        </Link>
-                                    </>
-                                ) : (
-                                    <>
-                                        <ScrollLink to="login" spy={true} smooth={true} duration={500}>
-                                            Login
-                                        </ScrollLink>
-                                    </>
-                                )}
-                            </Nav>
-                            <span className="navbar-text">
-                                <div className="icons">
-                                    <a href=""><img src={navIcon1} alt="" style={{ width: '10%', height: 'auto' }} /></a>
-                                    <a href=""><img src={navIcon2} alt="" style={{ width: '10%', height: 'auto' }} /></a>
-                                    <a href=""><img src={navIcon3} alt="" style={{ width: '10%', height: 'auto' }} /></a>
-                                </div>
-                            </span>
-                        </Navbar.Collapse>
-                    </Container>
-                </Navbar>
-            </Router>
-        </section>
+        <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
+  <div class="container-fluid">
+    <button
+      data-mdb-collapse-init
+      class="navbar-toggler"
+      type="button"
+      data-mdb-target="#navbarTogglerDemo03"
+      aria-controls="navbarTogglerDemo03"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+    <a class="navbar-brand" href="#">
+    <img src={Logo} alt="Logo" />
+    </a>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled"
+            >Disabled</a
+          >
+        </li>
+      </ul>
+      <form class="d-flex input-group w-auto">
+        <input
+          type="search"
+          class="form-control"
+          placeholder="Type query"
+          aria-label="Search"
+        />
+        <button
+          data-mdb-ripple-init
+          class="btn btn-outline-primary"
+          type="button"
+          data-mdb-ripple-color="dark"
+        >
+          Search
+        </button>
+      </form>
+    </div>
+  </div>
+</nav>
     );
 };
-
 export default NavBar;

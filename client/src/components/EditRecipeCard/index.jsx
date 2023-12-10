@@ -15,3 +15,25 @@ const PrersonalRecipeCard = ({ recipe, onEdit, onDelete }) => {
         onUpdateRecipe(recipe.id, updatedRecipe);
         setIsEditing(false);
     };
+const handleDeleteClick = () => {
+    onDeleteRecipe(recipe.id);
+};
+
+return (
+    <div className="personal-recipe-card">
+        {isEditing ? (
+            <EditRecipeCard
+                recipe={recipe}
+                onCancel={handleCancelEdit}
+                onSave={handleSaveEdit}
+            />
+        ) : (
+            <RecipeCard
+                recipe={recipe}
+                onEdit={handleEditClick}
+                onDelete={handleDeleteClick}
+            />
+        )}
+    </div>
+);
+}
