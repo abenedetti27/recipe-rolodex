@@ -6,6 +6,7 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import NavBar from './components/Navbar';
 
 // Construct request middleware that will attach the JWT token to every request as an `authorization` header
 const authLink = setContext((_, { headers }) => {
@@ -34,8 +35,8 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-
-          <Outlet />
+        <NavBar />
+        <Outlet />
 
     </ApolloProvider>
   );
