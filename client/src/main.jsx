@@ -9,7 +9,7 @@ import AddRecipe from './pages/AddRecipe.jsx';
 // import FamilyRecipes from './pages/FamilyRecipes.jsx';
 // import FamilySearch from './pages/FamilySearch.jsx';
 import Login from './pages/Login.jsx';
-import Recipe from '../../server/models/Recipe.js';
+import Recipe from './pages/Recipe.jsx';
 
 // Import MDB
 // Example: Adjust import path based on package structure or documentation
