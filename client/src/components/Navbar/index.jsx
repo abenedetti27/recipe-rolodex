@@ -11,14 +11,14 @@ const NavBar = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
-        const onScroll = () => {
+        const handleScroll = () => {
             setScrolled(window.scrollY > 300);
         };
 
         window.addEventListener('scroll', handleScroll);
 
         return () => {
-        window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('scroll', handleScroll);
         };
     }, []);
 
@@ -27,55 +27,58 @@ const NavBar = () => {
     };
 
     return (
-        <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
-  <div class="container-fluid">
-    <button
-      data-mdb-collapse-init
-      class="navbar-toggler"
-      type="button"
-      data-mdb-target="#navbarTogglerDemo03"
-      aria-controls="navbarTogglerDemo03"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <i class="fas fa-bars"></i>
-    </button>
-    <a class="navbar-brand" href="#">
-    <img src={Logo} alt="Logo" />
-    </a>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled"
-            >Disabled</a
-          >
-        </li>
-      </ul>
-      <form class="d-flex input-group w-auto">
-        <input
-          type="search"
-          class="form-control"
-          placeholder="Type query"
-          aria-label="Search"
-        />
-        <button
-          data-mdb-ripple-init
-          class="btn btn-outline-primary"
-          type="button"
-          data-mdb-ripple-color="dark"
-        >
-          Search
-        </button>
-      </form>
-    </div>
-  </div>
-</nav>
+        <nav className={`navbar navbar-expand-lg navbar-light bg-${scrolled ? 'dark' : 'body-tertiary'}`}>
+            <Container fluid>
+                <button
+                    className="navbar-toggler"
+                    type="button"
+                    data-mdb-target="#navbarTogglerDemo03"
+                    aria-controls="navbarTogglerDemo03"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <i className="fas fa-bars"></i>
+                </button>
+                <a className="navbar-brand" href="#">
+                    <img src={Logo} alt="Logo" />
+                </a>
+                <Collapse navbar id="navbarTogglerDemo03">
+                    <Nav className="me-auto mb-2 mb-lg-0">
+                        <Nav.Item>
+                            <Nav.Link active aria-current="page" href="#">
+                                Home
+                            </Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link href="#">
+                                Link
+                            </Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link disabled>
+                                Disabled
+                            </Nav.Link>
+                        </Nav.Item>
+                    </Nav>
+                    <form className="d-flex input-group w-auto">
+                        <input
+                            type="search"
+                            className="form-control"
+                            placeholder="Type query"
+                            aria-label="Search"
+                        />
+                        <button
+                            className="btn btn-outline-primary"
+                            type="button"
+                            data-mdb-ripple-color="dark"
+                        >
+                            Search
+                        </button>
+                    </form>
+                </Collapse>
+            </Container>
+        </nav>
     );
 };
+
 export default NavBar;
