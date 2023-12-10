@@ -3,6 +3,7 @@
     height: auto;
     background-color: #fff;
     border-radius: 10px;
+    text-align: center;
 }
 
 .img-fluid{
@@ -13,4 +14,5 @@
 
 .btn {
     float: right;
+    width: 100%;
 }

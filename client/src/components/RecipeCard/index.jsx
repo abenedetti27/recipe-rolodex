@@ -27,17 +27,17 @@ const RecipeCard = () => {
   return (
     <>
     {recipes.map((recipe) => (
-          <div className="card m-2" id="recipeCard" key={recipe._id} >
+          <div className="card mb-1" id="recipeCard" key={recipe._id} >
             <div className="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light">
-              <img src={recipe?.photo || ''} className="img-fluid" alt={recipe?.name || ''} />
+              <img src={recipe?.photo || ''} className="img-fluid mb-0" alt={recipe?.name || ''} />
               <a href="#!">
                 <div className="mask" style={{ backgroundColor: "rgba(251, 251, 251, 0.15)" }}></div>
               </a>
             </div>
-            <div className="card-body">
-              <h5 className="card-title mb-1">{recipe?.name || 'No Title'}</h5>
+            <div className="card-body p-3">
+              <h5 className="card-title mb-2">{recipe?.name || 'No Title'}</h5>
               <a href="#!" className="btn btn-primary" data-mdb-ripple-init>
-                Button
+                See Recipe
               </a>
             </div>
           </div>
