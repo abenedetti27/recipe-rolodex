@@ -1,12 +1,16 @@
 import RecipeCard from '../components/RecipeCard';
 import './Home.css';
+import Carousels from '../components/Carousel';
 
 
 function Home() {
     return (
-        <main className="cardContainer">
+        <section className="md-container m-auto">
+         <Carousels />
+        <div className="d-flex p-3 flex-wrap" id="cardContainer">
             <RecipeCard />
-        </main>
+        </div>
+        </section>
     );
 }
 

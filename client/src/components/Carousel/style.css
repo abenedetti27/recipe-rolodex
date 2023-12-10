@@ -1,0 +1,7 @@
+.caraBox{
+    width: 64%;
+    height: 20%;
+    padding: 1%;
+    margin: auto;
+    object-fit: fill;
+}
