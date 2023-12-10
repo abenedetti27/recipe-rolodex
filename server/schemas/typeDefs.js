@@ -14,7 +14,7 @@ const typeDefs = `
     servingSize: Int!
     author: String!
     createdAt: String!
-    families: [Family]
+    families: Family
   }
 
   type User {
@@ -34,6 +34,12 @@ const typeDefs = `
     user: User
   }
 
+  type Photos {
+    familyId: ID!
+    name: String!
+    photos: [String]
+  }
+
   type Query {
     recipes: [Recipe]
     recipe(_id: ID!): Recipe
@@ -42,6 +48,7 @@ const typeDefs = `
     famRecipe( familyId : ID!): [Recipe]
     user(username: String!): User
     familyMembers( familyId : ID!): [User]
+    familyRecipePhotos(username: String!): [Photos]
   }
 
   type Mutation {
@@ -50,8 +57,8 @@ const typeDefs = `
     addFamily(name: String!): Family
     joinFamily(familyId: ID!): User
     leaveFamily(familyId: ID!): User
-    addRecipe(name: String!, photo: String!, cookingTime: Int!, instructions: String!, ingredients: String!, servingSize: Int!, author: String!, familyId: [ID]): Recipe
-    updateRecipe(_id: ID!, name: String, photo: String, cookingTime: Int, instructions: String, ingredients: String, servingSize: Int, author: String, familyId: [ID]): Recipe
+    addRecipe(name: String!, photo: String!, cookingTime: Int!, instructions: String!, ingredients: String!, servingSize: Int!, author: String!, familyId: ID): Recipe
+    updateRecipe(_id: ID!, name: String, photo: String, cookingTime: Int, instructions: String, ingredients: String, servingSize: Int, author: String, familyId: ID): Recipe
     deleteRecipe(_id: ID!): Recipe
     pinRecipe(_id: ID!): User
     unpinRecipe(_id: ID!): User

@@ -1,21 +1,20 @@
 import { Input, Ripple, initMDB } from "mdb-ui-kit";
 import './style.css';
+import { useQuery } from '@apollo/client';
+import Auth from '../../utils/auth';
 
-import { QUERY_FAMILY } from "../../utils/queries";
-const { data } = useQuery(QUERY_FAMILY, {
-    variables: {
-      userId: user?.data?._id,
-    },
-  });
-
-function getFamilies() {
-    const families = data?.families || [];
-    return families;
-}
+import { QUERY_FAMILY, QUERY_USER } from "../../utils/queries";
 
 initMDB({ Input, Ripple });
 
 export default function RecipeForm() {
+  const { loading, error, data } = useQuery(QUERY_USER, {
+    variables: { username: Auth.getProfile().authenticatedPerson.username },
+  });
+
+  const user = data?.user || {};
+  const families = user.families || [];
+
     return (
         <form class="me-2">
         <div class="row m-2">
@@ -55,11 +54,16 @@ export default function RecipeForm() {
           <div data-mdb-input-init class="form-outline m-4 row">
             <label class="visually-hidden" for="families">Family</label>
             <select data-mdb-select-init class="select">
-            {getFamilies().map((family) => (
-                <option key={family._id} value={family._id}>
-                    {family.name}
-                </option>
-                ))}
+              <option value="" disabled selected>Choose a family</option>
+              {loading ? (
+                <div>Loading...</div>
+              ) : (
+                families.map((family) => (
+                  <option key={family._id} value={family._id}>
+                    {family.familyName}
+                  </option>
+                ))
+              )}
             </select>
             <sub class="text-muted mt-2">Select a family to share this recipe</sub>
           </div>

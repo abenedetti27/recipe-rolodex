@@ -1,0 +1,27 @@
+#cardContainer{
+    width: 68%;
+    height: auto;
+    padding: 1%;
+    justify-content: space-evenly;
+    margin: auto;
+}
+
+.login{
+    width: 25%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 1.75%;
+    margin: auto;
+}
+
+@media (max-width: 768px) {
+    #cardContainer{
+        width: 68%;
+        height: auto;
+        padding: 1%;
+        justify-content: space-evenly;
+        margin: auto;
+    }
+}
