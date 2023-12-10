@@ -23,13 +23,27 @@ const { signToken, AuthenticationError } = require('../utils/auth');
     },
 
     user: async (parent, { username }) => {
-
       return await User.findOne( { username: username } ).populate(['families', 'recipes']);
     },
 
     familyMembers: async (parent, { familyId }) => {
       return await User.find({ families: { _id : familyId }}).populate('families');
+    },
+
+    familyRecipePhotos: async( parent, { username }) => {
+      const user = await User.findOne( { username: username } ).populate(['families', 'recipes']);
+      let familyrecipe = [];
+      for(i = 0; i < user.families.length; i++) {
+        familyrecipe.push({ familyId: user.families[i]._id , name: user.families[i].name, photos: []})
+        const familyrecipedata = await Recipe.find({ families: { _id : user.families[i]._id }});
+        for (j = 0; j < familyrecipedata.length; j++){
+          familyrecipe[i].photos.push(familyrecipedata[j].photo);
+        }
+      }
+      return familyrecipe;
     }
+
+
   },
 
 
@@ -59,8 +73,13 @@ const { signToken, AuthenticationError } = require('../utils/auth');
       return { token, user };
     },
 
-    addFamily: async (parent, { name }) => {
+    addFamily: async (parent, { name }, context) => {
       const newFamily = await Family.create({ name : name });
+      const updatedUser = await User.findByIdAndUpdate(
+        { _id: context.user._id },
+        { $addToSet: { families: newFamily._id } },
+        { new: true }
+      ).populate('families');
       return newFamily;
     },
 
