@@ -28,6 +28,10 @@ const FamilyCard = () => {
     setFamilies([{name: "testfamily", familyId: 12345, photos: ["https://github.com/abenedetti27/recipe-rolodex/assets/117195025/36621a27-f49d-4db4-b2dd-b31768211721"]}])
     }, []);
 
+    const tabChangeHandler = async (e) => {
+        console.log(e.tagert.id);
+    }
+
     return (
         <>
         <section className="container m-auto justify-content-between d-flex">
@@ -64,17 +68,17 @@ const FamilyCard = () => {
             : <p>You are not a member of any family gruop yet</p> }
         </section>
         <section>
-        <div className="modal fade" tabIndex="-1" id="open-family-modal" display="block">
+        <div className="modal fade" tabIndex="-1" id="open-family-modal" display="inherit">
             <div className="modal-dialog modal-lg">
                 <div className="modal-content">
                 <div className="modal-body p-4">
                     <ul className="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
-                    <li className="nav-item" role="presentation">
-                        <a className="nav-link" id="mdb-tab-create-family" data-mdb-pill-init="" href="#pills-create-family" role="tab" aria-controls="pills-create-family" aria-selected="true" data-mdb-tab-initialized="true">Create family</a>
-                    </li>
-                    <li className="nav-item" role="presentation">
-                        <a className="nav-link active" id="mdb-tab-search-family" data-mdb-pill-init="" href="#pills-search-family" role="tab" aria-controls="pills-search-family" aria-selected="false" data-mdb-tab-initialized="true" tabIndex="-1">Search family</a>
-                    </li>
+                        <li className="nav-item" role="presentation" id="mdb-tab-create-family">
+                            <a className="nav-link"  data-mdb-pill-init="" href="#pills-create-family" role="tab" aria-controls="pills-create-family" aria-selected="true" data-mdb-tab-initialized="true">Create family</a>
+                        </li>
+                        <li className="nav-item" role="presentation">
+                            <a className="nav-link active" id="mdb-tab-search-family" data-mdb-pill-init="" href="#pills-search-family" role="tab" aria-controls="pills-search-family" aria-selected="false" data-mdb-tab-initialized="true" tabIndex="-1">Search family</a>
+                        </li>
                     </ul>
                     <div className="tab-content">
                     <div className="tab-pane fade" id="pills-create-family" role="tabpanel" aria-labelledby="mdb-tab-create-family">
