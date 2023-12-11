@@ -157,7 +157,7 @@ export const PIN_RECIPE = gql`
 `
 
 export const UNPIN_RECIPE = gql`
-    mutation unpinRecipe$id: ID!) {
+    mutation unpinRecipe($id: ID!) {
         unpinRecipe(_id: $id) {
             _id
             username
@@ -172,10 +172,10 @@ export const UNPIN_RECIPE = gql`
                 author
                 createdAt
                 families {
-                _id
-                name
+                    _id
+                    name
                 }
             }
         }
     }
-`
+`;
