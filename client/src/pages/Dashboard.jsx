@@ -10,11 +10,17 @@ function Dashboard() {
   return (
     <>
       <section className="md-container m-auto" id="dashboard-families">
+      <div className="p-3">
+            <button className="btn btn-success">Add New Family</button> 
+        </div>
         <div className="d-flex p-3 flex-wrap" id="cardContainer">
           <FamilyCards />
         </div>
       </section>
       <section className="md-container m-auto" id="dashboard-recipes">
+      <div className="p-3">
+            <button className="btn btn-success">Add New Recipe</button> 
+        </div>
         <div className="d-flex p-3 flex-wrap" id="cardContainer">
           <RecipeCard />
         </div>

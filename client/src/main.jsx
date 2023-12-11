@@ -4,7 +4,9 @@ import './index.css';
 import App from './App.jsx';
 import Home from './pages/Home.jsx';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-// import Dashboard from './pages/Dashboard.jsx';
+
+
+import Dashboard from './pages/Dashboard.jsx';
 // import AddRecipe from './pages/AddRecipe.jsx';
 // import FamilyRecipes from './pages/FamilyRecipes.jsx';
 // import FamilySearch from './pages/FamilySearch.jsx';
@@ -27,11 +29,11 @@ const router = createBrowserRouter([
         index: true, 
         element: <Home />
       },
-      // {
-      //   path:'/dashboard',
-      //   index: false, 
-      //   element: <Dashboard />
-      // },
+      {
+        path:'/dashboard',
+        index: false, 
+        element: <Dashboard />
+      },
       // {
       //   path:'/addrecipe',
       //   index: false, 
@@ -53,7 +55,7 @@ const router = createBrowserRouter([
         element: <Login />
       },
       {
-        path:'/recipe',
+        path:'/recipe/:id',
         index: false, 
         element: <Recipe />
       }

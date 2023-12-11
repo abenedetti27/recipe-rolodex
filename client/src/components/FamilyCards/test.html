@@ -1,81 +1,98 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
-    <!-- Font Awesome -->
-<link
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-rel="stylesheet"
-/>
-<!-- Google Fonts -->
-<link
-href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-rel="stylesheet"
-/>
-<!-- MDB -->
-<link
-href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css"
-rel="stylesheet"
-/>
-<link rel="stylesheet" href="./style.css" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <h2>Family Groups</h2>
-    <section id="cardContainer">
-      <div class="card" id="recipeCard">
-        <div class="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light">
-          <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp" class="img-fluid"/>
-          <a href="#!">
-            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-          </a>
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#!" class="btn btn-primary" data-mdb-ripple-init>Button</a>
-        </div>
-      </div>
 
-      <div class="card" id="recipeCard">
-        <div class="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light">
-          <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp" class="img-fluid"/>
-          <a href="#!">
-            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-          </a>
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#!" class="btn btn-primary" data-mdb-ripple-init>Button</a>
-        </div>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite + React</title>
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+  <!-- MDB -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
 
-      <div class="card" id="recipeCard">
-        <div class="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light">
-          <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp" class="img-fluid"/>
-          <a href="#!">
-            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-          </a>
+<body>
+  <div id="root">
+    <section class="container m-auto justify-content-between d-flex">
+      <h2>Family Groups</h2>
+      <a href="#!" class="btn btn-primary" data-mdb-ripple-init="true">Join or create family</a>
+    </section>
+    <section class="container m-auto">
+      <div class="d-flex p-3 flex-wrap" id="cardContainer">
+        <div class="card mb-1" id="recipeCard">
+          <div class="bg-image hover-overlay" data-mdb-ripple-init="true" data-mdb-ripple-color="light"><img
+              src="https://github.com/abenedetti27/recipe-rolodex/assets/117195025/36621a27-f49d-4db4-b2dd-b31768211721"
+              class="img-fluid mb-0" alt="Roast Beef"><a href="#!">
+              <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+            </a></div>
+          <div class="card-body p-3">
+            <h5 class="card-title mb-2">Family 1</h5>
+            <a href="#!" class="btn btn-primary" data-mdb-ripple-init="true">See Recipes</a>
+          </div>
         </div>
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#!" class="btn btn-primary" data-mdb-ripple-init>Button</a>
+        <div class="card mb-1" id="recipeCard">
+          <div class="bg-image hover-overlay" data-mdb-ripple-init="true" data-mdb-ripple-color="light"><img
+              src="https://github.com/abenedetti27/recipe-rolodex/assets/117195025/36621a27-f49d-4db4-b2dd-b31768211721"
+              class="img-fluid mb-0" alt="Roast Beef"><a href="#!">
+              <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+            </a></div>
+          <div class="card-body p-3">
+            <h5 class="card-title mb-2">Family 2</h5><a href="#!" class="btn btn-primary"
+              data-mdb-ripple-init="true">See Recipe</a>
+          </div>
         </div>
       </div>
     </section>
+    <section>
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-body p-4">
+            <!-- Pills navs -->
+            <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" id="mdb-tab-create-family" data-mdb-pill-init="" href="#pills-create-family" role="tab" aria-controls="pills-create-family" aria-selected="true" data-mdb-tab-initialized="true">Create family</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="mdb-tab-search-family" data-mdb-pill-init="" href="#pills-search-family" role="tab" aria-controls="pills-search-family" aria-selected="false" data-mdb-tab-initialized="true" tabindex="-1">Search family</a>
+              </li>
+            </ul>
+            <!-- Pills navs -->
+            <!-- Pills content -->
+            <div class="tab-content">
+              <!-- Create family -->
+              <div class="tab-pane fade" id="pills-create-family" role="tabpanel" aria-labelledby="mdb-tab-create-family">
+                <form>
+                  <div class="form-outline mb-4">
+                    <input type="family_name" id="family_name" class="form-control">
+                    <label class="form-label" for="family_name">Name of the family group</label>
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-block mb-4" data-mdb-ripple-init="">Submit</button>
+                </form>
+              </div>
+              <!-- Search family -->
+              <div class="tab-pane fade  active show" id="pills-search-family" role="tabpanel" aria-labelledby="mdb-search-family">
+                <form>
+                  <!-- Name input -->
+                  <div class="form-outline mb-4">
+                    <input type="text" id="search-family-by-id" class="form-control">
+                    <label class="form-label" for="search-family-by-id">Family ID</label>
+                  </div>
+                  <!-- Submit button -->
+                  <button type="submit" class="btn btn-primary btn-block mb-1" data-mdb-ripple-init="">Search</button>
+                </form>
+              </div>
+            </div>
+            <!-- Pills content -->
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script type="module" src="/src/main.jsx"></script>
 
 
-
-    <!-- Scripts -->
-    <!-- MDB -->
-<script
-type="text/javascript"
-src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.umd.min.js"
-></script><script type="module" src="/src/main.jsx"></script>
-  </body>
-</html>
+</body>
