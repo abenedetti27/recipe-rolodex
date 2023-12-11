@@ -27,7 +27,7 @@ const RecipeCard = () => {
   return (
     <>
       {recipes.map((recipe) => (
-        <div className="card mb-1" key={recipe._id}>
+        <div className="card mb-4" key={recipe._id}>
           <div className="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light">
             <img src={recipe?.photo || ''} className="img-fluid mb-0" alt={recipe?.name || ''} />
             <a href="#!">
@@ -36,7 +36,7 @@ const RecipeCard = () => {
           </div>
           <div className="card-body p-3">
             <h5 className="card-title mb-2">{recipe?.name || 'No Title'}</h5>
-            <a href="#!" className="btn btn-primary" data-mdb-ripple-init></a>
+            <a href="#!" className="btn btn-primary" data-mdb-ripple-init>See Recipe</a>
           </div>
         </div>
       ))}
