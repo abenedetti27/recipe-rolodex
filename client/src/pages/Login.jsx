@@ -69,7 +69,7 @@ function LoginForm({ onSubmit, username, password, onChange, loading, error }) {
       e.preventDefault();
       try {
         await signupUser({
-          variables: { username: signupUsername, email: signupEmail, password: signupPassword },
+          variables: { username: signupUsername, email: signupEmail, password: signupPassword, firstName: signupfirstName, lastName: signuplastName },
         });
         // Handle successful signup, e.g., redirect to another page
       } catch (error) {

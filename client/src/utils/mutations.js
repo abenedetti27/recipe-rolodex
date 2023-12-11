@@ -36,7 +36,7 @@ export const ADD_FAMILY = gql`
             name   
         }
     }
-`
+`;
 
 export const JOIN_FAMILY = gql`
     mutation joinFamily($familyId: ID!) {
@@ -52,7 +52,7 @@ export const JOIN_FAMILY = gql`
             }
         }
     }
-`
+`;
 
 export const LEAVE_FAMILY = gql`
     mutation leaveFamily($familyId: ID!) {
