@@ -53,7 +53,7 @@ const router = createBrowserRouter([
       //   element: <Login />
       // },
       {
-        path:'/recipe',
+        path:'/recipe/:id',
         index: false, 
         element: <Recipe />
       }

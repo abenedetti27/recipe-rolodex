@@ -19,67 +19,65 @@ function Recipe() {
     }}, [data]);
 
   return (
-    <>
+    <div className="container d-flex justify-content-center align-items-center text-center">
     {recipe ? (
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-4 mb-4">
-            <div className="card">
+        <div className="row ">
+          <div className="m-4">
+            <div className="card w-100">
               <img
-                src="../assets/spaghetti.jpg"
-                alt="Spaghetti Bolognese"
+                src={recipe.photo}
+                alt={recipe.name}
                 className="card-img-top"
               />
               <div className="card-body">
-                <h5 className="card-title">{recipe.name}</h5>
+                <h1 className="card-title m-2">{recipe.name}</h1>
                 <p className="card-text">
                   <div className="row">
                     <div className="col-md-6">
-                      <span className="field-title">Cooking Time:</span> {recipe.cookingTime} minutes
+                      <p className="small m-2"><span className="field-title">Cooking Time:</span> {recipe.cookingTime} minutes</p>
                     </div>
                     <div className="col-md-6">
-                      <span className="field-title">Serving Size:</span> {recipe.servingSize} servings
+                    <p className="small m-2"><span className="field-title">Serving Size:</span> {recipe.servingSize} servings</p>
                     </div>
                     <div className="col-md-6">
-                      <span className="field-title">Cooking Instructions:</span>
+                      <span className="field-title">Cooking Instructions: </span> 
                       {recipe.instructions}
                     </div>
                     <div className="col-md-6">
-                      <span className="field-title">Ingredients:</span> {recipe.ingredients}
+                      <span className="field-title">Ingredients: </span> {recipe.ingredients}
                     </div>
                   </div>
                 </p>
-                <Link to="">
+                <Link to="" className="m-2">
                   <span className="badge bg-success">
-                    <i className="bi bi-people-fill"></i> Family: {recipe.family}
+                  <i className="fas fa-users"></i> Family: {recipe.family}
                   </span>
                 </Link>
-                <Link to="">
+                <Link to="" className="m-2">
                   <span className="badge bg-info">
-                    <i className="bi bi-person-fill"></i> Author: {recipe.author}
+                  <i className="fas fa-user"></i> Author: {recipe.author}
                   </span>
                 </Link>
-                <Link to="">
+                <Link to="" className="m-2">
                   <span className="badge bg-warning">
-                    <i className="bi bi-pin-angle-fill"></i>
+                  <i className="fas fa-thumbtack"></i>
                   </span>
                 </Link>
               </div>
             </div>
           </div>
-          <div>
+          <div className="m-4">
             {/* If we could find a way for this to return to previous page instead of home, that would be better. */}
             <Link to="/">
               <span className="badge bg-secondary">
-                <i className="bi bi-arrow-bar-left"></i> Return to Recipes
+              <i className="fas fa-arrow-left-long"></i> Return to Recipes
               </span>
             </Link>
           </div>
         </div>
-      </div>
       ) : null}
       {loading ? <div>Loading...</div> : null}
-    </>
+    </div>
   );
 }
 
