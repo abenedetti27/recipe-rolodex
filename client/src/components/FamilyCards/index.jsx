@@ -3,15 +3,23 @@ import { initMDB, Ripple, Modal } from 'mdb-ui-kit';
 import './style.css';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_FAMILY_RECIPE_PHOTOS } from '../../utils/queries';
-// import { ADD_FAMILY, JOIN_FAMILY } from '../../utils/mutations';
+import { ADD_FAMILY, JOIN_FAMILY } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 
-initMDB({ Ripple, Modal });
-
 const FamilyCard = () => {
+    useEffect(() => {
+        initMDB({ Ripple, Modal });
+    }, []);
+
     const [families, setFamilies] = useState([]);
     const [newFamilyName, setNewFamilyName] = useState('');
     const [searchFamilyId, setSearchFamilyId] = useState('');
+    const [createNewFamily, { error, data }]  = useMutation(ADD_FAMILY);
+    const [joinFamily] = useMutation(JOIN_FAMILY);
+
+    useEffect(() => {
+        setFamilies([{name: "testfamily", familyId: 12345, photos: ["https://github.com/abenedetti27/recipe-rolodex/assets/117195025/36621a27-f49d-4db4-b2dd-b31768211721"]}])
+        }, []); 
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -23,23 +31,16 @@ const FamilyCard = () => {
         }  
     }
 
-    // const { loading, error, data } = useQuery(QUERY_FAMILY_RECIPE_PHOTOS, {
-    //     variables: { username: Auth.getProfile().authenticatedPerson.username }
-    // });
-
-    // useEffect(() => {
-    //     setFamilies(data.familyRecipePhotos)
-    // }, [data]);
-
-    // if (loading ) return <p>Loading...</p>;
-
-    // if (error) { 
-    //     console.error('Error fetching data:', error);
-    //     return <p>Error: Unable to fetch data</p>;
-    // }
-    useEffect(() => {
-    setFamilies([{name: "testfamily", familyId: 12345, photos: ["https://github.com/abenedetti27/recipe-rolodex/assets/117195025/36621a27-f49d-4db4-b2dd-b31768211721"]}])
-    }, []); 
+    const submitNewFamily = async (event) => {
+        event.preventDefualt();
+        try {
+            const { data } = await createNewFamily({
+                variables: {name: newFamilyName},
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     const tabChangeHandler = async (e) => {
         if (e.target.id == "mdb-tab-search-family") {
@@ -76,7 +77,7 @@ const FamilyCard = () => {
                                 <img src={family?.photos[Math.floor(Math.random() * families.length)] || ''} className="img-fluid" alt={family?.name || ''} />
                                 <a href="#!">
                                 <div className="mask" style={{ backgroundColor: "rgba(251, 251, 251, 0.15)" }}></div>
-                                </a>
+                                </a> 
                             </div>
                             : <div></div>}
                             <div className="card-body">
@@ -89,7 +90,7 @@ const FamilyCard = () => {
                                 </div>
                             </div>
                         </div>
-                    ))}
+                    ))} 
                 </div>
             : <p>You are not a member of any family gruop yet</p> }
         </section>
