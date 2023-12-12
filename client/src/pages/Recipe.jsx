@@ -9,15 +9,21 @@ function Recipe() {
   const navigate = useNavigate();
 
   const [recipe, setRecipe] = useState({});
+  const [family, setFamily] = useState({});
 
-  const { loading, data } = useQuery(QUERY_RECIPE, {
+  const { loading, data, error } = useQuery(QUERY_RECIPE, {
     variables: { id: recipeId },
   });
 
-    useEffect(() => {
-        if (data) {
-      setRecipe(data.recipe);
-    }}, [data]);
+  useEffect(() => {
+    if (data) {setRecipe(data.recipe);}
+  }, [data, loading, error]);
+
+  useEffect(() => {
+    if (data && data.recipe && data.recipe.families && data.recipe.families.name) {
+      setFamily(data.recipe.families);
+    }
+  }, [data, loading, error])
 
     const handleReturnToRecipes = () => {
       // Use the navigate function to navigate back
@@ -54,9 +60,9 @@ function Recipe() {
                     </div>
                   </div>
                 </div>
-                <Link to="" className="m-2">
+                <Link to={`/familyrecipes/${family?._id}`} className="m-2">
                   <span className="badge bg-success">
-                  <i className="fas fa-users"></i> Family: {recipe.family}
+                  <i className="fas fa-users"></i> Family: {family?.name ||""}
                   </span>
                 </Link>
                 <Link to="" className="m-2">
