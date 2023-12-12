@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import Logo from '../../assets/logo/logo.png';
 import { initMDB } from "mdb-ui-kit";
 import Auth from '../../utils/auth';
+import App from '../../App.jsx';
 
 initMDB();
+
 
 const NavBar = () => {
     const [scrolled, setScrolled] = useState(false);
@@ -21,17 +23,28 @@ const NavBar = () => {
         };
     }, []);
 
+const handleToggle = () => {
+    const navToggle = document.querySelector('.navbar-toggler');
+    const targetID = navToggle.getAttribute('data-mdb-target');
+    const target = document.querySelector(targetID);
+    
+    if (target) {
+        target.classList.toggle('show');
+    }
+};
+
     return (
         <nav className={`navbar navbar-expand-lg navbar-light bg-body-tertiary ${scrolled ? 'scrolled' : ''}`}>
             <div className="container-fluid">
                 <button
-                    data-mdb-collapse-init
                     className="navbar-toggler"
                     type="button"
+                    data-mdb-toggle="collapse"
                     data-mdb-target="#navbarTogglerDemo03"
                     aria-controls="navbarTogglerDemo03"
                     aria-expanded="false"
                     aria-label="Toggle navigation"
+                    onClick={handleToggle}
                 >
                     <i className="fas fa-bars"></i>
                 </button>
