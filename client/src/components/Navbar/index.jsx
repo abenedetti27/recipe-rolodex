@@ -2,15 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'; 
 import Logo from '../../assets/logo/logo.png';
 import { initMDB } from "mdb-ui-kit";
-import Login from '../../pages/Login';
+
 
 
 initMDB();
 
 const NavBar = () => {
     const [scrolled, setScrolled] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [showLogin, setShowLogin] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -24,17 +22,10 @@ const NavBar = () => {
         };
     }, []);
 
-    const toggleLoginModal = () => {
-        setShowLogin(!showLogin);
-    };
-
-    const handleLogout = () => {
-        setIsLoggedIn(false);
-    };
 
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-body-tertiary">
+        <nav className={`navbar navbar-expand-lg navbar-light bg-body-tertiary ${scrolled ? 'scrolled' : ''}`}>
             <div className="container-fluid">
                 <button
                     data-mdb-collapse-init
@@ -47,19 +38,17 @@ const NavBar = () => {
                 >
                     <i className="fas fa-bars"></i>
                 </button>
-                <a className="navbar-brand" href="#">
+                <Link to="/">
                     <img src={Logo} alt="logo" style={{ height: '200px' }} className="d-inline-block align-top" />
-                    </a>
+                </Link>
                 <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        {/* Other navigation links */}
                         <li className="nav-item">
-                            <a className="nav-link active" aria-current="page" href="#">Home</a>
+                            <Link className="nav-link" to="/">Home</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Link</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link disabled">Disabled</a>
+                            <Link className="nav-link" to="/some-page">Some Page</Link>
                         </li>
                     </ul>
                     <form className="d-flex input-group w-auto">
@@ -78,14 +67,10 @@ const NavBar = () => {
                             Search
                         </button>
                     </form>
-                    {isLoggedIn ? (
-                        <button className="btn btn-outline-primary" onClick={handleLogout}>Logout</button>
-                    ) : (
-                        <button className="btn btn-outline-primary" onClick={toggleLoginModal}>Login</button>
-                    )}
+                    {/* Login button that links to the login page */}
+                    <Link to="/login" className="btn btn-outline-primary">Login</Link>
                 </div>
             </div>
-            {showLogin && <Login onClose={toggleLoginModal} />}
         </nav>
     );
 };
