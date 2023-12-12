@@ -30,7 +30,7 @@ const FamilyCard = () => {
         if (data){
             setFamilies(data.familyRecipePhotos)
         }
-    }, [data]);
+    }, [data, loading, error]);
 
     if (loading ) return <p>Loading...</p>;
 
@@ -46,7 +46,13 @@ const FamilyCard = () => {
             setNewFamilyName(value);
         } else if ( name === "search-family-by-id"){
             setSearchFamilyId(value);
-        }  
+        }
+
+        if (value.trim() !== '') {
+            event.target.classList.add('active');
+          } else {
+            event.target.classList.remove('active');
+        } 
     }
 
     const submitNewFamily = async (event) => {
@@ -116,17 +122,17 @@ const FamilyCard = () => {
 
     return (
         <>
-        <section className="container m-auto justify-content-between d-flex">
+        <section className="container m-auto justify-content-between d-flex flex-wrap">
             <h2>Your Family Group</h2>
             <div>
                 <button type="button" className="btn btn-primary" data-mdb-ripple-init data-mdb-modal-init data-mdb-target="#open-family-modal">Join or create family</button>
             </div>
         </section>
-        <section className="container m-auto">
+        <section className="container m-auto d-flex ">
             {families.length !== 0 ? 
                 <div className="d-flex p-3 flex-wrap" id="cardContainer">
                     {families.map((family) => (
-                        <div className="card" id="recipeCard" key={family.familyId}>
+                        <div className="card mb-4 m-2 flex-shrink-0" key={family.familyId}>
                             {family.photos.length !== 0 ?
                             <div className="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light"> 
                                 <img src={family?.photos[Math.floor(Math.random() * families.length)] || ''} className="img-fluid" alt={family?.name || ''} />

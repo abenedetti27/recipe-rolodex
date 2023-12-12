@@ -50,6 +50,13 @@ export default function RecipeForm() {
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setFormData({ ...formData, [id]: value });
+
+    const inputElement = e.target;
+    if (value.trim() !== '') {
+      inputElement.classList.add('active');
+    } else {
+      inputElement.classList.remove('active');
+    }
   };
 
   const handleFamilyChange = (e) => {
