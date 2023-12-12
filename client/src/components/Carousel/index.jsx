@@ -12,10 +12,10 @@ const Carousels = () => {
 
   useEffect(() => {
     initMDB({ Carousel });
-  }, []);
+  });
 
   return (
-    <div className="caraBox">
+    <div className="caraBox pt-5 mb-1">
         {/* <!-- Carousel wrapper --> */}
         <div id="carouselBasicExample" className="carousel slide carousel-fade" data-mdb-ride="carousel" data-mdb-carousel-init>
           {/* <!-- Indicators --> */}

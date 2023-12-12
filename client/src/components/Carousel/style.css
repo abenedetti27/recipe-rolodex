@@ -1,11 +1,17 @@
-.caraBox{
+.caraBox {
     width: 64%;
     padding: 1%;
     margin: auto;
     object-fit: fill;
 }
 
-.carousel img{
-height: 350px;
+.carousel img {
+    height: 350px;
     object-fit: cover;
+}
+
+@media (max-width: 768px) {
+   .caraBox{
+    display: none;
+   }
 }
