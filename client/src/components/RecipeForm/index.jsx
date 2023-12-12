@@ -4,6 +4,7 @@ import { useQuery } from '@apollo/client';
 // import Auth from '../../utils/auth';
 
 import { QUERY_USER } from "../../utils/queries";
+import Cloudinary from '../UploadWidget/index.jsx';
 
 initMDB({ Input, Ripple });
 
@@ -18,6 +19,12 @@ export default function RecipeForm() {
 
   const user = data?.user || {};
   const families = user.families || [];
+
+  const handleUpload = (event) => {
+    event.preventDefault();
+    // Add the logic to handle form submission here
+    // For example, you can send the form data to a server or perform other actions.
+  };
 
     return (
         <form className="me-2">
@@ -58,7 +65,7 @@ export default function RecipeForm() {
           <div data-mdb-input-init className="form-outline m-4 row">
             <label className="visually-hidden" htmlFor="families">Family</label>
             <select data-mdb-select-init className="select">
-              <option value="" disabled selected>Choose a family</option>
+              <option defaultValue="" disabled selected>Choose a family</option>
               {loading ? (
                 <div>Loading...</div>
               ) : (
@@ -72,8 +79,8 @@ export default function RecipeForm() {
             <sub className="text-muted mt-2">Select a family to share this recipe</sub>
           </div>
         
-          <div data-mdb-input-init className="form-outline m-4 row">
-            <button type="button" className="btn btn-info btn-sm btn-rounded">Upload Image  <i className="bi bi-camera-fill"></i></button>
+          <div data-mdb-input-init className="form-outline m-4 row" onClick={handleUpload}>
+            <Cloudinary />
             <sub className="text-muted mt-2">Upload a picture of your recipe</sub>
           </div>
       
