@@ -22,7 +22,7 @@ const Search = () => {
 
     if (error) {
         console.error('Error fetching data:', error);
-        return <p>Error: Unable to fetch data</p>;
+        return <p>Error: Unable to fetch recipe</p>;
     }
 
     // Filter recipes based on the search term
