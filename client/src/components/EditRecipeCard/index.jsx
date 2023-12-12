@@ -34,7 +34,7 @@ const EditRecipeCard = () => {
   };
 
   const handleSaveEdit = () => {
-    // how do we save the edit?
+    // how do we save the update?
     try {
         const [updateRecipe, { error }] = useMutation(UPDATE_RECIPE);
         await updateRecipe({
