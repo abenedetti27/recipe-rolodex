@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import { initMDB, Tab } from 'mdb-ui-kit';
-
 import './Home.css';
 
 import Auth from '../utils/auth';
@@ -8,7 +6,8 @@ import { useMutation } from '@apollo/client';
 import { ADD_USER, LOGIN } from '../utils/mutations';
 
 // Initialize MDB UI Kit components
-initMDB([Tab]);
+import { Input, Tab, Ripple, initMDB } from "mdb-ui-kit";
+initMDB({ Input, Tab, Ripple });
 
 function Login() {
   const [activeTab, setActiveTab] = useState('pills-login');
@@ -17,6 +16,7 @@ function Login() {
   const handleTabClick = (tabId) => {
     setActiveTab(tabId);
     setError(null); // Clear error when switching tabs
+
   };
 
   // Registration
@@ -65,6 +65,14 @@ function Login() {
     console.log(`Updating state for ${name}: ${value}`);
     setUserFormData({ ...userFormData, [name]: value });
     setError(null); // Clear error when user starts typing
+
+    const inputElement = event.target;
+
+    if (value.trim() !== '') {
+      inputElement.classList.add('active');
+    } else {
+      inputElement.classList.remove('active');
+    }
   };
 
   // Login
@@ -169,7 +177,7 @@ function Login() {
                     <input
                       type="text"
                       id="firstName"
-                      className="form-control"
+                      className={`form-control ${userFormData.firstName ? 'active' : ''}`}
                       onChange={(e) => {
                         setUserFormData({ ...userFormData, firstName: e.target.value });
                         setError(null); // Clear error when user starts typing
@@ -187,7 +195,7 @@ function Login() {
                     <input
                       type="text"
                       id="lastName"
-                      className="form-control"
+                      className={`form-control ${userFormData.lastName ? 'active' : ''}`}
                       onChange={(e) => {
                         setUserFormData({ ...userFormData, lastName: e.target.value });
                         setError(null); // Clear error when user starts typing
@@ -206,7 +214,7 @@ function Login() {
                 <input
                   type="text"
                   id="registerUsername"
-                  className="form-control"
+                  className={`form-control ${userFormData.username ? 'active' : ''}`}
                   onChange={(e) => {
                     setUserFormData({ ...userFormData, username: e.target.value });
                     setError(null); // Clear error when user starts typing
@@ -223,7 +231,7 @@ function Login() {
                 <input
                   type="email"
                   id="registerEmail"
-                  className="form-control"
+                  className={`form-control ${userFormData.email ? 'active' : ''}`}
                   onChange={(e) => {
                     setUserFormData({ ...userFormData, email: e.target.value });
                     setError(null); // Clear error when user starts typing
@@ -240,7 +248,7 @@ function Login() {
                 <input
                   type="password"
                   id="registerPassword"
-                  className="form-control"
+                  className={`form-control ${userFormData.password ? 'active' : ''}`}
                   onChange={(e) => {
                     setUserFormData({ ...userFormData, password: e.target.value });
                     setError(null); // Clear error when user starts typing
