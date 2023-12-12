@@ -1,7 +1,11 @@
 .caraBox{
     width: 64%;
-    height: 20%;
     padding: 1%;
     margin: auto;
     object-fit: fill;
+}
+
+.carousel img{
+height: 350px;
+    object-fit: cover;
 }
