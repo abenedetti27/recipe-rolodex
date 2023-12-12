@@ -3,6 +3,7 @@ import { initMDB, Ripple } from 'mdb-ui-kit';
 import { useQuery } from '@apollo/client';
 import { QUERY_ALL_RECIPES } from '../../utils/queries';
 import './style.css';
+import { UPDATE_RECIPE } from '../../utils/mutations';
 
 initMDB({ Ripple });
 
@@ -41,10 +42,16 @@ const EditRecipeCard = () => {
                 _id: editingRecipe._id,
                 name: editingRecipe.name,
                 photo: editingRecipe.photo,
+                cookingTime: editingRecipe.cookingTime,
+                servingSize: editingRecipe.servingSize,
                 ingredients: editingRecipe.ingredients,
                 instructions: editingRecipe.instructions,
-                category: editingRecipe.category,
-                description: editingRecipe.description,
+                author: editingRecipe.author,
+                createdAt: editingRecipe.createdAt,
+                families: editingRecipe.families,
+                    _id: editingRecipe.families._id,
+                    name: editingRecipe.families.name
+              
             },
             });
     
