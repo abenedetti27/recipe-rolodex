@@ -1,5 +1,4 @@
 import ReactDOM from 'react-dom/client';
-// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './index.css';
 import App from './App.jsx';
 import Home from './pages/Home.jsx';
@@ -41,11 +40,6 @@ const router = createBrowserRouter([
         index: false, 
         element: <AddRecipe />
       },
-      // {
-      //   path:'/familyrecipes',
-      //   index: false, 
-      //   element: <FamilyRecipes />
-      // },
       // {
       //   path:'/familysearch',
       //   index: false, 
