@@ -10,6 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@apollo/client": "^3.8.8",
+    "@cloudinary/react": "^1.11.2",
+    "@cloudinary/url-gen": "^1.14.0",
     "jwt-decode": "^3.1.2",
     "mdb-ui-kit": "^7.1.0",
     "react": "^18.2.0",
