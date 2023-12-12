@@ -7,8 +7,8 @@ export const Footer = () => {
     return (
         <footer className="bg-body-tertiary text-center">
         <div className="container p-4"></div>
-        <div className="text-center p-3" style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
-          © 2020 Copyright Team Two
+        <div className="text-center p-3" style={{ backgroundColor: 'rgba(241, 57, 170, 1)' }}>
+          © 2023 Copyright Recipe Rolodex
           {/* <a className="text-body" href="https://mdbootstrap.com/">MDBootstrap.com</a> */}
         </div>
       </footer>
