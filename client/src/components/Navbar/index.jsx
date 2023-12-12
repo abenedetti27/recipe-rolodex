@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
 import Logo from '../../assets/logo/logo.png';
 import { initMDB } from "mdb-ui-kit";
-
-
 
 initMDB();
 
@@ -21,8 +19,6 @@ const NavBar = () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
-
-
 
     return (
         <nav className={`navbar navbar-expand-lg navbar-light bg-body-tertiary ${scrolled ? 'scrolled' : ''}`}>
@@ -68,7 +64,7 @@ const NavBar = () => {
                         </button>
                     </form>
                     {/* Login button that links to the login page */}
-                    <Link to="/login" className="btn btn-outline-primary">Login</Link>
+                    <Link to="/login" className="btn btn-outline-primary" style={{ width: '100px' }}>Login</Link>
                 </div>
             </div>
         </nav>
