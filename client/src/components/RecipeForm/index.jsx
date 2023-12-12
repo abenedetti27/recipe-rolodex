@@ -51,7 +51,7 @@ export default function RecipeForm() {
     const { id, value } = e.target;
     setFormData({ ...formData, [id]: value });
 
-    const inputElement = event.target;
+    const inputElement = e.target;
     if (value.trim() !== '') {
       inputElement.classList.add('active');
     } else {
