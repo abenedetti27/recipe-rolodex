@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import { initMDB, Ripple } from 'mdb-ui-kit';
+import { initMDB, Ripple, Input } from 'mdb-ui-kit';
 import { useQuery } from '@apollo/client';
 import { QUERY_ALL_RECIPES } from '../utils/queries';
 import { Link } from 'react-router-dom';
 import './style.css';
 
-initMDB({ Ripple });
+initMDB({ Input, Ripple });
 
 const Search = () => {
     const { loading, error, data } = useQuery(QUERY_ALL_RECIPES);
@@ -32,19 +32,20 @@ const Search = () => {
 
     return (
         <section className="md-container m-auto">
-            <div className="input-group">
-                <div className="form-outline" data-mdb-input-init>
-                    <input type="search" id="form1" className="form-control" />
-                    <label className="form-label" htmlFor="form1">Search</label>
+
+            {/* Search input */}
+            <div className="row m-auto mt-4 mb-1" style={{ width: "30%" }}>
+                <div className="input-group rounded">
+                    <input type="search" className="form-control rounded" placeholder="Search Recipe By Name" aria-label="Search" aria-describedby="search-addon" 
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}/>
+                    <span className="input-group-text border-0" id="search-addon">
+                        <i className="fas fa-search"></i>
+                    </span>
                 </div>
-                <button type="button" className="btn btn-primary" data-mdb-ripple-init>
-                    <i className="fas fa-search"></i>
-                </button>
             </div>
+
             <div className="d-flex p-3 flex-wrap" id="cardContainer">
-                {/* Search input */}
-
-
                 {/* Display filtered recipes */}
                 {filteredRecipes.map((recipe) => (
                     <div className="card mb-4" key={recipe._id}>
