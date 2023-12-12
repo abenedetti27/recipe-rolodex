@@ -9,14 +9,13 @@ import Dashboard from './pages/Dashboard.jsx';
 import AddRecipe from './pages/AddRecipe.jsx';
 import FamilyRecipes from './pages/FamilyRecipes.jsx';
 import Search from './pages/Search.jsx';
-// import FamilySearch from './pages/FamilySearch.jsx';
 import Login from './pages/Login.jsx';
 import Recipe from './pages/Recipe.jsx';
-import Cloudinary from './pages/Cloudinary.jsx';
-
+import EditRecipe from './pages/EditRecipe.jsx';
 // Import MDB
 // Example: Adjust import path based on package structure or documentation
 import * as mdb from 'mdb-ui-kit'; // lib
+
 
 window.mdb = mdb;
 
@@ -41,11 +40,6 @@ const router = createBrowserRouter([
         index: false, 
         element: <AddRecipe />
       },
-      // {
-      //   path:'/familysearch',
-      //   index: false, 
-      //   element: <FamilySearch />
-      // },
       {
         path:'/login',
         index: false, 
@@ -62,9 +56,9 @@ const router = createBrowserRouter([
         element: <FamilyRecipes />
       },
       {
-        path:'/cloudinary',
+        path:'/editrecipe/:id',
         index: false, 
-        element: <Cloudinary />
+        element: <EditRecipe />
       },
       {
         path:'/search/',
