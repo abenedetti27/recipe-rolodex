@@ -8,4 +8,4 @@ function AddRecipe() {
     );
 }
 
-export default RecipeForm;
+export default AddRecipe;
