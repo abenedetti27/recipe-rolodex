@@ -34,7 +34,9 @@ const NavBar = () => {
                 >
                     <i className="fas fa-bars"></i>
                 </button>
-                <a className="navbar-brand" href="#">Navbar</a>
+                <a className="navbar-brand" href="#">
+                    <img src={Logo} alt="logo" style={{ height: '200px' }} className="d-inline-block align-top" />
+                    </a>
                 <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
