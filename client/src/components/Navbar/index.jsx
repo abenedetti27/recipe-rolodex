@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../../assets/logo/logo.png';
 import { initMDB } from "mdb-ui-kit";
+import Auth from '../../utils/auth';
 
 initMDB();
 
@@ -44,7 +45,7 @@ const NavBar = () => {
                             <Link className="nav-link" to="/">Home</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/some-page">Some Page</Link>
+                            <Link className="nav-link" to="/dashboard">Dashboard</Link>
                         </li>
                     </ul>
                     <form className="d-flex input-group w-auto">
@@ -59,12 +60,18 @@ const NavBar = () => {
                             className="btn btn-outline-primary"
                             type="button"
                             data-mdb-ripple-color="dark"
+                            width="100px"
                         >
                             Search
                         </button>
                     </form>
-                    {/* Login button that links to the login page */}
-                    <Link to="/login" className="btn btn-outline-primary" style={{ width: '100px' }}>Login</Link>
+                    {Auth.isAuthenticated ? (
+                        // If user is authenticated, show logout button
+                        <button onClick={Auth.logout} className="btn btn-outline-primary" style={{ width: '100px' }}>Logout</button>
+                    ) : (
+                        // If user is not authenticated, show login button
+                        <Link to="/login" className="btn btn-outline-primary" style={{ width: '100px' }}>Login</Link>
+                    )}
                 </div>
             </div>
         </nav>
