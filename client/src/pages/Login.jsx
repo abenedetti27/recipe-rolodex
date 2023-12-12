@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import { initMDB, Tab } from 'mdb-ui-kit';
-
 import './Home.css';
 
 import Auth from '../utils/auth';
@@ -8,7 +6,8 @@ import { useMutation } from '@apollo/client';
 import { ADD_USER, LOGIN } from '../utils/mutations';
 
 // Initialize MDB UI Kit components
-initMDB([Tab]);
+import { Input, Tab, Ripple, initMDB } from "mdb-ui-kit";
+initMDB({ Input, Tab, Ripple });
 
 function Login() {
   const [activeTab, setActiveTab] = useState('pills-login');
