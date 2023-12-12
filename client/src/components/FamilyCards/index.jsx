@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState, useEffect } from 'react';
 import { initMDB, Ripple, Modal } from 'mdb-ui-kit';
 import './style.css';
@@ -10,8 +11,8 @@ import Auth from '../../utils/auth';
 const FamilyCard = () => {
     useEffect(() => {
         initMDB({ Ripple, Modal });
-    }, []);
-
+    }); 
+ 
     const [families, setFamilies] = useState([]);
     const [newFamilyName, setNewFamilyName] = useState('');
     const [searchFamilyId, setSearchFamilyId] = useState('');
@@ -21,24 +22,22 @@ const FamilyCard = () => {
     const [leaveFamily] = useMutation(LEAVE_FAMILY);
     const [searchResult, setSearchResult] = useState('');
 
-    // const { loading, error, data } = useQuery(QUERY_FAMILY_RECIPE_PHOTOS, {
-    //     variables: { username: Auth.getProfile().authenticatedPerson.username }
-    // });
-
-    // useEffect(() => {
-    //     setFamilies(data.familyRecipePhotos)
-    // }, [data]);
-
-    // if (loading ) return <p>Loading...</p>;
-
-    // if (error) {
-    //     console.error('Error fetching data:', error);
-    //     return <p>Error: Unable to fetch data</p>;
-    // }
+    const { loading, error, data } = useQuery(QUERY_FAMILY_RECIPE_PHOTOS, {
+        variables: { username: Auth.getProfile().authenticatedPerson.username }
+    });
 
     useEffect(() => {
-        setFamilies([{name: "testfamily", familyId: 12345, photos: ["https://github.com/abenedetti27/recipe-rolodex/assets/117195025/36621a27-f49d-4db4-b2dd-b31768211721"]}])
-        }, []); 
+        if (data){
+            setFamilies(data.familyRecipePhotos)
+        }
+    }, [data]);
+
+    if (loading ) return <p>Loading...</p>;
+
+    if (error) {
+        console.error('Error fetching data:', error);
+        return <p>Error: Unable to fetch data</p>;
+    }
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -140,16 +139,16 @@ const FamilyCard = () => {
                                 <h5 className="card-title">{family?.name || 'No Title'}</h5>
                                 <p className="card-text">ID: {family?.familyId || ''}</p>
                                 <div>
-                                <Link to={`/familyrecipes/${family.familyId}`} className="btn btn-primary" data-mdb-ripple-init>
-              See Recipe
-            </Link>
+                                    <Link to={`/familyrecipes/${family.familyId}`} className="btn btn-primary" data-mdb-ripple-init>
+                                    See Recipes
+                                    </Link>
                                 </div>
                                 <button type="submit" className="btn btn-danger btn-block mb-4 mt-4" data-mdb-ripple-init="" onClick={handleLeaveFamily} id={family.familyId}>Leave this family</button>
                             </div>
                         </div>
                     ))} 
                 </div>
-            : <p>You are not a member of any family gruop yet</p> }
+            : <p>You are not a member of any family group yet</p> }
         </section>
         <div className="modal fade" tabIndex="-1" id="open-family-modal" aria-modal="true" role="dialog" data-mdb-modal-initialized display="block" >
             <div className="modal-dialog modal-lg">

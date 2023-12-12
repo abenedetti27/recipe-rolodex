@@ -100,7 +100,7 @@ export const QUERY_FAMILY = gql`
 
 export const QUERY_FAMILY_RECIPE = gql`
     query getFamilyRecipes($familyId: ID!) {
-        recipes(familyId: $familyId) {
+        famRecipe(familyId: $familyId) {
             _id
             name
             photo
