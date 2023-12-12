@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { initMDB, Ripple } from 'mdb-ui-kit';
 import { useQuery } from '@apollo/client';
 import { QUERY_ALL_RECIPES } from '../../utils/queries';
+import { Link } from 'react-router-dom';
 import './style.css';
 
 initMDB({ Ripple });
@@ -36,7 +37,9 @@ const RecipeCard = () => {
           </div>
           <div className="card-body p-3">
             <h5 className="card-title mb-2">{recipe?.name || 'No Title'}</h5>
-            <a href="#!" className="btn btn-primary" data-mdb-ripple-init>See Recipe</a>
+            <Link to={`/recipe/${recipe?._id}`} className="btn btn-primary" data-mdb-ripple-init>
+              See Recipe
+            </Link>
           </div>
         </div>
       ))}
