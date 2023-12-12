@@ -1,15 +1,100 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { initMDB, Tab } from 'mdb-ui-kit';
+
 import './Home.css';
+
+import Auth from '../utils/auth';
+import { useMutation } from '@apollo/client';
+import { ADD_USER, LOGIN } from '../utils/mutations';
 
 // Initialize MDB UI Kit components
 initMDB([Tab]);
 
 function Login() {
   const [activeTab, setActiveTab] = useState('pills-login');
+  const [error, setError] = useState(null); // State to hold registration and login errors
 
   const handleTabClick = (tabId) => {
     setActiveTab(tabId);
+    setError(null); // Clear error when switching tabs
+  };
+
+  // Registration
+  const [userFormData, setUserFormData] = useState({
+    firstName: '',
+    lastName: '',
+    username: '',
+    email: '',
+    password: '',
+  });
+  const [addUser] = useMutation(ADD_USER);
+
+  const handleRegistrationSubmit = async (event) => {
+    event.preventDefault();
+
+    // check if form has everything per bootstrap.
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+      setError('Please fill out the form correctly.'); // Set error message
+    } else {
+      try {
+        const { data } = await addUser({
+          variables: { ...userFormData },
+        });
+
+        Auth.login(data.addUser.token);
+      } catch (err) {
+        console.error(err);
+        setError('Error creating an account. Please try again.'); // Set error message
+      }
+
+      setUserFormData({
+        firstName: '',
+        lastName: '',
+        username: '',
+        email: '',
+        password: '',
+      });
+    }
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setUserFormData({ ...userFormData, [name]: value });
+    setError(null); // Clear error when user starts typing
+  };
+
+  // Login
+  const [loginUser] = useMutation(LOGIN);
+
+  const handleLoginSubmit = async (event) => {
+    event.preventDefault();
+
+    // check if form has everything per bootstrap.
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+      setError('Please fill out the form correctly.'); // Set error message
+    } else {
+      try {
+        const { data } = await loginUser({
+          variables: { ...userFormData },
+        });
+
+        Auth.login(data.login.token);
+      } catch (err) {
+        console.error(err);
+        setError('Invalid username or password. Please try again.'); // Set error message
+      }
+
+      setUserFormData({
+        username: '',
+        password: '',
+      });
+    }
   };
 
   return (
@@ -45,18 +130,20 @@ function Login() {
         {/* Pills content */}
         <div className="tab-content">
           <div className={`tab-pane fade ${activeTab === 'pills-login' ? 'show active' : ''}`} id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-            <form>
-              {/* Email input */}
+            {error && <div className="alert alert-danger">{error}</div>}
+            {/* Display error alert */}
+            <form onSubmit={handleLoginSubmit}>
+              {/* Usename input */}
               <div className="form-outline mb-4">
-                <input type="email" id="loginName" className="form-control" />
+                <input type="text" id="loginName" name="username" className="form-control" onChange={handleChange} required />
                 <label className="form-label" htmlFor="loginName">
-                  Email or username
+                  Username
                 </label>
               </div>
 
               {/* Password input */}
               <div className="form-outline mb-4">
-                <input type="password" id="loginPassword" className="form-control" />
+                <input type="password" id="loginPassword" name="password" className="form-control" onChange={handleChange} required />
                 <label className="form-label" htmlFor="loginPassword">
                   Password
                 </label>
@@ -68,14 +155,49 @@ function Login() {
               </button>
             </form>
           </div>
+
+          {/* Sigup Area */}
+
           <div className={`tab-pane fade ${activeTab === 'pills-register' ? 'show active' : ''}`} id="pills-register" role="tabpanel" aria-labelledby="tab-register">
-            <form>
+            {error && <div className="alert alert-danger">{error}</div>} {/* Display error alert */}
+            <form onSubmit={handleRegistrationSubmit}>
               {/* Name input */}
-              <div className="form-outline mb-4">
-                <input type="text" id="registerName" className="form-control" />
-                <label className="form-label" htmlFor="registerName">
-                  Name
-                </label>
+              <div className="row mb-4">
+                <div className="col">
+                  <div data-mdb-input-init className="form-outline">
+                    <input
+                      type="text"
+                      id="firstName"
+                      className="form-control"
+                      onChange={(e) => {
+                        setUserFormData({ ...userFormData, firstName: e.target.value });
+                        setError(null); // Clear error when user starts typing
+                      }}
+                      required
+                    />
+                    <label className={`form-label ${userFormData.firstName ? 'hidden-label' : ''}`} htmlFor="firstName">
+                      First Name
+                    </label>
+                  </div>
+                </div>
+
+                <div className="col">
+                  <div data-mdb-input-init className="form-outline">
+                    <input
+                      type="text"
+                      id="lastName"
+                      className="form-control"
+                      onChange={(e) => {
+                        setUserFormData({ ...userFormData, lastName: e.target.value });
+                        setError(null); // Clear error when user starts typing
+                      }}
+                      required
+                    />
+                    <label className={`form-label ${userFormData.lastName ? 'hidden-label' : ''}`} htmlFor="lastName">
+                      Last Name
+                    </label>
+                  </div>
+                </div>
               </div>
 
               {/* Username input */}
@@ -108,10 +230,10 @@ function Login() {
               </button>
             </form>
           </div>
-        </div>
+        </div >
         {/* Pills content */}
-      </div>
-    </main>
+      </div >
+    </main >
   );
 }
 
