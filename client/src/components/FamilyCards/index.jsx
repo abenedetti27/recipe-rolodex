@@ -78,6 +78,7 @@ const FamilyCard = () => {
             const { data } = await joinFamily({
                 variables: { familyId: searchResult._id}
             });
+            location.reload();
         } catch ( error ) {
             console.log(error);
         }
@@ -89,6 +90,7 @@ const FamilyCard = () => {
             const { data } = await leaveFamily({
                 variables: { familyId: event.target.id }
             });
+            location.reload();
         } catch ( error ) {
             console.log(error);
         }
@@ -137,7 +139,7 @@ const FamilyCard = () => {
                                 <p className="card-text">ID: {family?.familyId || ''}</p>
                                 <div>
                                     <a href="#!" className="btn btn-primary" data-mdb-ripple-init>
-                                    See the recipes
+                                    See recipes
                                     </a>
                                 </div>
                                 <button type="submit" className="btn btn-danger btn-block mb-4 mt-4" data-mdb-ripple-init="" onClick={handleLeaveFamily} id={family.familyId}>Leave this family</button>
