@@ -10,8 +10,8 @@ import Auth from '../../utils/auth';
 const FamilyCard = () => {
     useEffect(() => {
         initMDB({ Ripple, Modal });
-    }, []);
-
+    }, []); 
+ 
     const [families, setFamilies] = useState([]);
     const [newFamilyName, setNewFamilyName] = useState('');
     const [searchFamilyId, setSearchFamilyId] = useState('');
@@ -21,13 +21,16 @@ const FamilyCard = () => {
     const [leaveFamily] = useMutation(LEAVE_FAMILY);
     const [searchResult, setSearchResult] = useState('');
 
-    // const { loading, error, data } = useQuery(QUERY_FAMILY_RECIPE_PHOTOS, {
-    //     variables: { username: Auth.getProfile().authenticatedPerson.username }
-    // });
+    const { loading, error, data } = useQuery(QUERY_FAMILY_RECIPE_PHOTOS, {
+        variables: { username: Auth.getProfile().authenticatedPerson.username }
+    });
 
-    // useEffect(() => {
-    //     setFamilies(data.familyRecipePhotos)
-    // }, [data]);
+    useEffect(() => {
+        if (data){
+            console.log(data.familyRecipePhotos);
+            setFamilies(data.familyRecipePhotos)
+        }
+    }, [data]);
 
     // if (loading ) return <p>Loading...</p>;
 
@@ -35,10 +38,6 @@ const FamilyCard = () => {
     //     console.error('Error fetching data:', error);
     //     return <p>Error: Unable to fetch data</p>;
     // }
-
-    useEffect(() => {
-        setFamilies([{name: "testfamily", familyId: 12345, photos: ["https://github.com/abenedetti27/recipe-rolodex/assets/117195025/36621a27-f49d-4db4-b2dd-b31768211721"]}])
-        }, []); 
 
     const handleChange = (event) => {
         const { name, value } = event.target;
