@@ -17,9 +17,14 @@
     width: 100%;
 }
 
-@media (max-width: 568px) {
+small{
+    font-size: .9rem;
+    color: grey;
+}
+
+@media (max-width: 768px) {
     .card-body h5{
-        font-size: 1em;
+        font-size: auto;
         
     }
 
