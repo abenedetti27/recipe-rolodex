@@ -15,12 +15,5 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^8.2.0"
-  },
-  "dependencies": {
-    "@apollo/client": "^3.8.8",
-    "@cloudinary/react": "^1.11.2",
-    "@cloudinary/url-gen": "^1.14.0",
-    "dotenv": "^16.3.1",
-    "mdb-ui-kit": "^7.1.0"
   }
 }
