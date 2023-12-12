@@ -8,11 +8,10 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import Dashboard from './pages/Dashboard.jsx';
 // import AddRecipe from './pages/AddRecipe.jsx';
-// import FamilyRecipes from './pages/FamilyRecipes.jsx';
+import FamilyRecipes from './pages/FamilyRecipes.jsx';
 // import FamilySearch from './pages/FamilySearch.jsx';
 import Login from './pages/Login.jsx';
 import Recipe from './pages/Recipe.jsx';
-// import FamilyRecipes from './pages/FamilyRecipes.jsx';
 
 // Import MDB
 // Example: Adjust import path based on package structure or documentation
@@ -61,11 +60,11 @@ const router = createBrowserRouter([
         index: false, 
         element: <Recipe />
       },
-      // {
-      //   path:'/familyrecipes/:id',
-      //   index: false, 
-      //   element: <FamilyRecipes />
-      // }
+      {
+        path:'/familyrecipes/:familyId',
+        index: false, 
+        element: <FamilyRecipes />
+      }
     ]
   }
 ]);
