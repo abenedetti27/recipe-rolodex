@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
 import { QUERY_RECIPE } from "../utils/queries";
-
+ 
 function Recipe() {
   const { id: recipeId } = useParams();
+  const navigate = useNavigate();
 
   const [recipe, setRecipe] = useState({});
 
@@ -17,6 +18,11 @@ function Recipe() {
         if (data) {
       setRecipe(data.recipe);
     }}, [data]);
+
+    const handleReturnToRecipes = () => {
+      // Use the navigate function to navigate back
+      navigate(-1); // This is equivalent to navigating back one step
+    };
 
   return (
     <div className="container d-flex justify-content-center align-items-center text-center">
@@ -31,7 +37,7 @@ function Recipe() {
               />
               <div className="card-body">
                 <h1 className="card-title m-2">{recipe.name}</h1>
-                <p className="card-text">
+                <div className="card-text">
                   <div className="row">
                     <div className="col-md-6">
                       <p className="small m-2"><span className="field-title">Cooking Time:</span> {recipe.cookingTime} minutes</p>
@@ -47,7 +53,7 @@ function Recipe() {
                       <span className="field-title">Ingredients: </span> {recipe.ingredients}
                     </div>
                   </div>
-                </p>
+                </div>
                 <Link to="" className="m-2">
                   <span className="badge bg-success">
                   <i className="fas fa-users"></i> Family: {recipe.family}
@@ -69,7 +75,8 @@ function Recipe() {
           <div className="m-4">
             {/* If we could find a way for this to return to previous page instead of home, that would be better. */}
             <Link to="/">
-              <span className="badge bg-secondary">
+              <span className="badge bg-secondary" onClick={handleReturnToRecipes}
+              style={{ cursor: "pointer" }}>
               <i className="fas fa-arrow-left-long"></i> Return to Recipes
               </span>
             </Link>
