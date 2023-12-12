@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { initMDB, Ripple } from "mdb-ui-kit";
 import { useQuery } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries";
+import { Link } from 'react-router-dom';
 import "../components/RecipeCard/style.css";
 
 // import { useParams } from 'react-router-dom';
@@ -75,9 +76,9 @@ function Dashboard() {
                 <h5 className="card-title mb-2">
                   {recipe?.name || "No Title"}
                 </h5>
-                <a href="#!" className="btn btn-primary" data-mdb-ripple-init>
-                  See Recipe
-                </a>
+                <Link to={`/recipe/${recipe?._id}`} className="btn btn-primary" data-mdb-ripple-init>
+              See Recipe
+            </Link>
               </div>
             </div>
           ))}

@@ -4,6 +4,7 @@ import './style.css';
 import { useQuery, useMutation, useLazyQuery } from '@apollo/client';
 import { QUERY_FAMILY_RECIPE_PHOTOS, QUERY_FAMILY } from '../../utils/queries';
 import { ADD_FAMILY, JOIN_FAMILY, LEAVE_FAMILY } from '../../utils/mutations';
+import { Link } from 'react-router-dom';
 import Auth from '../../utils/auth';
 
 const FamilyCard = () => {
@@ -139,9 +140,9 @@ const FamilyCard = () => {
                                 <h5 className="card-title">{family?.name || 'No Title'}</h5>
                                 <p className="card-text">ID: {family?.familyId || ''}</p>
                                 <div>
-                                    <a href="#!" className="btn btn-primary" data-mdb-ripple-init>
-                                    See recipes
-                                    </a>
+                                <Link to={`/familyrecipes/${family.familyId}`} className="btn btn-primary" data-mdb-ripple-init>
+              See Recipe
+            </Link>
                                 </div>
                                 <button type="submit" className="btn btn-danger btn-block mb-4 mt-4" data-mdb-ripple-init="" onClick={handleLeaveFamily} id={family.familyId}>Leave this family</button>
                             </div>
