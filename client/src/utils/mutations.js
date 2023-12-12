@@ -74,7 +74,7 @@ export const LEAVE_FAMILY = gql`
 `
 
 export const ADD_RECIPE = gql`
-    mutation addRecipe($name: String!, $photo: String!, $cookingTime: Int!, $instructions: String!, $ingredients: String!, $servingSize: Int!, $author: String!, $familyId: ID) {
+    mutation addRecipe($name: String!, $photo: String!, $cookingTime: String!, $instructions: String!, $ingredients: String!, $servingSize: String!, $author: String!, $familyId: ID) {
         addRecipe(name: $name, photo: $photo, cookingTime: $cookingTime, instructions: $instructions, ingredients: $ingredients, servingSize: $servingSize, author: $author, familyId: $familyId) {
             _id
             name
@@ -93,7 +93,7 @@ export const ADD_RECIPE = gql`
 `
 
 export const UPDATE_RECIPE = gql`
-    mutation updateRecipe($id: ID!, $name: String, $photo: String, $cookingTime: Int, $instructions: String, $ingredients: String, $servingSize: Int, $author: String, $familyId: [ID]) {
+    mutation updateRecipe($id: ID!, $name: String, $photo: String, $cookingTime: String!, $instructions: String, $ingredients: String, $servingSize: String!, $author: String, $familyId: [ID]) {
         updateRecipe(_id: $id, name: $name, photo: $photo, cookingTime: $cookingTime, instructions: $instructions, ingredients: $ingredients, servingSize: $servingSize, author: $author, familyId: $familyId) {
             _id
             name

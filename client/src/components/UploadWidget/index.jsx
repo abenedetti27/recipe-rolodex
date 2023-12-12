@@ -1,12 +1,10 @@
-import { useEffect, useRef } from 'react';
-import {Cloudinary} from "@cloudinary/url-gen";
-import {AdvancedImage} from '@cloudinary/react';
-import {fill} from "@cloudinary/url-gen/actions/resize";
+import { useEffect, useRef, useState } from 'react';
 
 
 const UploadWidget = () => {
     const cloudinaryRef = useRef();
     const widgetRef = useRef();
+    const [myImage, setMyImage] = useState();
 
     useEffect(() => {
         cloudinaryRef.current = window.cloudinary;
@@ -14,24 +12,20 @@ const UploadWidget = () => {
             cloudName: 'defuryakl',
             uploadPreset: 'reciperolodex',
         }, function(error, result) {
-            console.log(error, result);
-        })
-    }, []);
-    // Create a Cloudinary instance and set your cloud name.
-        const cld = new Cloudinary({
-            cloud: {
-            cloudName: 'demo'
+            console.log("error:", error);
+            console.log("result:", result);
+            console.log("result.info.secure_url:", result.info.secure_url);
+            if (result && result.info && result.info.secure_url) {
+                setMyImage(result.info.secure_url);
             }
         });
-    // Instantiate a CloudinaryImage object for the image with the public ID, 'docs/models'.
-        const myImage = cld.image({/*insert url*/});  // Need to update this URL to make sure it is whichever file was uploaded to this form
-    // Resize to 250 x 250 pixels using the 'fill' crop mode.
-        myImage.resize(fill().width(250).height(250));
+    }, []);
+        
 
     return (
         <section>
         <div>
-            <AdvancedImage cldImg={myImage} />
+            <img className="uploaded-image-cloudinary" src={myImage}/>
         </div>
         <div>
             <button onClick={() => widgetRef.current.open()}>Upload Image</button>

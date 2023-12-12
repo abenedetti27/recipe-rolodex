@@ -113,6 +113,11 @@ const { signToken, AuthenticationError } = require('../utils/auth');
 
     addRecipe: async (parent, args, context) => {
       const newRecipe = await Recipe.create(args);
+      const addRecipeToUser = await User.findByIdAndUpdate(
+        { _id: context.user._id },
+        { $addToSet: { recipes: newRecipe._id }  },
+        { new: true }
+      );
       if (args.familyId) {
         const addRecipeToFamily = await Recipe.findByIdAndUpdate(
           { _id: newRecipe._id },
@@ -120,12 +125,6 @@ const { signToken, AuthenticationError } = require('../utils/auth');
           {new: true})
         return addRecipeToFamily;
       };
-      const addRecipeToUser = await User.findByIdAndUpdate(
-        { _id: context.user._id },
-        { $addToSet: { recipes: newRecipe._id }  },
-        { new: true }
-      )
-
       return newRecipe;
     },
 
