@@ -34,8 +34,26 @@ const EditRecipeCard = () => {
 
   const handleSaveEdit = () => {
     // how do we save the edit?
+    try {
+        const [updateRecipe, { error }] = useMutation(UPDATE_RECIPE);
+        await updateRecipe({
+            variables: {
+                _id: editingRecipe._id,
+                name: editingRecipe.name,
+                photo: editingRecipe.photo,
+                ingredients: editingRecipe.ingredients,
+                instructions: editingRecipe.instructions,
+                category: editingRecipe.category,
+                description: editingRecipe.description,
+            },
+            });
+    
     setEditingRecipe(null);
-  };
+    refectch();
+  } catch (err) {
+    console.error('Error saving edit:', error);
+  }
+}
 
   return (
     <>
