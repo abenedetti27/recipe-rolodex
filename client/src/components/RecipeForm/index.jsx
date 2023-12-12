@@ -62,18 +62,14 @@ export default function RecipeForm() {
           instructions: instructions,
           ingredients: ingredients,
           servingSize: servingSize,
-          familyId: "6578c17e1908386bad1c10e4",
+          familyId: familyId,
           photo: myImage,
           author: username
         }, 
-        // refetchQueries: [{ query: QUERY_USER, variables: { username } }],
+        refetchQueries: [{ query: QUERY_USER, variables: { username } }],
       });
-
-      console.log(data);
       
-
-
-      // Optionally, reset the form after successful submission
+      //Reset the form after successful submission
       setFormData({
         name: "",
         cookingTime: 0,
@@ -82,6 +78,8 @@ export default function RecipeForm() {
         ingredients: "",
         familyId: "",
       });
+
+      setMyImage("");
     } catch (error) {
       console.error("Error submitting recipe:", error);
     }
@@ -90,12 +88,20 @@ export default function RecipeForm() {
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setFormData({ ...formData, [id]: value });
+
+    const inputElement = e.target;
+    if (value.trim() !== '') {
+      inputElement.classList.add('active');
+    } else {
+      inputElement.classList.remove('active');
+    }
+
     console.log(formData);
   };
 
-  // const handleFamilyChange = (e) => {
-  //   setFormData({ ...formData, familyId: e.target.value });
-  // };
+  const handleFamilyChange = (e) => {
+    setFormData({ ...formData, familyId: e.target.value });
+  };
 
 
 
@@ -200,19 +206,23 @@ export default function RecipeForm() {
             className="select"
             id="familyId"
             value={formData.familyId}
-            onChange={handleInputChange}
+            onChange={handleFamilyChange}
           >
-            <option defaultValue="" disabled selected>
-              Choose a family
-            </option>
             {loading ? (
-              <div>Loading...</div>
+              <option defaultValue="" disabled>
+              Join or create family to upload a new recipe
+              </option>
             ) : (
-              userFamlies.map((family) => (
-                <option key={family._id} value={family._id}>
-                  {family.name}
+              <>
+                <option defaultValue="" disabled selected>
+                Choose a family
                 </option>
-              ))
+                {userFamlies.map((family) => (
+                  <option key={family._id} value={family._id}>
+                    {family.name}
+                  </option>
+                ))}
+              </>
             )}
           </select>
           <sub className="text-muted mt-2">

@@ -8,6 +8,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Dashboard from './pages/Dashboard.jsx';
 import AddRecipe from './pages/AddRecipe.jsx';
 import FamilyRecipes from './pages/FamilyRecipes.jsx';
+import Search from './pages/Search.jsx';
 // import FamilySearch from './pages/FamilySearch.jsx';
 import Login from './pages/Login.jsx';
 import Recipe from './pages/Recipe.jsx';
@@ -64,6 +65,11 @@ const router = createBrowserRouter([
         path:'/cloudinary',
         index: false, 
         element: <Cloudinary />
+      },
+      {
+        path:'/search/:searchTerm',
+        index: false, 
+        element: <Search />
       }
     ]
   }
