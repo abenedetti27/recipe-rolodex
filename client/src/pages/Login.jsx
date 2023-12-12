@@ -6,72 +6,17 @@ import { useMutation } from '@apollo/client';
 import { ADD_USER, LOGIN } from '../utils/mutations';
 
 // Initialize MDB UI Kit components
-import { Input, Tab, Ripple, initMDB } from "mdb-ui-kit";
+import { Input, Tab, Ripple, initMDB } from 'mdb-ui-kit';
 initMDB({ Input, Tab, Ripple });
 
 function Login() {
   const [activeTab, setActiveTab] = useState('pills-login');
   const [error, setError] = useState(null); // State to hold registration and login errors
+  // const navigate = useNavigate(); // Initialize useNavigate hook
 
   const handleTabClick = (tabId) => {
     setActiveTab(tabId);
     setError(null); // Clear error when switching tabs
-  };
-
-  // Registration
-  const [userFormData, setUserFormData] = useState({
-    firstName: '',
-    lastName: '',
-    username: '',
-    email: '',
-    password: '',
-  });
-  const [addUser] = useMutation(ADD_USER);
-
-  const handleRegistrationSubmit = async (event) => {
-    event.preventDefault();
-
-    // check if form has everything per bootstrap.
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-      setError('Please fill out the form correctly.'); // Set error message
-    } else {
-      try {
-        const { data } = await addUser({
-          variables: { ...userFormData },
-        });
-
-        Auth.login(data.addUser.token);
-      } catch (err) {
-        console.error(err);
-        setError('Error creating an account. Please try again.'); // Set error message
-      }
-
-      setUserFormData({
-        firstName: '',
-        lastName: '',
-        username: '',
-        email: '',
-        password: '',
-      });
-    }
-  };
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    console.log(`Updating state for ${name}: ${value}`);
-    setUserFormData({ ...userFormData, [name]: value });
-    setError(null); // Clear error when user starts typing
-
-    const inputElement = event.target;
-
-    if (value.trim() !== '') {
-      inputElement.classList.add('active');
-    } else {
-      inputElement.classList.remove('active');
-    }
   };
 
   // Login
@@ -105,8 +50,71 @@ function Login() {
     }
   };
 
+  // Registration
+  const [userFormData, setUserFormData] = useState({
+    firstName: '',
+    lastName: '',
+    username: '',
+    email: '',
+    password: '',
+  });
+  const [addUser] = useMutation(ADD_USER);
+
+
+  // Registration Submit Handling
+  const handleRegistrationSubmit = async (event) => {
+    event.preventDefault();
+
+    // check if form has everything per bootstrap.
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+      setError('Please fill out the form correctly.'); // Set error message
+    } else {
+      try {
+        const { data } = await addUser({
+          variables: { ...userFormData },
+        });
+
+        Auth.login(data.addUser.token);
+
+        // Redirect to /dashboard after successful registration
+      } catch (err) {
+        console.error(err);
+        setError('Error creating an account. Please try again.'); // Set error message
+      }
+
+      setUserFormData({
+        firstName: '',
+        lastName: '',
+        username: '',
+        email: '',
+        password: '',
+      });
+    }
+  };
+
+  // Login Submit Handling
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    console.log(`Updating state for ${name}: ${value}`);
+    setUserFormData({ ...userFormData, [name]: value });
+    setError(null); // Clear error when user starts typing
+
+    const inputElement = event.target;
+
+    if (value.trim() !== '') {
+      inputElement.classList.add('active');
+    } else {
+      inputElement.classList.remove('active');
+    }
+  };
+
   return (
+ 
     <main className="cardContainer">
+      {/* <Navigate to="/dashboard" /> */}
       <div className="login m-auto">
         {/* Pills navs */}
         <ul className="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
