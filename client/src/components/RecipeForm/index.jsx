@@ -10,6 +10,8 @@ import Cloudinary from "../UploadWidget/index.jsx";
 
 initMDB({ Input, Ripple });
 
+
+
 export default function RecipeForm() {
   const [addRecipe] = useMutation(ADD_RECIPE);
 
