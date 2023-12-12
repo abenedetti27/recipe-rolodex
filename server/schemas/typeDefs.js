@@ -8,10 +8,10 @@ const typeDefs = `
     _id: ID
     name: String!
     photo: String!
-    cookingTime: Int!
+    cookingTime: String!
     instructions: String!
     ingredients: String!
-    servingSize: Int!
+    servingSize: String!
     author: String!
     createdAt: String!
     families: Family
@@ -57,8 +57,8 @@ const typeDefs = `
     addFamily(name: String!): Family
     joinFamily(familyId: ID!): User
     leaveFamily(familyId: ID!): User
-    addRecipe(name: String!, photo: String!, cookingTime: Int!, instructions: String!, ingredients: String!, servingSize: Int!, author: String!, familyId: ID): Recipe
-    updateRecipe(_id: ID!, name: String, photo: String, cookingTime: Int, instructions: String, ingredients: String, servingSize: Int, author: String, familyId: ID): Recipe
+    addRecipe(name: String!, photo: String!, cookingTime: String!, instructions: String!, ingredients: String!, servingSize: String!, author: String!, familyId: ID): Recipe
+    updateRecipe(_id: ID!, name: String, photo: String, cookingTime: String!, instructions: String, ingredients: String, servingSize: String!, author: String, familyId: ID): Recipe
     deleteRecipe(_id: ID!): Recipe
     pinRecipe(_id: ID!): User
     unpinRecipe(_id: ID!): User

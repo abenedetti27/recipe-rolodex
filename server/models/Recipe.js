@@ -15,7 +15,7 @@ photo: {
   trim: true
 },
 cookingTime: {
-  type: Number,
+  type: String,
   required: true,
 },
 instructions:{
@@ -27,7 +27,7 @@ ingredients: {
   required: true
 },
 servingSize: {
-  type: Number,
+  type: String,
   required: true
 },
 author:{ 
