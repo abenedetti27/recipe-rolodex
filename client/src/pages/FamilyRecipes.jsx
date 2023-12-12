@@ -3,21 +3,37 @@ import { initMDB, Ripple } from "mdb-ui-kit";
 import { useQuery } from "@apollo/client";
 import { QUERY_FAMILY_RECIPE } from "../utils/queries";
 import "../components/RecipeCard/style.css";
+import { useParams } from 'react-router-dom';
 
 initMDB({ Ripple });
 
 function FamilyRecipes() {
-  const { loading, error, data } = useQuery(QUERY_FAMILY_RECIPE, {
-    variables: { familyId: localStorage.getItem("familyId") },
-  });
+    const { familyId } = useParams();
+    console.log(familyId);
+    const { loading, error, data, refetch } = useQuery(QUERY_FAMILY_RECIPE, {
+        variables: { familyId: familyId },
+      });
 
   const [recipes, setRecipes] = useState([]);
 
+
   useEffect(() => {
-    if (data && data.user && data.user.recipes) {
-      setRecipes(data.user.recipes);
+    console.log(data); 
+    if (!loading && data && data.recipes) {
+      setRecipes(data.recipes);
+    } else if (!loading && error) {
+      console.error("Error fetching data:", error);
     }
-  }, [data]);
+  }, [data, loading, error]);
+  
+  // Refetch the query after a delay (e.g., 500 ms)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      refetch();
+    }, 500);
+  
+    return () => clearTimeout(timer);
+  }, [familyId, refetch]);
 
   if (loading) return <p>Loading...</p>;
 
