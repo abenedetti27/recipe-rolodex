@@ -16,6 +16,7 @@ export default function RecipeForm() {
   const widgetRef = useRef();
   const [myImage, setMyImage] = useState();
   const [userFamlies, setUserFamilies] = useState([]);
+  const [uploadError, setuploadError] = useState("");
 
   useEffect(() => {
       cloudinaryRef.current = window.cloudinary;
@@ -55,7 +56,7 @@ export default function RecipeForm() {
       console.log( "myImage: ", myImage);
       console.log( "username: ", username);
       const { name, cookingTime, instructions, ingredients, servingSize, familyId } = formData
-      const { data } = await addRecipe({
+      const { data, error } = await addRecipe({
         variables: {
           name: name,
           cookingTime: cookingTime,
@@ -80,6 +81,15 @@ export default function RecipeForm() {
       });
 
       setMyImage("");
+
+      if( data ){
+        window.location.replace(window.location.origin + "/dashboard");
+      }
+
+      if( error ){
+        setuploadError("something went wrong, please try again")
+      }
+
     } catch (error) {
       console.error("Error submitting recipe:", error);
     }
@@ -255,6 +265,7 @@ export default function RecipeForm() {
           Submit Recipe
         </button>
       </div>
+      <h4 className="text-center" style={{color: "red"}}>{uploadError}</h4>
     </form>
   );
 }
