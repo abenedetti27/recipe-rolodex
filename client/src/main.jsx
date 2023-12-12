@@ -12,6 +12,7 @@ import FamilyRecipes from './pages/FamilyRecipes.jsx';
 // import FamilySearch from './pages/FamilySearch.jsx';
 import Login from './pages/Login.jsx';
 import Recipe from './pages/Recipe.jsx';
+import Cloudinary from './pages/Cloudinary.jsx';
 
 // Import MDB
 // Example: Adjust import path based on package structure or documentation
@@ -64,6 +65,11 @@ const router = createBrowserRouter([
         path:'/familyrecipes/:familyId',
         index: false, 
         element: <FamilyRecipes />
+      },
+      {
+        path:'/cloudinary',
+        index: false, 
+        element: <Cloudinary />
       }
     ]
   }
