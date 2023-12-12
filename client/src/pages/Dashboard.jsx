@@ -48,7 +48,7 @@ function Dashboard() {
       <section className="container m-auto justify-content-between d-flex">
         <h2>Your Recipes</h2>
         <div>
-          <button className="btn btn-success">Add New Recipe</button>
+          <Link to={`/addrecipe/`} className="btn btn-success" data-mdb-ripple-init>Add New Recipe</Link>
         </div>
       </section>
       <section className="md-container m-auto" id="dashboard-recipes">
