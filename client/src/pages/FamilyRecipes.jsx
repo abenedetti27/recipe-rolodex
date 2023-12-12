@@ -51,10 +51,10 @@ function FamilyRecipes() {
 
   return (
     <>
-      <h1 className="text-center">Recipes of family {familydata?.name || ""}</h1>
-      <p className="text-center">Family ID: {familydata?._id || ""}</p>
+      <h2 className="text-center mt-3 mb-0">Recipes of family {familydata?.name || ""}</h2>
+      <p className="text-center"><small>(<b>Family ID:</b> {familydata?._id || ""})</small></p>
       <h4 className="text-center">Members in this family</h4>
-      <section className="d-flex justify-content-center">
+      <section className="d-flex justify-content-center text-center">
       {familymembers.length !==0 ? (
         <ul className="list-group lst-group-light">
           {familymembers.map((member) => (
