@@ -80,7 +80,6 @@ Description
 
 #### 4. TBD
 Description
-```
 <br />
 
 ![lesson4](public/image/lesson4.png)

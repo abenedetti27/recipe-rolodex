@@ -7,7 +7,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 
 import Dashboard from './pages/Dashboard.jsx';
-// import AddRecipe from './pages/AddRecipe.jsx';
+import AddRecipe from './pages/AddRecipe.jsx';
 import FamilyRecipes from './pages/FamilyRecipes.jsx';
 // import FamilySearch from './pages/FamilySearch.jsx';
 import Login from './pages/Login.jsx';
@@ -35,11 +35,11 @@ const router = createBrowserRouter([
         index: false, 
         element: <Dashboard />
       },
-      // {
-      //   path:'/addrecipe',
-      //   index: false, 
-      //   element: <AddRecipe />
-      // },
+      {
+        path:'/addrecipe',
+        index: false, 
+        element: <AddRecipe />
+      },
       // {
       //   path:'/familyrecipes',
       //   index: false, 
