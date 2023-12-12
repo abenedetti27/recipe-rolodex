@@ -52,15 +52,16 @@ const NavBar = () => {
                         <input
                             type="search"
                             className="form-control"
-                            placeholder="Type query"
+                            placeholder="Search"
                             aria-label="Search"
+                            style={{ width: '300px' }}
                         />
                         <button
                             data-mdb-ripple-init
                             className="btn btn-outline-primary"
                             type="button"
                             data-mdb-ripple-color="dark"
-                            width="100px"
+                            style={{ width: '100px' }}
                         >
                             Search
                         </button>
