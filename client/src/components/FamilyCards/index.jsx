@@ -55,6 +55,7 @@ const FamilyCard = () => {
             const { data } = await createNewFamily({
                 variables: {name: newFamilyName},
             });
+            location.reload();
         } catch (error) {
             console.log(error);
         }
