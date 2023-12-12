@@ -12,10 +12,12 @@ import Dashboard from './pages/Dashboard.jsx';
 // import FamilySearch from './pages/FamilySearch.jsx';
 import Login from './pages/Login.jsx';
 import Recipe from './pages/Recipe.jsx';
+// import FamilyRecipes from './pages/FamilyRecipes.jsx';
 
 // Import MDB
 // Example: Adjust import path based on package structure or documentation
 import * as mdb from 'mdb-ui-kit'; // lib
+
 window.mdb = mdb;
 
 
@@ -58,7 +60,12 @@ const router = createBrowserRouter([
         path:'/recipe/:id',
         index: false, 
         element: <Recipe />
-      }
+      },
+      // {
+      //   path:'/familyrecipes/:id',
+      //   index: false, 
+      //   element: <FamilyRecipes />
+      // }
     ]
   }
 ]);
