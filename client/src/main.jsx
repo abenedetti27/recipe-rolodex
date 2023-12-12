@@ -67,7 +67,7 @@ const router = createBrowserRouter([
         element: <Cloudinary />
       },
       {
-        path:'/search/:searchTerm',
+        path:'/search/',
         index: false, 
         element: <Search />
       }
