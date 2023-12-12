@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom'; 
 import Logo from '../../assets/logo/logo.png';
 import { initMDB } from "mdb-ui-kit";
+import Login from '../../pages/Login';
+
 
 initMDB();
 
 const NavBar = () => {
     const [scrolled, setScrolled] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [showLogin, setShowLogin] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -19,6 +23,15 @@ const NavBar = () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
+
+    const toggleLoginModal = () => {
+        setShowLogin(!showLogin);
+    };
+
+    const handleLogout = () => {
+        setIsLoggedIn(false);
+    };
+
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-body-tertiary">
@@ -65,8 +78,14 @@ const NavBar = () => {
                             Search
                         </button>
                     </form>
+                    {isLoggedIn ? (
+                        <button className="btn btn-outline-primary" onClick={handleLogout}>Logout</button>
+                    ) : (
+                        <button className="btn btn-outline-primary" onClick={toggleLoginModal}>Login</button>
+                    )}
                 </div>
             </div>
+            {showLogin && <Login onClose={toggleLoginModal} />}
         </nav>
     );
 };
