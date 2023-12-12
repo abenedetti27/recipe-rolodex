@@ -1,39 +1,80 @@
-import React, { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
+import { initMDB, Ripple } from 'mdb-ui-kit';
+import { useQuery } from '@apollo/client';
+import { QUERY_ALL_RECIPES } from '../../utils/queries';
+import './style.css';
 
-const PrersonalRecipeCard = ({ recipe, onEdit, onDelete }) => {
-    const [isEditing, setisEditing] = useState(false);
+initMDB({ Ripple });
 
-    const handleEditClick = () => {
-        setIsEditing(true);
-    };
+const EditRecipeCard = () => {
+  const { loading, error, data } = useQuery(QUERY_ALL_RECIPES);
+  const [recipes, setRecipes] = useState([]);
+  const [editingRecipe, setEditingRecipe] = useState(null);
 
-    const handleCancelEdit = () => {
-        setisEditing(false);
-    };
+  useEffect(() => {
+    if (data && data.recipes) {
+      setRecipes(data.recipes);
+    }
+  }, [data]);
 
-    const handleSaveEdit = (updatedRecipe) => {
-        onUpdateRecipe(recipe.id, updatedRecipe);
-        setIsEditing(false);
-    };
-const handleDeleteClick = () => {
-    onDeleteRecipe(recipe.id);
+  if (loading) return <p>Loading...</p>;
+
+  if (error) {
+    console.error('Error fetching data:', error);
+    return <p>Error: Unable to fetch data</p>;
+  }
+
+  const handleEditClick = (recipe) => {
+    setEditingRecipe(recipe);
+  };
+
+  const handleCancelEdit = () => {
+    setEditingRecipe(null);
+  };
+
+  const handleSaveEdit = () => {
+    // how do we save the edit?
+    setEditingRecipe(null);
+  };
+
+  return (
+    <>
+      {recipes.map((recipe) => (
+        <div className="card mb-4" key={recipe._id}>
+          <div className="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light">
+            <img src={recipe?.photo || ''} className="img-fluid mb-0" alt={recipe?.name || ''} />
+            <a href="#!">
+              <div className="mask" style={{ backgroundColor: "rgba(251, 251, 251, 0.15)" }}></div>
+            </a>
+          </div>
+          <div className="card-body p-3">
+            <h5 className="card-title mb-2">{recipe?.name || 'No Title'}</h5>
+            {editingRecipe === recipe ? (
+              <>
+                <button className="btn btn-primary" onClick={handleSaveEdit}>
+                  Save Edit
+                </button>
+                <button className="btn btn-secondary" onClick={handleCancelEdit}>
+                  Cancel Edit
+                </button>
+              </>
+            ) : (
+              <button
+                className="btn btn-primary"
+                onClick={() => handleEditClick(recipe)}
+                data-mdb-ripple-init
+              >
+                Edit Recipe
+              </button>
+            )}
+            <button className="btn btn-primary" data-mdb-ripple-init>
+              See Recipe
+            </button>
+          </div>
+        </div>
+      ))}
+    </>
+  );
 };
 
-return (
-    <div className="personal-recipe-card">
-        {isEditing ? (
-            <EditRecipeCard
-                recipe={recipe}
-                onCancel={handleCancelEdit}
-                onSave={handleSaveEdit}
-            />
-        ) : (
-            <RecipeCard
-                recipe={recipe}
-                onEdit={handleEditClick}
-                onDelete={handleDeleteClick}
-            />
-        )}
-    </div>
-);
-}
+export default EditRecipeCard;
