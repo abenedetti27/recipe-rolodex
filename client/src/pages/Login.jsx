@@ -16,7 +16,6 @@ function Login() {
   const handleTabClick = (tabId) => {
     setActiveTab(tabId);
     setError(null); // Clear error when switching tabs
-
   };
 
   // Registration
