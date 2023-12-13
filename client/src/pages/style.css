@@ -190,7 +190,18 @@ button {
   height: 1px;
 }
 
+.family-badge {
+  background-color: var(--darkpink);
+  border-radius: 5px;
+  box-shadow: 0px 4px 4px var(--mauve) / 0.2;
+}
 
+.author-badge {
+  background-color: var(--mauve);
+  border-radius: 5px;
+  box-shadow: 0px 4px 4px var(--darkpink) / 0.2;
+  color: var(--richblack)
+}
 
 @media (max-width: 768px) {
   #cardContainer {
