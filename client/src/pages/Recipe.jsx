@@ -4,7 +4,7 @@ import { useQuery, useLazyQuery, useMutation } from "@apollo/client";
 
 import { QUERY_RECIPE, QUERY_USER } from "../utils/queries";
 import { PIN_RECIPE, UNPIN_RECIPE } from "../utils/mutations";
-
+import './style.css';
 import Auth from '../utils/auth';
  
 function Recipe() {

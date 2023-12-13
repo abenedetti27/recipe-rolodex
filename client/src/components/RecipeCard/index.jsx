@@ -3,7 +3,6 @@ import { initMDB, Ripple } from 'mdb-ui-kit';
 import { useQuery } from '@apollo/client';
 import { QUERY_ALL_RECIPES } from '../../utils/queries';
 import { Link } from 'react-router-dom';
-import './style.css';
 
 initMDB({ Ripple });
 
