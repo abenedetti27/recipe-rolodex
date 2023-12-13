@@ -3,7 +3,7 @@ import './style.css';
 
 function AddRecipe() {
     return (
-        <main>
+        <main className="md-container m-auto text-center" id="cardContainer">
             <RecipeForm />
         </main>
     );
