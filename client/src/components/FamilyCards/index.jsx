@@ -348,7 +348,7 @@ const FamilyCard = () => {
                     </div>
                     <button
                       type="submit"
-                      className="btn btn-block m-auto"
+                      className="btn btn-block m-auto mb-3"
                       data-mdb-ripple-init=""
                       onClick={searchFamily}
                     >
