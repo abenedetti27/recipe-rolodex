@@ -89,7 +89,7 @@ function Dashboard() {
         <div>
           <Link
             to={`/addrecipe/`}
-            className="btn btn-success"
+            className="btn"
             data-mdb-ripple-init
           >
             Add New Recipe
@@ -124,20 +124,20 @@ function Dashboard() {
                     </h5>
                     <Link
                       to={`/recipe/${recipe?._id}`}
-                      className="btn btn-primary"
+                      className="btn"
                       data-mdb-ripple-init
                     >
                       See Recipe
                     </Link>
                     <button
-                      className="btn btn-warning"
+                      className="btn"
                       onClick={() => handleEditRecipe(recipe._id)}
                       data-mdb-ripple-init
                     >
                       Edit
                     </button>
                     <button
-                      className="btn btn-danger"
+                      className="btn"
                       data-mdb-ripple-init
                       onClick={() => handleDeleteRecipe(recipe._id)}
                     >

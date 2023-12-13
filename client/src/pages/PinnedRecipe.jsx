@@ -71,7 +71,7 @@ function PinnedRecipes() {
                     </h5>
                     <Link
                       to={`/recipe/${recipe?._id}`}
-                      className="btn btn-primary"
+                      className="btn"
                       data-mdb-ripple-init
                     >
                       See Recipe

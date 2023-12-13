@@ -178,7 +178,7 @@ function Login() {
               </div>
 
               {/* Submit button */}
-              <button type="submit" className="btn btn-primary btn-block mb-4">
+              <button type="submit" className="btn btn-block mb-4">
                 Sign in
               </button>
             </form>
@@ -280,7 +280,7 @@ function Login() {
               </div>
 
               {/* Submit button */}
-              <button type="submit" className="btn btn-primary btn-block mb-3">
+              <button type="submit" className="btn btn-block mb-3">
                 Sign up
               </button>
             </form>

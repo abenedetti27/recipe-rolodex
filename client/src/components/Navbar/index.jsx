@@ -90,7 +90,7 @@ const NavBar = () => {
 
           <Link
             to="/search"
-            className="btn btn-outline-primary"
+            className="btn"
             style={{ width: "auto" }}
           >
             Search
@@ -100,7 +100,7 @@ const NavBar = () => {
             // If user is authenticated, show logout button
             <button
               onClick={Auth.logout}
-              className="btn btn-outline-primary"
+              className="btn"
               style={{ width: "auto" }}
             >
               Logout
@@ -109,7 +109,7 @@ const NavBar = () => {
             // If user is not authenticated, show login button
             <Link
               to="/login"
-              className="btn btn-outline-primary"
+              className="btn"
               style={{ width: "auto" }}
             >
               Login

@@ -157,7 +157,7 @@ const FamilyCard = () => {
         <div>
           <button
             type="button"
-            className="btn btn-primary"
+            className="btn"
             data-mdb-ripple-init
             data-mdb-modal-init
             data-mdb-target="#open-family-modal"
@@ -212,7 +212,7 @@ const FamilyCard = () => {
                   <div>
                     <Link
                       to={`/familyrecipes/${family.familyId}`}
-                      className="btn btn-danger btn-block m-auto mb-2"
+                      className="btn btn-block m-auto mb-2"
                       data-mdb-ripple-init
                     >
                       See Recipes
@@ -220,7 +220,7 @@ const FamilyCard = () => {
                   </div>
                   <button
                     type="submit"
-                    className="btn btn-danger btn-block m-auto"
+                    className="btn btn-block m-auto"
                     data-mdb-ripple-init=""
                     onClick={handleLeaveFamily}
                     id={family.familyId}
@@ -315,7 +315,7 @@ const FamilyCard = () => {
                     </div>
                     <button
                       type="submit"
-                      className="btn btn-danger btn-block m-auto"
+                      className="btn btn-block m-auto"
                       data-mdb-ripple-init=""
                       onClick={submitNewFamily}
                     >
@@ -348,7 +348,7 @@ const FamilyCard = () => {
                     </div>
                     <button
                       type="submit"
-                      className="btn btn-danger btn-block m-auto"
+                      className="btn btn-block m-auto"
                       data-mdb-ripple-init=""
                       onClick={searchFamily}
                     >
@@ -366,7 +366,7 @@ const FamilyCard = () => {
                           </div>
                           <button
                             type="submit"
-                            className="btn btn-danger btn-block m-auto"
+                            className="btn btn-block m-auto"
                             data-mdb-ripple-init=""
                             onClick={handleJoinFamily}
                           >

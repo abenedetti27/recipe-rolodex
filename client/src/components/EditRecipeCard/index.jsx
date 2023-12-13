@@ -251,7 +251,7 @@ export default function RecipeForm() {
         <button
           data-mdb-ripple-init
           type="button"
-          className="btn btn-success btn-block btn-lg m-4 submit"
+          className="btn btn-block btn-lg m-4 submit"
           onClick={handleSubmit}
         >
           Submit Recipe
