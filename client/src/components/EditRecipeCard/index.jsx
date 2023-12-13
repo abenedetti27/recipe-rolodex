@@ -62,7 +62,7 @@ export default function RecipeForm() {
       const { data, error } = await updateRecipe({
         variables: {
           // Include recipe ID in the variables
-          recipeId: data._id,
+          id: recipeId,
           name: name,
           cookingTime: cookingTime,
           instructions: instructions,
