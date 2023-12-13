@@ -115,14 +115,14 @@ function Recipe() {
                       </p>
                     </div>
                     <div className="col-md-6 mt-3 mb-3">
-                      <span className="field-title">
+                      <div className="field-title">
                         Cooking Instructions:{" "}
-                      </span>
-                      {recipe.instructions}
-                    </div>
+                      </div>
+                     <div className="textwrap">{recipe.instructions}
+                    </div></div> 
                     <div className="col-md-6 mt-3 mb-3">
-                      <span className="field-title">Ingredients: </span>{" "}
-                      {recipe.ingredients}
+                      <div className="field-title">Ingredients: </div>{" "}
+                     <div className="textwrap">{recipe.ingredients}</div> 
                     </div>
                   </div>
                 </div>
