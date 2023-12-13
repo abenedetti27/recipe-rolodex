@@ -181,20 +181,26 @@ const FamilyCard = () => {
                     data-mdb-ripple-init
                     data-mdb-ripple-color="light"
                   >
-                    <img
-                      src={
-                        family?.photos[
-                          Math.floor(Math.random() * families.length)
-                        ] || ""
-                      }
+                    {family.photos.length !== 1 ? (
+                    <img src=
+                          {
+                            family?.photos[
+                              Math.floor(Math.random() * family.photos.length)
+                            ] || ""
+                          }
+                      className="img-fluid"
+                      alt={family?.name || ""}
+                    />) : (
+                      <img src=
+                          { family?.photos[0] || "" }
                       className="img-fluid"
                       alt={family?.name || ""}
                     />
+                    )}
                       <div
                         className="mask"
                         style={{ backgroundColor: "rgba(251, 251, 251, 0.15)" }}
                       ></div>
-
                   </div>
                 ) : (
                   <div></div>
