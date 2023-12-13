@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import './Home.css';
-
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
 import { ADD_USER, LOGIN } from '../utils/mutations';
+import './style.css';
 
 // Initialize MDB UI Kit components
 import { Input, Tab, Ripple, initMDB } from 'mdb-ui-kit';

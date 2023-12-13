@@ -1,4 +1,3 @@
-import './style.css';
 import { useEffect } from "react";
 
 // Initialization for ES Users
