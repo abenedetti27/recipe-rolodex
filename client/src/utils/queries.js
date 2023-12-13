@@ -28,14 +28,6 @@ export const QUERY_USER = gql`
             }
             pinnedRecipes {
                 _id
-                name
-                photo
-                cookingTime
-                instructions
-                ingredients
-                servingSize
-                author
-                createdAt
             }
         }
     }

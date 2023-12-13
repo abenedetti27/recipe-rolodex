@@ -139,18 +139,6 @@ export const PIN_RECIPE = gql`
             username
             pinnedRecipes {
                 _id
-                name
-                photo
-                cookingTime
-                instructions
-                ingredients
-                servingSize
-                author
-                createdAt
-                families {
-                _id
-                name
-                }
             }
         }
     }
@@ -163,18 +151,6 @@ export const UNPIN_RECIPE = gql`
             username
             pinnedRecipes {
                 _id
-                name
-                photo
-                cookingTime
-                instructions
-                ingredients
-                servingSize
-                author
-                createdAt
-                families {
-                    _id
-                    name
-                }
             }
         }
     }
