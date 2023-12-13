@@ -41,6 +41,8 @@ function Dashboard() {
     // history.push(`/editrecipe/${recipeId}`);
   };
 
+  const [recipes, setRecipes] = useState([]);
+
   const handleDeleteRecipe = async (recipeId) => {
     try {
       // Send a mutation to delete the recipe
@@ -52,13 +54,14 @@ function Dashboard() {
       setRecipes((prevRecipes) =>
         prevRecipes.filter((recipe) => recipe._id !== recipeId)
       );
+      location.reload();
+      console.log("Recipe deleted successfully!");
     } catch (error) {
       console.error("Error deleting recipe:", error);
       // Handle error as needed
     }
   };
 
-  const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
     if (data && data.user && data.user.recipes) {

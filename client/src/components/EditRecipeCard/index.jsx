@@ -1,20 +1,25 @@
 import { Input, Ripple, initMDB } from "mdb-ui-kit";
 import { useQuery, useMutation } from "@apollo/client";
 import { useEffect, useRef, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import Auth from '../../utils/auth';
 
-import { QUERY_USER } from "../../utils/queries";
+import { QUERY_USER, QUERY_RECIPE } from "../../utils/queries";
 import { UPDATE_RECIPE } from "../../utils/mutations";
 
 initMDB({ Input, Ripple });
 
 export default function RecipeForm() {
-
+  const { id: recipeId } = useParams();
   const cloudinaryRef = useRef();
   const widgetRef = useRef();
   const [myImage, setMyImage] = useState();
   const [userFamlies, setUserFamilies] = useState([]);
   const [uploadError, setuploadError] = useState("");
+
+  const { loading, data, error } = useQuery(QUERY_RECIPE, {
+    variables: { id: recipeId },
+  });
 
   useEffect(() => {
       cloudinaryRef.current = window.cloudinary;
@@ -33,7 +38,7 @@ export default function RecipeForm() {
   // const username = "B-King";
   const username = Auth.getProfile().authenticatedPerson.username
   // Update the variables below to be authorized user's username when we get there.
-  const { loading, data } = useQuery(QUERY_USER, {
+  const { data: userData } = useQuery(QUERY_USER, {
     variables: { username: username }, 
   });
 
@@ -67,7 +72,7 @@ export default function RecipeForm() {
           photo: myImage,
           author: username
         },
-        refetchQueries: [{ query: QUERY_USER, variables: { username } }],
+        // refetchQueries: [{ query: QUERY_RECIPE, variables: { username } }],
       });
       console.log("data: ", data);
 
@@ -102,22 +107,25 @@ export default function RecipeForm() {
     setFormData({ ...formData, familyId: e.target.value });
   };
 
-
+  useEffect(() => {
+    if (userData) {
+      setUserFamilies(userData.user.families);
+    }
+  }, [userData]);
 
   useEffect(() => {
     if (data) {
-      setUserFamilies(data.user.families);
       // Set initial state using data
       setFormData({
-        name: data.name || "",
-        cookingTime: data.cookingTime || "",
-        servingSize: data.servingSize || "",
-        instructions: data.instructions || "",
-        ingredients: data.ingredients || "",
-        familyId: data.familyId || "",
+        name: data.recipe.name || "",
+        cookingTime: data.recipe.cookingTime || "",
+        servingSize: data.recipe.servingSize || "",
+        instructions: data.recipe.instructions || "",
+        ingredients: data.recipe.ingredients || "",
+        familyId: data.recipe.families._id || "",
       });
 
-      setMyImage(data.photo || ""); // Set image if available
+      setMyImage(data.recipe.photo || ""); // Set image if available
     }
   }, [data]);
 
