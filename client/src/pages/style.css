@@ -186,8 +186,8 @@ button {
 
 #cloudBox{
   width: 60%;
+  height: auto;
   background-color: var(--darkpink);
-  height: 1px;
 }
 
 .family-badge {
