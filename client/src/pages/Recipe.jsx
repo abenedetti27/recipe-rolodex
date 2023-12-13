@@ -44,14 +44,15 @@ function Recipe() {
     if(loggedIn) {
       getUser({ variables: { username: Auth.getProfile().authenticatedPerson.username }});
     }
+  }, [data])
+  
+  useEffect(() => {
     if (userData && userData.data && userData.data.user && userData.data.user.pinnedRecipes) {
-      console.log(userData.data)
-      console.log(userData.data.user.pinnedRecipes);
-      if (userData.data.user.pinnedRecipes.find((recipe) => recipe._id === recipeId)) {
-        setPinned(true)
-      }
+        if (userData.data.user.pinnedRecipes.find((recipe) => recipe._id === recipeId)){
+          setPinned(true);
+        }
     }
-  }, [loggedIn, getUser, pinned])
+  }, [userData])
 
   const pinHandler = async () => {
     const { data } = await pinRecipe({
