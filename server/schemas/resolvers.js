@@ -138,8 +138,8 @@ const { signToken, AuthenticationError } = require('../utils/auth');
       return updateRecipe;
     },
 
-    deleteRecipe: async (parent, { _id }) => {
-      const recipe = await Recipe.findByIdAndDelete(_id);
+    deleteRecipe: async (parent, { _id }, context) => {
+      const recipe = await Recipe.findByIdAndDelete(_id).populate('families');
       const deleteRecipeFromUser = await User.findByIdAndUpdate(
         { _id: context.user._id },
         { $pull: { recipes:_id }  },
