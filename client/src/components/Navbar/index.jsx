@@ -76,7 +76,7 @@ const NavBar = () => {
                 </li>
         
                 <li className="nav-item">
-                  <Link className="nav-link" to="/dashboard">
+                  <Link className="nav-link" to="/pinnedrecipes">
                     Pinned Recipe
                   </Link>
                 </li>

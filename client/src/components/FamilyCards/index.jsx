@@ -15,6 +15,7 @@ const FamilyCard = () => {
   const [families, setFamilies] = useState([]);
   const [newFamilyName, setNewFamilyName] = useState("");
   const [searchFamilyId, setSearchFamilyId] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [createNewFamily] = useMutation(ADD_FAMILY);
   const [findFamily] = useLazyQuery(QUERY_FAMILY);
   const [joinFamily] = useMutation(JOIN_FAMILY);
@@ -69,10 +70,17 @@ const FamilyCard = () => {
   const searchFamily = async (event) => {
     event.preventDefault();
     try {
-      const { data } = await findFamily({
+      const { data, error } = await findFamily({
         variables: { id: searchFamilyId },
       });
-      setSearchResult(data.family);
+
+      if (data && data.family){
+        setSearchResult(data.family);
+      }
+      if (error){
+        setErrorMessage("Something went wrong - please double check if you added the correct ID")
+      }
+      
     } catch (error) {
       console.log(error);
     }
@@ -350,6 +358,9 @@ const FamilyCard = () => {
                       ) : (
                         ""
                       )}
+                      {errorMessage !== "" ? (
+                        <div style={{color:"red"}}>{errorMessage}</div>
+                      ) : ("")}
                     </div>
                   </form>
                 </div>

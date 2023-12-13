@@ -1,63 +1,48 @@
 import { useState, useEffect } from "react";
 import { initMDB, Ripple } from "mdb-ui-kit";
 import { useQuery } from "@apollo/client";
-import { QUERY_USER } from "../utils/queries";
+import { QUERY_USER, QUERY_ALL_RECIPES } from "../utils/queries";
 import {  Link } from "react-router-dom";
-import Auth from '../../utils/auth';
+import Auth from '../utils/auth';
 import './style.css';
 
 initMDB({ Ripple });
 
 function PinnedRecipes() {
     const username = Auth.getProfile().authenticatedPerson.username;
-    const { loading, data, error } = useQuery(QUERY_USER, {
-        variables: { username: username }, 
-    });
+    const userData = useQuery(QUERY_USER, {variables: { username: username }, });
+    const recipeData = useQuery(QUERY_ALL_RECIPES);
+    const [pinnedRecipes, setPinnedRecipes] = useState([]);
     const [recipes, setRecipes] = useState([]);
 
+    useEffect(() => {
+        let pinnedRecipeIds = [];
+        if (!userData.loading && userData.data && userData.data.user && userData.data.user.pinnedRecipes) {
+            if(userData.data.user.pinnedRecipes.length){
+                for (let i = 0; i < userData.data.user.pinnedRecipes.length; i++){
+                    pinnedRecipeIds.push(userData.data.user.pinnedRecipes[i]._id)
+                }
+                setPinnedRecipes(pinnedRecipeIds);
+            }
+        }
+    },[userData.data, userData.loading, userData.error]);
 
     useEffect(() => {
-        if (!loading && data) {
-            console.log(data);
+        let pinnedRecipeDetails = [];
+        if (!recipeData.loading && recipeData.data && recipeData.data.recipes && pinnedRecipes.length) {
+            for (let i = 0; i < pinnedRecipes.length; i++){
+                pinnedRecipeDetails.push(recipeData.data.recipes.find((recipe) => recipe._id === pinnedRecipes[i]))
+            }
+            setRecipes(pinnedRecipeDetails);
+            console.log(pinnedRecipeDetails);
         }
-    },[data, loading, error]);
+    }, [recipeData, recipeData.loading, recipeData.data, pinnedRecipes])
 
-//   useEffect(() => {
-//     if (familyData && familyData.data && familyData.data.family ) {
-//       setFamilyData(familyData.data.family);
-//     } else if (!familyData.loading && familyData.error) {
-//       console.error("Error fetching data:", familyData.error);
-//     }
-//   }, [familyData, familyData.data, familyData.loading, familyData.error]);
-
-//   useEffect(() => {
-//     if (familyMemberData && familyMemberData.data && familyMemberData.data.familyMembers) {
-//       setFamilyMemeberData(familyMemberData.data.familyMembers);
-//     } else if (!familyMemberData.loading && familyMemberData.error) {
-//       console.error("Error fetching data:", familyMemberData.error);
-//     }
-//   }, [familyMemberData]);
-
-  if (loading) return <p>Loading...</p>;
+  if (userData.loading) return <p>Loading...</p>;
 
   return (
     <>
-      <h2 className="text-center mt-3 mb-0">Recipes of family {familydata?.name || ""}</h2>
-      <p className="text-center"><small>(<b>Family ID:</b> {familydata?._id || ""})</small></p>
-      <h4 className="text-center">Members in this family</h4>
-      <section className="d-flex justify-content-center text-center">
-      {familymembers.length !==0 ? (
-        <ul className="list-group lst-group-light">
-          {familymembers.map((member) => (
-              <li className="list-group-item d-flex justify-content-between align-items-start" key={member._id}>
-              <div className="ms-2 me-auto">
-                <div className="fw-bold">{member.username}</div>
-                {member.lastName} {member.firstName}
-              </div>
-            </li>
-          ))}
-        </ul>) : <div></div>}
-      </section>
+      <h2 className="text-center mt-3 mb-0">Recipes you pinned</h2>
       <section className="md-container m-auto" id="family-recipes">
         {recipes.length !==0 ? (
           <div className="d-flex p-3 flex-wrap" id="cardContainer">
@@ -93,7 +78,7 @@ function PinnedRecipes() {
                     </Link>
                   </div>
                 </div>
-              ))}</div>) : <div className="text-center">There is no recipe added to this family yet!</div>}
+              ))}</div>) : <div className="text-center">There is no recipe you pinned yet!</div>}
       </section>
     </>
   );

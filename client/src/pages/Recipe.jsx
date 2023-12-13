@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useQuery, useLazyQuery, useMutation } from "@apollo/client";
@@ -44,7 +45,7 @@ function Recipe() {
     if(loggedIn) {
       getUser({ variables: { username: Auth.getProfile().authenticatedPerson.username }});
     }
-  }, [data])
+  }, [data, loggedIn, getUser])
   
   useEffect(() => {
     if (userData && userData.data && userData.data.user && userData.data.user.pinnedRecipes) {
@@ -52,7 +53,7 @@ function Recipe() {
           setPinned(true);
         }
     }
-  }, [userData])
+  }, [userData, recipeId])
 
   const pinHandler = async () => {
     const { data } = await pinRecipe({
