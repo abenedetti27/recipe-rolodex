@@ -93,21 +93,21 @@ export const ADD_RECIPE = gql`
 `
 
 export const UPDATE_RECIPE = gql`
-    mutation updateRecipe($id: ID!, $name: String, $photo: String, $cookingTime: String!, $instructions: String, $ingredients: String, $servingSize: String!, $author: String, $familyId: [ID]) {
-        updateRecipe(_id: $id, name: $name, photo: $photo, cookingTime: $cookingTime, instructions: $instructions, ingredients: $ingredients, servingSize: $servingSize, author: $author, familyId: $familyId) {
+    mutation updateRecipe($id: ID!, $cookingTime: String!, $servingSize: String!, $name: String, $photo: String, $instructions: String, $ingredients: String, $author: String, $familyId: ID) {
+        updateRecipe(_id: $id, cookingTime: $cookingTime, servingSize: $servingSize, name: $name, photo: $photo, instructions: $instructions, ingredients: $ingredients, author: $author, familyId: $familyId) {
+          _id
+          name
+          photo
+          cookingTime
+          instructions
+          ingredients
+          servingSize
+          author
+          createdAt
+          families {
             _id
             name
-            photo
-            cookingTime
-            instructions
-            ingredients
-            servingSize
-            author
-            createdAt
-            families {
-                _id
-                name
-            }
+          }
         }
     }
 `
