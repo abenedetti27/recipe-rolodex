@@ -3,7 +3,7 @@ import './style.css';
 
 function EditRecipe() {
     return (
-        <main>
+        <main className="md-container m-auto text-center" id="cardContainer">
             <EditRecipeCard />
         </main>
     );
