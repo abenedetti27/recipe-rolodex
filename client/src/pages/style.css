@@ -124,23 +124,20 @@ small {
   text-transform: uppercase;
 }
 
-
-.form-outline .form-control:focus~.form-label {
+.form-outline .form-control:focus ~ .form-label {
   color: var(--darkpink);
-}		
+}
 
-
-.form-helper{
+.form-helper {
   text-align: left;
   margin-top: 4px;
 }
 
-
-select{
+select {
   background-color: var(--mauve);
   border: 0;
   border-radius: 5px;
-  padding: .55%;
+  padding: 0.55%;
 }
 
 button {
@@ -150,19 +147,17 @@ button {
   margin: auto;
   border-radius: 5px;
   border: 0.5px solid var(--darkpink);
-  padding: auto;
-  font-size: 1rem;
+  padding: 1.25%;
   text-align: center;
-  line-height: 1em;
 }
 
 .dropdown-content li,
-.dropdown-content li > span{
+.dropdown-content li > span {
   background-color: var(--mauve);
-  color: w
+  color: w;
 }
 
-#cloudBox{
+#cloudBox {
   width: 60%;
   height: auto;
   background-color: var(--darkpink);
@@ -178,7 +173,7 @@ button {
   background-color: var(--mauve);
   border-radius: 5px;
   box-shadow: 0px 4px 4px var(--darkpink) / 0.2;
-  color: var(--richblack)
+  color: var(--richblack);
 }
 
 @media (max-width: 768px) {
@@ -201,5 +196,31 @@ button {
 
   .caraBox {
     display: none;
+  }
+
+  .navbar-toggler {
+    margin-left: 0.4%;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  footer {
+    display: none;
+  }
+
+  #family-card img{
+    display: none;
+  }
+
+  #famFlex{
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 975px) {
+  .navbar-toggler {
+    margin-left: 0.1%;
   }
 }
