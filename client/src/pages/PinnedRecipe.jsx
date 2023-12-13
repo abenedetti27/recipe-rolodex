@@ -42,7 +42,7 @@ function PinnedRecipes() {
 
   return (
     <>
-      <h2 className="text-center mt-3 mb-0">Recipes you pinned</h2>
+      <h2 className="text-center mt-3 mb-0">Pinned Recipes</h2>
       <section className="md-container m-auto" id="family-recipes">
         {recipes.length !==0 ? (
           <div className="d-flex p-3 flex-wrap" id="cardContainer">
@@ -78,7 +78,7 @@ function PinnedRecipes() {
                     </Link>
                   </div>
                 </div>
-              ))}</div>) : <div className="text-center">There is no recipe you pinned yet!</div>}
+              ))}</div>) : <div className="text-center">You have no recipes pinned yet!</div>}
       </section>
     </>
   );

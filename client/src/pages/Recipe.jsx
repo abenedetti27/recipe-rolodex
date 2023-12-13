@@ -70,19 +70,19 @@ function Recipe() {
   }
 
   return (
-    <div className="container d-flex justify-content-center align-items-center text-center">
+    <>
     {recipe ? (
-        <div className="row ">
-          <div className="m-4">
-            <div className="card w-100">
+        <div>
+          <div className="m-4 d-flex justify-content-center align-items-center">
+            <div className="card w-75">
               <img
                 src={recipe.photo}
                 alt={recipe.name}
                 className="card-img-top"
               />
               <div className="card-body">
-                <h1 className="card-title m-2">{recipe.name}</h1>
-                <div className="card-text">
+                <h1 className="card-title mb-5 mt-3">{recipe.name}</h1>
+                <div className="card-text mb-5">
                   <div className="row">
                     <div className="col-md-6">
                       <p className="small m-2"><span className="field-title">Cooking Time:</span> {recipe.cookingTime} minutes</p>
@@ -90,35 +90,35 @@ function Recipe() {
                     <div className="col-md-6">
                     <p className="small m-2"><span className="field-title">Serving Size:</span> {recipe.servingSize} servings</p>
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-6 mt-3 mb-3">
                       <span className="field-title">Cooking Instructions: </span> 
                       {recipe.instructions}
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-6 mt-3 mb-3">
                       <span className="field-title">Ingredients: </span> {recipe.ingredients}
                     </div>
                   </div>
                 </div>
-                <Link to={`/familyrecipes/${family?._id}`} className="m-2">
+                <Link to={`/familyrecipes/${family?._id}`} className="m-4 p-1">
                   <span className="badge bg-success">
-                  <i className="fas fa-users"></i> Family: {family?.name ||""}
+                  <i className="fas fa-users fa-2x p-1"></i> Family: {family?.name ||""}
                   </span>
                 </Link>
-                <Link to="" className="m-2">
-                  <span className="badge bg-info">
-                  <i className="fas fa-user"></i> Author: {recipe.author}
+                
+                  <span className="badge bg-secondary m-4 p-1">
+                  <i className="fas fa-user fa-2x p-1"></i> Author: {recipe.author}
                   </span>
-                </Link>
-                <span>
+                
+                <span className="m-4 p-1">
                   {loggedIn !== false ?
                     <>
                     {pinned !== false ? 
                     <span className="badge badge-light"  onClick={unpinHandler}>
-                      <i className="fa-solid fa-thumbtack" style={{color: "#F139AA"}}></i>
+                      <i className="fa-solid fa-thumbtack fa-2x" style={{color: "#F139AA"}}></i>
                     </span>
                     : 
                     <span className="badge badge-light"  onClick={pinHandler}>
-                      <i className="fa-thin fa-thumbtack" style={{color: "#F139AA"}} ></i>
+                      <i className="fa-solid fa-thumbtack fa-2x" style={{color: "#b598a3"}} ></i>
                     </span>}
                     </> : <></>}
                 </span>
@@ -137,7 +137,7 @@ function Recipe() {
         </div>
       ) : null}
       {loading ? <div>Loading...</div> : null}
-    </div>
+    </>
   );
 }
 

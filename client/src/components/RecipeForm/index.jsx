@@ -6,7 +6,7 @@ import Auth from '../../utils/auth';
 import { QUERY_USER } from "../../utils/queries";
 import { ADD_RECIPE } from "../../utils/mutations";
 
-
+import '../../pages/style.css';
 
 
 initMDB({ Input, Ripple });
