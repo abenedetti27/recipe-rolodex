@@ -124,39 +124,17 @@ small {
   text-transform: uppercase;
 }
 
-.form-outline .form-control:focus~.form-notch .form-notch-leading {
-  border-top: .125rem solid var(--darkpink);
-  border-bottom: .125rem solid var(--darkpink);
-  border-left: .125rem solid var(--darkpink);
-  box-shadow:-1px 0px 0px 0px var(--darkpink), 0px 1px 0px 0px var(--darkpink), 0px -1px 0px 0px #DC4C64;
-}
-.form-outline .form-control:focus~.form-notch .form-notch-middle {
-  border-bottom: .125rem solid;
-  border-color: var(--darkpink);
-   border-top:none;
-  box-shadow: 0 1px 0 0 var(--darkpink);
-}
-
-.form-outline .form-control:focus~.form-notch .form-notch-trailing {
-  border-color: currentcolor currentcolor currentcolor #E4A11B;
-  border-bottom: .125rem solid var(--darkpink);
-  border-right: .125rem solid var(--darkpink);
-  border-top: .125rem solid var(--darkpink);
-  box-shadow: 1px 0 0 0 var(--darkpink), 0 -1px 0 0 var(--darkpink), 0 1px 0 0 var(--darkpink);
-}
 
 .form-outline .form-control:focus~.form-label {
   color: var(--darkpink);
 }		
 
-.form-outline .form-control.active~.form-notch .form-notch-middle, .form-outline .form-control:focus~.form-notch .form-notch-middle {
-border-top: 1px var(--darkpink);
-}
 
 .form-helper{
   text-align: left;
   margin-top: 4px;
 }
+
 
 select{
   background-color: var(--mauve);
@@ -169,7 +147,7 @@ button {
   background-color: var(--mauve);
   color: var(--white);
   box-shadow: 0px 4px 4px var(--darkpink) / 0.2;
-  margin: 1%;
+  margin: auto;
   border-radius: 5px;
   border: 0.5px solid var(--darkpink);
   padding: auto;

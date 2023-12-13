@@ -129,7 +129,7 @@ export default function RecipeForm() {
 
   return (
     <form className="me-2">
-      <div className="row m-2">
+      <div className="row m-auto">
         <div data-mdb-input-init className="form-outline m-2">
           <input
             type="text"
@@ -201,7 +201,7 @@ export default function RecipeForm() {
           </label>
         </div>
 
-        <div data-mdb-input-init className="form-outline m-4 row">
+        <div data-mdb-input-init className="form-outline mt-4 m-auto row">
           <label className="visually-hidden" >
             Family
           </label>
@@ -234,27 +234,27 @@ export default function RecipeForm() {
 
         <div
           data-mdb-input-init
-          className="form-outline m-4 row"
+          className="form-outline mt-4 m-auto row"
           onClick={handleUpload}
         >
         <section>
           <div >
               <img className="uploaded-image-cloudinary" src={myImage} id="cloudBox"/>
           </div>
-          <div>
-              <button onClick={() => widgetRef.current.open()}>Upload Image</button>
+          <div className="m-auto">
+              <button className="" onClick={() => widgetRef.current.open()}>Upload Image</button>
           </div>
         </section>
-          <sub className="text-muted mt-2">Upload a picture of your recipe</sub>
+          <sub className="text-muted m-auto mt-2">Upload a picture of your recipe</sub>
         </div>
 
         <button
           data-mdb-ripple-init
           type="button"
-          className="btn btn-block btn-lg m-4 submit"
+          className="btn btn-block btn-lg m-auto mt-4 submit"
           onClick={handleSubmit}
         >
-          Submit Recipe
+          Update Recipe
         </button>
       </div>
       <h4 className="text-center" style={{color: "red"}}>{uploadError}</h4>
