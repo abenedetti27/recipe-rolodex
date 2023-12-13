@@ -46,6 +46,7 @@ const FamilyCard = () => {
       setNewFamilyName(value);
     } else if (name === "search-family-by-id") {
       setSearchFamilyId(value);
+      setErrorMessage('');
     }
 
     if (value.trim() !== "") {
@@ -70,13 +71,24 @@ const FamilyCard = () => {
   const searchFamily = async (event) => {
     event.preventDefault();
     try {
+      if (families){
+        console.log(families);
+        if(families.find((family) => family.familyId === searchFamilyId)){
+          setErrorMessage("You're already a member of this family");
+          return;
+        }
+      }
       const { data, error } = await findFamily({
         variables: { id: searchFamilyId },
       });
 
-      if (data && data.family){
+      if (data){
+        if (!data.family){
+          setErrorMessage("Couldn't find any family with this ID")
+        } else {
         setSearchResult(data.family);
-      }
+        }
+      }  
       if (error){
         setErrorMessage("Something went wrong - please double check if you added the correct ID")
       }
