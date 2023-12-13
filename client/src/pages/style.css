@@ -1,4 +1,5 @@
 /* Main Style.CSS for all */
+@import 'mdb-ui-kit/css/mdb.min.css';
 
 :root {
   --lightpink: #f8e0e7;
