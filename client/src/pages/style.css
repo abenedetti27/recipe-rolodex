@@ -177,6 +177,14 @@ button {
   color: var(--richblack);
 }
 
+textarea{
+  white-space: pre-wrap;
+}
+
+.textwrap{
+  white-space: pre-wrap;
+}
+
 @media (max-width: 768px) {
   #cardContainer {
     width: 68%;
