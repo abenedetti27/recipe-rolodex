@@ -50,7 +50,7 @@ const NavBar = () => {
         >
           <i className="fas fa-bars"></i>
         </button>
-        <Link to="/">
+        <Link className="logo" to="/">
           <img
             src={Logo}
             alt="logo"

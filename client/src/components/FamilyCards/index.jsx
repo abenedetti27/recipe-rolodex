@@ -166,9 +166,9 @@ const FamilyCard = () => {
           </button>
         </div>
       </section>
-      <section className="d-flex p-2 m-auto">
+      <section className="d-flex p-2 m-auto flex-wrap">
         {families.length !== 0 ? (
-          <div className="d-flex p-1 justify-content-between">
+          <div className="d-flex p-1 justify-content-between" id="famFlex">
             {families.map((family) => (
               <div
                 className="card mb-4"
