@@ -1,4 +1,5 @@
 import EditRecipeCard from '../components/EditRecipeCard';
+import './style.css';
 
 function EditRecipe() {
     return (

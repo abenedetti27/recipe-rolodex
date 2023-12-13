@@ -1,3 +1,136 @@
-body{
-    padding-bottom: 2.5%;
+/* Main Style.CSS for all */
+
+:root {
+  --lightpink: #f8e0e7;
+  --darkpink: #da1884;
+  --white: #ffffff;
+  --richblack: #0d1321;
+}
+
+* {
+  /* font */
+  font-family: "Poppins", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Abril Fatface", serif;
+}
+
+body {
+  padding-bottom: 2.5%;
+}
+
+.caraBox {
+  width: 64%;
+  padding: 1%;
+  margin: auto;
+  object-fit: fill;
+}
+
+.carousel img {
+  height: 350px;
+  object-fit: cover;
+}
+
+/* .modal {
+    display: inherit
+} */
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  color: white;
+}
+
+.card {
+  width: 30%;
+  height: auto;
+  background-color: #fff;
+  border-radius: 10px;
+  text-align: center;
+}
+
+#family-card {
+  width: auto;
+  margin: 2%;
+}
+
+.img-fluid {
+  width: 100%;
+  height: 10vw;
+  object-fit: cover;
+}
+
+.btn {
+  float: right;
+  width: 100%;
+  background-color: var(--lightpink);
+  color: var(--richblack);
+  box-shadow: 0px 4px 4px var(--darkpink) / 0.2;
+  margin: 1%;
+  border: 0.5px solid var(--darkpink);
+  padding: auto;
+  font-size: 1rem;
+  text-align: center;
+  line-height: 1em;
+}
+
+.btn:hover {
+  background-color: var(--darkpink);
+  color: var(--white);
+  box-shadow: 0px 4px 4px var(--darkpink) / 0.2;
+  border: 0.5px solid var(--darkpink);
+}
+
+small {
+  font-size: 0.9rem;
+  color: grey;
+}
+
+#cardContainer {
+  width: 68%;
+  height: auto;
+  padding: 1%;
+  justify-content: space-evenly;
+  margin: auto;
+  margin-top: 1%;
+}
+
+.login {
+  width: 30%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 1.75%;
+  margin: auto;
+}
+
+@media (max-width: 768px) {
+  #cardContainer {
+    width: 68%;
+    height: auto;
+    padding: 1%;
+    justify-content: space-evenly;
+    margin: auto;
   }
+
+  .card-body h5 {
+    font-size: auto;
+  }
+
+  .card {
+    width: 100%; /* Set the card width to 100% for small screens */
+    height: auto;
+  }
+
+  .caraBox {
+    display: none;
+  }
+}

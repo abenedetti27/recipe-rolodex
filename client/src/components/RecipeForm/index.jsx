@@ -1,5 +1,4 @@
 import { Input, Ripple, initMDB } from "mdb-ui-kit";
-import "./style.css";
 import { useQuery, useMutation } from "@apollo/client";
 import { useEffect, useRef, useState } from 'react';
 import Auth from '../../utils/auth';

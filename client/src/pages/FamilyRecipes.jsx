@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { initMDB, Ripple } from "mdb-ui-kit";
 import { useQuery } from "@apollo/client";
 import { QUERY_FAMILY_RECIPE, QUERY_FAMILY, QUERY_FAMILY_MEMBER } from "../utils/queries";
-import "../components/RecipeCard/style.css";
 import { useParams, Link } from "react-router-dom";
+import './style.css';
 
 initMDB({ Ripple });
 

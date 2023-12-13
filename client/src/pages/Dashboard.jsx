@@ -3,8 +3,8 @@ import { initMDB, Ripple } from "mdb-ui-kit";
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries";
 import { Link, useNavigate } from "react-router-dom";
-import "../components/RecipeCard/style.css";
 import { DELETE_RECIPE, UPDATE_RECIPE } from "../utils/mutations";
+import './style.css';
 
 // import { useParams } from 'react-router-dom';
 
@@ -75,12 +75,16 @@ function Dashboard() {
 
   return (
     <>
+      {/* Family */}
       <section className="md-container m-auto" id="dashboard-families">
         <div className="d-flex p-3 flex-wrap" id="cardContainer">
           <FamilyCards />
         </div>
       </section>
-      <section className="container m-auto justify-content-between d-flex">
+
+      {/* Added Recipe */}
+      <div className="d-flex p-3 flex-wrap" id="cardContainer">
+      <section className="container m-auto justify-content-between d-flex flex-wrap">
         <h2>Your Recipes</h2>
         <div>
           <Link
@@ -92,10 +96,9 @@ function Dashboard() {
           </Link>
         </div>
       </section>
-      <section className="md-container m-auto" id="dashboard-recipes">
-        <div className="d-flex p-3 flex-wrap" id="cardContainer">
+      <>
           {recipes.length !== 0 ? (
-            <div>
+            <>
               {recipes.map((recipe) => (
                 <div className="card mb-4" key={recipe._id}>
                   <div
@@ -115,7 +118,7 @@ function Dashboard() {
                       ></div>
                     </a>
                   </div>
-                  <div className="card-body p-3">
+                  <div className="card-body pt-1 pb-3">
                     <h5 className="card-title mb-2">
                       {recipe?.name || "No Title"}
                     </h5>
@@ -127,7 +130,7 @@ function Dashboard() {
                       See Recipe
                     </Link>
                     <button
-                      className="btn btn-warning ms-2"
+                      className="btn btn-warning"
                       onClick={() => handleEditRecipe(recipe._id)}
                       data-mdb-ripple-init
                     >
@@ -143,12 +146,12 @@ function Dashboard() {
                   </div>
                 </div>
               ))}
-            </div>
+            </>
           ) : (
             <p>You have not added any recipes yet</p>
           )}
-        </div>
-      </section>
+        </>
+      </div>
     </>
   );
 }
