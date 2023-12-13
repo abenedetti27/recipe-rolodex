@@ -15,6 +15,7 @@ const FamilyCard = () => {
   const [families, setFamilies] = useState([]);
   const [newFamilyName, setNewFamilyName] = useState("");
   const [searchFamilyId, setSearchFamilyId] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [createNewFamily] = useMutation(ADD_FAMILY);
   const [findFamily] = useLazyQuery(QUERY_FAMILY);
   const [joinFamily] = useMutation(JOIN_FAMILY);
@@ -45,6 +46,7 @@ const FamilyCard = () => {
       setNewFamilyName(value);
     } else if (name === "search-family-by-id") {
       setSearchFamilyId(value);
+      setErrorMessage('');
     }
 
     if (value.trim() !== "") {
@@ -69,10 +71,28 @@ const FamilyCard = () => {
   const searchFamily = async (event) => {
     event.preventDefault();
     try {
-      const { data } = await findFamily({
+      if (families){
+        console.log(families);
+        if(families.find((family) => family.familyId === searchFamilyId)){
+          setErrorMessage("You're already a member of this family");
+          return;
+        }
+      }
+      const { data, error } = await findFamily({
         variables: { id: searchFamilyId },
       });
-      setSearchResult(data.family);
+
+      if (data){
+        if (!data.family){
+          setErrorMessage("Couldn't find any family with this ID")
+        } else {
+        setSearchResult(data.family);
+        }
+      }  
+      if (error){
+        setErrorMessage("Something went wrong - please double check if you added the correct ID")
+      }
+      
     } catch (error) {
       console.log(error);
     }
@@ -161,20 +181,26 @@ const FamilyCard = () => {
                     data-mdb-ripple-init
                     data-mdb-ripple-color="light"
                   >
-                    <img
-                      src={
-                        family?.photos[
-                          Math.floor(Math.random() * families.length)
-                        ] || ""
-                      }
+                    {family.photos.length !== 1 ? (
+                    <img src=
+                          {
+                            family?.photos[
+                              Math.floor(Math.random() * family.photos.length)
+                            ] || ""
+                          }
+                      className="img-fluid"
+                      alt={family?.name || ""}
+                    />) : (
+                      <img src=
+                          { family?.photos[0] || "" }
                       className="img-fluid"
                       alt={family?.name || ""}
                     />
+                    )}
                       <div
                         className="mask"
                         style={{ backgroundColor: "rgba(251, 251, 251, 0.15)" }}
                       ></div>
-
                   </div>
                 ) : (
                   <div></div>
@@ -186,7 +212,7 @@ const FamilyCard = () => {
                   <div>
                     <Link
                       to={`/familyrecipes/${family.familyId}`}
-                      className="btn btn-primary"
+                      className="btn btn-danger btn-block m-auto mb-2"
                       data-mdb-ripple-init
                     >
                       See Recipes
@@ -194,7 +220,7 @@ const FamilyCard = () => {
                   </div>
                   <button
                     type="submit"
-                    className="btn btn-danger btn-block"
+                    className="btn btn-danger btn-block m-auto"
                     data-mdb-ripple-init=""
                     onClick={handleLeaveFamily}
                     id={family.familyId}
@@ -222,7 +248,7 @@ const FamilyCard = () => {
       >
         <div className="modal-dialog modal-lg">
           <div className="modal-content">
-            <div className="modal-body p-4">
+            <div className="modal-body p-3">
               <ul
                 className="nav nav-pills nav-justified mb-3"
                 id="ex1"
@@ -289,7 +315,7 @@ const FamilyCard = () => {
                     </div>
                     <button
                       type="submit"
-                      className="btn btn-primary btn-block mb-4"
+                      className="btn btn-danger btn-block m-auto"
                       data-mdb-ripple-init=""
                       onClick={submitNewFamily}
                     >
@@ -322,7 +348,7 @@ const FamilyCard = () => {
                     </div>
                     <button
                       type="submit"
-                      className="btn btn-primary btn-block mb-1"
+                      className="btn btn-danger btn-block m-auto"
                       data-mdb-ripple-init=""
                       onClick={searchFamily}
                     >
@@ -340,7 +366,7 @@ const FamilyCard = () => {
                           </div>
                           <button
                             type="submit"
-                            className="btn btn-info btn-block"
+                            className="btn btn-danger btn-block m-auto"
                             data-mdb-ripple-init=""
                             onClick={handleJoinFamily}
                           >
@@ -350,6 +376,9 @@ const FamilyCard = () => {
                       ) : (
                         ""
                       )}
+                      {errorMessage !== "" ? (
+                        <div style={{color:"red"}}>{errorMessage}</div>
+                      ) : ("")}
                     </div>
                   </form>
                 </div>
