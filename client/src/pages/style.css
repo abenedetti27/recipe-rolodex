@@ -190,10 +190,6 @@ button {
   height: 1px;
 }
 
-.hr {
-width: 60%;
-margin: auto;
-}
 
 @media (max-width: 768px) {
   #cardContainer {

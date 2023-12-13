@@ -39,8 +39,8 @@ export default function RecipeForm() {
 
   const [formData, setFormData] = useState({
     name: "",
-    cookingTime: 0,
-    servingSize: 0,
+    cookingTime: "",
+    servingSize: "",
     instructions: "",
     ingredients: "",
     familyId: "", // The selected family id
@@ -110,8 +110,8 @@ export default function RecipeForm() {
       // Set initial state using data
       setFormData({
         name: data.name || "",
-        cookingTime: data.cookingTime || 0,
-        servingSize: data.servingSize || 0,
+        cookingTime: data.cookingTime || "",
+        servingSize: data.servingSize || "",
         instructions: data.instructions || "",
         ingredients: data.ingredients || "",
         familyId: data.familyId || "",
@@ -143,35 +143,35 @@ export default function RecipeForm() {
           </label>
         </div>
 
-        <div className="col">
+        <div className="col p-2">
           <div data-mdb-input-init className="form-outline">
             <input
               type="number"
               id="cookingTime"
+              placeholder="0"
               className="form-control"
               value={formData.cookingTime}
               onChange={handleInputChange}
             />
             <label className="form-label" htmlFor="cookingTime">
-              Cooking Time
+              Cooking Time (In Minutes)
             </label>
-            <sub className="text-muted m-1">in minutes</sub>
           </div>
         </div>
 
-        <div className="col">
+        <div className="col p-2">
           <div data-mdb-input-init className="form-outline">
             <input
               type="number"
               id="servingSize"
               className="form-control"
+              placeholder="0"
               value={formData.servingSize}
               onChange={handleInputChange}
             />
             <label className="form-label" htmlFor="servingSize">
-              Serving Size
+              Serving Size (Number of People)
             </label>
-            <sub className="text-muted m-1">in people</sub>
           </div>
         </div>
 
@@ -184,11 +184,8 @@ export default function RecipeForm() {
             onChange={handleInputChange}
           ></textarea>
           <label className="form-label" htmlFor="instructions">
-            Cooking Instructions
+            Cooking Instructions (Separate each step with a new line)
           </label>
-          <sub className="text-muted m-1">
-            Separate each step with a new line
-          </sub>
         </div>
 
         <div data-mdb-input-init className="form-outline m-2">
@@ -200,44 +197,39 @@ export default function RecipeForm() {
             onChange={handleInputChange}
           ></textarea>
           <label className="form-label" htmlFor="ingredients">
-            Ingredients
+            Ingredients (Separate each ingredient with a new line)
           </label>
-          <sub className="text-muted m-1">
-            Separate each ingredient with a new line
-          </sub>
         </div>
 
         <div data-mdb-input-init className="form-outline m-4 row">
-          <label className="visually-hidden" htmlFor="familyId">
+          <label className="visually-hidden" >
             Family
           </label>
           <select
             data-mdb-select-init
             className="select"
             id="familyId"
+            placeholder="Select a family to share this recipe"
             value={formData.familyId}
             onChange={handleFamilyChange}
           >
             {loading ? (
-              <option defaultValue="" disabled>
+              <option defaultValue="" disabled className="optColor">
               Join or create family to upload a new recipe
               </option>
             ) : (
               <>
-                <option defaultValue="" disabled selected>
-                Choose a family
+                <option defaultValue="" selected className="optColor">
+                Choose a family (Select a family to share this recipe)
                 </option>
                 {userFamlies.map((family) => (
-                  <option key={family._id} value={family._id}>
+                  <option key={family._id} value={family._id} className="optColor">
                     {family.name}
                   </option>
                 ))}
               </>
             )}
           </select>
-          <sub className="text-muted mt-2">
-            Select a family to share this recipe
-          </sub>
         </div>
 
         <div
@@ -246,8 +238,8 @@ export default function RecipeForm() {
           onClick={handleUpload}
         >
         <section>
-          <div>
-              <img className="uploaded-image-cloudinary" src={myImage}/>
+          <div >
+              <img className="uploaded-image-cloudinary" src={myImage} id="cloudBox"/>
           </div>
           <div>
               <button onClick={() => widgetRef.current.open()}>Upload Image</button>
@@ -259,10 +251,10 @@ export default function RecipeForm() {
         <button
           data-mdb-ripple-init
           type="button"
-          className="btn btn-warning btn-block btn-lg m-4 submit"
+          className="btn btn-success btn-block btn-lg m-4 submit"
           onClick={handleSubmit}
         >
-          Update Recipe
+          Submit Recipe
         </button>
       </div>
       <h4 className="text-center" style={{color: "red"}}>{uploadError}</h4>

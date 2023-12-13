@@ -232,7 +232,7 @@ export default function RecipeForm() {
             )}
           </select>
         </div>
-<hr className="hr"/>
+
         <div
           data-mdb-input-init
           className="form-outline m-4 row"

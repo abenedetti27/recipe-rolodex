@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
 import { ADD_USER, LOGIN } from '../utils/mutations';
@@ -109,6 +109,19 @@ function Login() {
       inputElement.classList.remove('active');
     }
   };
+
+  useEffect(() => {
+    // Initialize MDB UI Kit components after the component has loaded
+    document.querySelectorAll('.form-outline').forEach((formOutline) => {
+      if (formOutline && formOutline.classList) {
+        try {
+          new Input(formOutline).update();
+        } catch (error) {
+          console.error('Error updating Input:', error);
+        }
+      }
+    });
+  }, []);
 
   return (
  
