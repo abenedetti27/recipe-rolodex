@@ -1,105 +1,271 @@
-import { useState, useEffect } from 'react';
-import { initMDB, Ripple } from 'mdb-ui-kit';
-import { useQuery } from '@apollo/client';
-import { QUERY_ALL_RECIPES } from '../../utils/queries';
-import './style.css';
-import { UPDATE_RECIPE } from '../../utils/mutations';
+import { Input, Ripple, initMDB } from "mdb-ui-kit";
+import { useQuery, useMutation } from "@apollo/client";
+import { useEffect, useRef, useState } from 'react';
+import Auth from '../../utils/auth';
 
-initMDB({ Ripple });
+import { QUERY_USER } from "../../utils/queries";
+import { UPDATE_RECIPE } from "../../utils/mutations";
 
-const EditRecipeCard = () => {
-  const { loading, error, data } = useQuery(QUERY_ALL_RECIPES);
-  const [recipes, setRecipes] = useState([]);
-  const [editingRecipe, setEditingRecipe] = useState(null);
+initMDB({ Input, Ripple });
+
+export default function RecipeForm() {
+
+  const cloudinaryRef = useRef();
+  const widgetRef = useRef();
+  const [myImage, setMyImage] = useState();
+  const [userFamlies, setUserFamilies] = useState([]);
+  const [uploadError, setuploadError] = useState("");
 
   useEffect(() => {
-    if (data && data.recipes) {
-      setRecipes(data.recipes);
+      cloudinaryRef.current = window.cloudinary;
+      widgetRef.current = cloudinaryRef.current.createUploadWidget({
+          cloudName: 'defuryakl',
+          uploadPreset: 'reciperolodex',
+      }, function(error, result) {
+          if (result && result.info && result.info.secure_url) {
+              setMyImage(result.info.secure_url);
+          }
+      });
+  }, []);
+
+  const [updateRecipe] = useMutation(UPDATE_RECIPE);
+
+  // const username = "B-King";
+  const username = Auth.getProfile().authenticatedPerson.username
+  // Update the variables below to be authorized user's username when we get there.
+  const { loading, data } = useQuery(QUERY_USER, {
+    variables: { username: username }, 
+  });
+
+  const [formData, setFormData] = useState({
+    name: "",
+    cookingTime: 0,
+    servingSize: 0,
+    instructions: "",
+    ingredients: "",
+    familyId: "", // The selected family id
+  });
+
+  const handleSubmit = async () => {
+    try {
+      console.log( "formData: ", formData);
+      console.log( "myImage: ", myImage);
+      console.log( "username: ", username);
+      const { name, cookingTime, instructions, ingredients, servingSize, familyId } = formData;
+      
+      // Use updateRecipe mutation instead of addRecipe
+      const { data, error } = await updateRecipe({
+        variables: {
+          // Include recipe ID in the variables
+          recipeId: data._id,
+          name: name,
+          cookingTime: cookingTime,
+          instructions: instructions,
+          ingredients: ingredients,
+          servingSize: servingSize,
+          familyId: familyId,
+          photo: myImage,
+          author: username
+        },
+        refetchQueries: [{ query: QUERY_USER, variables: { username } }],
+      });
+      console.log("data: ", data);
+
+      if( data ){
+        window.location.replace(window.location.origin + "/dashboard");
+      }
+
+      if( error ){
+        setuploadError("something went wrong, please try again")
+      }
+
+    } catch (error) {
+      console.error("Error submitting recipe:", error);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setFormData({ ...formData, [id]: value });
+
+    const inputElement = e.target;
+    if (value.trim() !== '') {
+      inputElement.classList.add('active');
+    } else {
+      inputElement.classList.remove('active');
+    }
+
+    console.log(formData);
+  };
+
+  const handleFamilyChange = (e) => {
+    setFormData({ ...formData, familyId: e.target.value });
+  };
+
+
+
+  useEffect(() => {
+    if (data) {
+      setUserFamilies(data.user.families);
+      // Set initial state using data
+      setFormData({
+        name: data.name || "",
+        cookingTime: data.cookingTime || 0,
+        servingSize: data.servingSize || 0,
+        instructions: data.instructions || "",
+        ingredients: data.ingredients || "",
+        familyId: data.familyId || "",
+      });
+
+      setMyImage(data.photo || ""); // Set image if available
     }
   }, [data]);
 
-  if (loading) return <p>Loading...</p>;
 
-  if (error) {
-    console.error('Error fetching data:', error);
-    return <p>Error: Unable to fetch data</p>;
-  }
-
-  const handleEditClick = (recipe) => {
-    setEditingRecipe(recipe);
+  const handleUpload = (event) => {
+    event.preventDefault();
+    // This is to prevent the page from reloading when someone clicks the button to upload a picture
   };
-
-  const handleCancelEdit = () => {
-    setEditingRecipe(null);
-  };
-
-  const handleSaveEdit = () => {
-    // how do we save the update?
-    try {
-        const [updateRecipe, { error }] = useMutation(UPDATE_RECIPE);
-        await updateRecipe({
-            variables: {
-                _id: editingRecipe._id,
-                name: editingRecipe.name,
-                photo: editingRecipe.photo,
-                cookingTime: editingRecipe.cookingTime,
-                servingSize: editingRecipe.servingSize,
-                ingredients: editingRecipe.ingredients,
-                instructions: editingRecipe.instructions,
-                author: editingRecipe.author,
-                createdAt: editingRecipe.createdAt,
-                families: editingRecipe.families,
-                    _id: editingRecipe.families._id,
-                    name: editingRecipe.families.name
-              
-            },
-            });
-    
-    setEditingRecipe(null);
-    refectch();
-  } catch (err) {
-    console.error('Error saving edit:', error);
-  }
-}
 
   return (
-    <>
-      {recipes.map((recipe) => (
-        <div className="card mb-4" key={recipe._id}>
-          <div className="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light">
-            <img src={recipe?.photo || ''} className="img-fluid mb-0" alt={recipe?.name || ''} />
-            <a href="#!">
-              <div className="mask" style={{ backgroundColor: "rgba(251, 251, 251, 0.15)" }}></div>
-            </a>
-          </div>
-          <div className="card-body p-3">
-            <h5 className="card-title mb-2">{recipe?.name || 'No Title'}</h5>
-            {editingRecipe === recipe ? (
-              <>
-                <button className="btn btn-primary" onClick={handleSaveEdit}>
-                  Save Edit
-                </button>
-                <button className="btn btn-secondary" onClick={handleCancelEdit}>
-                  Cancel Edit
-                </button>
-              </>
-            ) : (
-              <button
-                className="btn btn-primary"
-                onClick={() => handleEditClick(recipe)}
-                data-mdb-ripple-init
-              >
-                Edit Recipe
-              </button>
-            )}
-            <button className="btn btn-primary" data-mdb-ripple-init>
-              See Recipe
-            </button>
+    <form className="me-2">
+      <div className="row m-2">
+        <div data-mdb-input-init className="form-outline m-2">
+          <input
+            type="text"
+            id="name"
+            className="form-control"
+            value={formData.name}
+            onChange={handleInputChange}
+          />
+          <label className="form-label" htmlFor="name">
+            Recipe Name
+          </label>
+        </div>
+
+        <div className="col">
+          <div data-mdb-input-init className="form-outline">
+            <input
+              type="number"
+              id="cookingTime"
+              className="form-control"
+              value={formData.cookingTime}
+              onChange={handleInputChange}
+            />
+            <label className="form-label" htmlFor="cookingTime">
+              Cooking Time
+            </label>
+            <sub className="text-muted m-1">in minutes</sub>
           </div>
         </div>
-      ))}
-    </>
-  );
-};
 
-export default EditRecipeCard;
+        <div className="col">
+          <div data-mdb-input-init className="form-outline">
+            <input
+              type="number"
+              id="servingSize"
+              className="form-control"
+              value={formData.servingSize}
+              onChange={handleInputChange}
+            />
+            <label className="form-label" htmlFor="servingSize">
+              Serving Size
+            </label>
+            <sub className="text-muted m-1">in people</sub>
+          </div>
+        </div>
+
+        <div data-mdb-input-init className="form-outline m-2">
+          <textarea
+            className="form-control"
+            id="instructions"
+            rows="4"
+            value={formData.instructions}
+            onChange={handleInputChange}
+          ></textarea>
+          <label className="form-label" htmlFor="instructions">
+            Cooking Instructions
+          </label>
+          <sub className="text-muted m-1">
+            Separate each step with a new line
+          </sub>
+        </div>
+
+        <div data-mdb-input-init className="form-outline m-2">
+          <textarea
+            className="form-control"
+            id="ingredients"
+            rows="4"
+            value={formData.ingredients}
+            onChange={handleInputChange}
+          ></textarea>
+          <label className="form-label" htmlFor="ingredients">
+            Ingredients
+          </label>
+          <sub className="text-muted m-1">
+            Separate each ingredient with a new line
+          </sub>
+        </div>
+
+        <div data-mdb-input-init className="form-outline m-4 row">
+          <label className="visually-hidden" htmlFor="familyId">
+            Family
+          </label>
+          <select
+            data-mdb-select-init
+            className="select"
+            id="familyId"
+            value={formData.familyId}
+            onChange={handleFamilyChange}
+          >
+            {loading ? (
+              <option defaultValue="" disabled>
+              Join or create family to upload a new recipe
+              </option>
+            ) : (
+              <>
+                <option defaultValue="" disabled selected>
+                Choose a family
+                </option>
+                {userFamlies.map((family) => (
+                  <option key={family._id} value={family._id}>
+                    {family.name}
+                  </option>
+                ))}
+              </>
+            )}
+          </select>
+          <sub className="text-muted mt-2">
+            Select a family to share this recipe
+          </sub>
+        </div>
+
+        <div
+          data-mdb-input-init
+          className="form-outline m-4 row"
+          onClick={handleUpload}
+        >
+        <section>
+          <div>
+              <img className="uploaded-image-cloudinary" src={myImage}/>
+          </div>
+          <div>
+              <button onClick={() => widgetRef.current.open()}>Upload Image</button>
+          </div>
+        </section>
+          <sub className="text-muted mt-2">Upload a picture of your recipe</sub>
+        </div>
+
+        <button
+          data-mdb-ripple-init
+          type="button"
+          className="btn btn-warning btn-block btn-lg m-4 submit"
+          onClick={handleSubmit}
+        >
+          Update Recipe
+        </button>
+      </div>
+      <h4 className="text-center" style={{color: "red"}}>{uploadError}</h4>
+    </form>
+  );
+}
