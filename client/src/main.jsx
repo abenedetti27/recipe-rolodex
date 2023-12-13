@@ -12,6 +12,7 @@ import Search from './pages/Search.jsx';
 import Login from './pages/Login.jsx';
 import Recipe from './pages/Recipe.jsx';
 import EditRecipe from './pages/EditRecipe.jsx';
+import PinnedRecipes from './pages/PinnedRecipe.jsx'
 // Import MDB
 // Example: Adjust import path based on package structure or documentation
 import * as mdb from 'mdb-ui-kit'; // lib
@@ -64,6 +65,11 @@ const router = createBrowserRouter([
         path:'/search/',
         index: false, 
         element: <Search />
+      },
+      {
+        path:'/pinnedrecipes/',
+        index: false, 
+        element: <PinnedRecipes />
       }
     ]
   }

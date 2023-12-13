@@ -15,6 +15,7 @@ const FamilyCard = () => {
   const [families, setFamilies] = useState([]);
   const [newFamilyName, setNewFamilyName] = useState("");
   const [searchFamilyId, setSearchFamilyId] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [createNewFamily] = useMutation(ADD_FAMILY);
   const [findFamily] = useLazyQuery(QUERY_FAMILY);
   const [joinFamily] = useMutation(JOIN_FAMILY);
@@ -45,6 +46,7 @@ const FamilyCard = () => {
       setNewFamilyName(value);
     } else if (name === "search-family-by-id") {
       setSearchFamilyId(value);
+      setErrorMessage('');
     }
 
     if (value.trim() !== "") {
@@ -69,10 +71,28 @@ const FamilyCard = () => {
   const searchFamily = async (event) => {
     event.preventDefault();
     try {
-      const { data } = await findFamily({
+      if (families){
+        console.log(families);
+        if(families.find((family) => family.familyId === searchFamilyId)){
+          setErrorMessage("You're already a member of this family");
+          return;
+        }
+      }
+      const { data, error } = await findFamily({
         variables: { id: searchFamilyId },
       });
-      setSearchResult(data.family);
+
+      if (data){
+        if (!data.family){
+          setErrorMessage("Couldn't find any family with this ID")
+        } else {
+        setSearchResult(data.family);
+        }
+      }  
+      if (error){
+        setErrorMessage("Something went wrong - please double check if you added the correct ID")
+      }
+      
     } catch (error) {
       console.log(error);
     }
@@ -161,20 +181,26 @@ const FamilyCard = () => {
                     data-mdb-ripple-init
                     data-mdb-ripple-color="light"
                   >
-                    <img
-                      src={
-                        family?.photos[
-                          Math.floor(Math.random() * families.length)
-                        ] || ""
-                      }
+                    {family.photos.length !== 1 ? (
+                    <img src=
+                          {
+                            family?.photos[
+                              Math.floor(Math.random() * family.photos.length)
+                            ] || ""
+                          }
+                      className="img-fluid"
+                      alt={family?.name || ""}
+                    />) : (
+                      <img src=
+                          { family?.photos[0] || "" }
                       className="img-fluid"
                       alt={family?.name || ""}
                     />
+                    )}
                       <div
                         className="mask"
                         style={{ backgroundColor: "rgba(251, 251, 251, 0.15)" }}
                       ></div>
-
                   </div>
                 ) : (
                   <div></div>
@@ -350,6 +376,9 @@ const FamilyCard = () => {
                       ) : (
                         ""
                       )}
+                      {errorMessage !== "" ? (
+                        <div style={{color:"red"}}>{errorMessage}</div>
+                      ) : ("")}
                     </div>
                   </form>
                 </div>
