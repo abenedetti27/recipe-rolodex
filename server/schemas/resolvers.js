@@ -148,11 +148,11 @@ const { signToken, AuthenticationError } = require('../utils/auth');
       return recipe;
     },
 
-    pinRecipe: async (parent, { _id }, context) => {
+    pinRecipe: async (parent, { id }, context) => {
       if (context.user) {
         const updatedUser = await User.findByIdAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { pinnedRecipes: _id } },
+          { $addToSet: { pinnedRecipes: id } },
           { new: true }
         ).populate('pinnedRecipes');
 
@@ -162,11 +162,11 @@ const { signToken, AuthenticationError } = require('../utils/auth');
       throw new AuthenticationError('You need to be logged in!');
     },
 
-    unpinRecipe: async (parent, { _id }, context) => {
+    unpinRecipe: async (parent, { id }, context) => {
       if (context.user) {
         const updatedUser = await User.findByIdAndUpdate(
           { _id: context.user._id },
-          { $pull: { pinnedRecipes: _id } },
+          { $pull: { pinnedRecipes: id } },
           { new: true }
         ).populate('pinnedRecipes');
 
