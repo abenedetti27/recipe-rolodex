@@ -114,14 +114,24 @@ export default function RecipeForm() {
     setFormData({ ...formData, familyId: e.target.value });
   };
 
-
-
   useEffect(() => {
     if (data) {
       setUserFamilies(data.user.families);
     }
   }, [data, loading]);
 
+  useEffect(() => {
+    // Initialize MDB UI Kit components after the component has loaded
+    document.querySelectorAll('.form-outline').forEach((formOutline) => {
+      if (formOutline && formOutline.classList) {
+        try {
+          new Input(formOutline).update();
+        } catch (error) {
+          console.error('Error updating Input:', error);
+        }
+      }
+    });
+  }, []);
 
   const handleUpload = (event) => {
     event.preventDefault();
