@@ -36,7 +36,7 @@ const RecipeCard = () => {
           </div>
           <div className="card-body p-3">
             <h5 className="card-title mb-2">{recipe?.name || 'No Title'}</h5>
-            <Link to={`/recipe/${recipe?._id}`} className="btn btn-primary" data-mdb-ripple-init>
+            <Link to={`/recipe/${recipe?._id}`} className="btn" data-mdb-ripple-init>
               See Recipe
             </Link>
           </div>

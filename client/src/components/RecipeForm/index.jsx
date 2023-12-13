@@ -6,7 +6,7 @@ import Auth from '../../utils/auth';
 import { QUERY_USER } from "../../utils/queries";
 import { ADD_RECIPE } from "../../utils/mutations";
 
-
+import '../../pages/style.css';
 
 
 initMDB({ Input, Ripple });
@@ -252,7 +252,7 @@ export default function RecipeForm() {
         <button
           data-mdb-ripple-init
           type="button"
-          className="btn btn-success btn-block btn-lg m-4 submit"
+          className="btn btn-block btn-lg m-4 submit"
           onClick={handleSubmit}
         >
           Submit Recipe
