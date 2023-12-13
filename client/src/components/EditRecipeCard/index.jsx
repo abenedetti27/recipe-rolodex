@@ -99,12 +99,12 @@ export default function RecipeForm() {
     } else {
       inputElement.classList.remove('active');
     }
-
     console.log(formData);
   };
 
   const handleFamilyChange = (e) => {
     setFormData({ ...formData, familyId: e.target.value });
+    
   };
 
   useEffect(() => {
@@ -114,7 +114,7 @@ export default function RecipeForm() {
   }, [userData]);
 
   useEffect(() => {
-    if (data) {
+    if (data && data.recipe) {
       // Set initial state using data
       setFormData({
         name: data.recipe.name || "",
@@ -127,13 +127,37 @@ export default function RecipeForm() {
 
       setMyImage(data.recipe.photo || ""); // Set image if available
     }
+
+    document.querySelectorAll('input').forEach((input) => {
+        input.classList.add('active');
+    });
+
+    document.querySelectorAll('textarea').forEach((textarea) => {
+      textarea.classList.add('active');
+  });
+
   }, [data]);
 
+  
 
   const handleUpload = (event) => {
     event.preventDefault();
     // This is to prevent the page from reloading when someone clicks the button to upload a picture
   };
+
+  useEffect(() => {
+    // Initialize MDB UI Kit components after the component has loaded
+    document.querySelectorAll('form-outline').forEach((formOutline) => {
+      if (formOutline && formOutline.classList) {
+        try {
+          new Input(formOutline).update();
+        } catch (error) {
+          console.error('Error updating Input:', error);
+        }
+      }
+    }
+    );
+  }, []);
 
   return (
     <form className="me-2">
