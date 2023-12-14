@@ -1,7 +1,7 @@
 # 📇 RECIPE ROLODEX 📇
 
 ### [View Live Project Here](https://recipe-rolodex-d7c0cb19d5d1.herokuapp.com/ "RECIPE ROLODEX")<br />
-![image of RECIPE ROLODEX](/public/image/intro.gif "image of RECIPE ROLODEX")
+![image of RECIPE ROLODEX](./client/src/assets/Homepage_DT_M.png "image of RECIPE ROLODEX")
 | Technology Used    | Resource URL |
 | --------  | ------- |
 | NodeJS      | https://nodejs.org/en |
@@ -26,8 +26,62 @@
 * [Authors](#authors)
 
 ## Description:
-This project is a full stack project to share reciped with your family and friends. [4 authors](#authors) developed this app which allow users to see, search, upload, share and pin the recipes. User can sign up, sign in and log out from the page and some functionalities such as upload, update or pin recipes and create or join family groups are limited to signed in users.<br />
+This interactive MERN stack single-page application, developed by [4 authors](#authors), allows users to see, search, upload, share, and pin the recipes. Users can sign up, sign in, and log out from the page. Some functionalities are limited to logged-in users. Such functionalities include  uploading, updating, snd pinning recipes, as well as creating or joining family groups. 
+
+This application utilizes Cloudinary and Material Design for Bootstrap, in addition to GraphQL and Apollo. It was deployed using Heroku and utilizes authentication of users using Javascript Web Token.
+### server.js code snippet
+```
+const express = require('express');
+const { ApolloServer } = require('@apollo/server');
+const { expressMiddleware } = require('@apollo/server/express4');
+const path = require('path');
+const { authMiddleware } = require('./utils/auth');
+
+const { typeDefs, resolvers } = require('./schemas');
+const db = require('./config/connection');
+
+const PORT = process.env.PORT || 3001;
+const app = express();
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+});
+
+const startApolloServer = async () => {
+  await server.start();
+
+  app.use(express.urlencoded({ extended: false }));
+  app.use(express.json());
+
+  // Serve up static assets
+  app.use('/images', express.static(path.join(__dirname, '../client/images')));
+
+  app.use('/graphql', expressMiddleware(server, {
+    context: authMiddleware
+  }));
+
+  if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '../client/dist')));
+
+    app.get('*', (req, res) => {
+      res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+    });
+  }
+
+  db.once('open', () => {
+    app.listen(PORT, () => {
+      console.log(`API server running on port ${PORT}!`);
+      console.log(`Use GraphQL at http://localhost:${PORT}/graphql`);
+    });
+  });
+};
+
+startApolloServer();
+
+```
+
 <br />
+
 
 ### How to use this app:
 
@@ -39,7 +93,7 @@ This project is a full stack project to share reciped with your family and frien
 
 * Navigate to the "LOGIN" to sign up for more functionalities
     * Enter credentials
-    * Navigate to the invidual recipe and pin / unpin
+    * Navigate to the individual recipe and pin / unpin
     * Navigate to pinned recipe page to see all the recipes you pinned
     * Go to Dashboard page from the link in the nav bar
     * Join or create a family
@@ -49,32 +103,6 @@ This project is a full stack project to share reciped with your family and frien
     * Click LOGOUT in the nav bar to log out
 
 
-## Project Requirements & Expectations
-
-```md
-REQUIREMENTS:
-* Must use ReactJS in some way (even if minimal)
-* Must utilize at least two libraries, packages, or technologies that we haven’t discussed
-* Must use a Node and Express Web Server
-* Must be backed by a MongoDB Database with Mongoose ODM (Sequelize ORM - with Permission) 
-* Must have both CRUD routes for creating, reading, updating, and deleting data
-* Must be deployed using Heroku (with Data)
-* Must utilize authentication of users using Javascript Web Token (JWT)
-* Must have a polished frontend / UI
-* Must have folder structure that meets MVC Paradigm
-* Must meet good quality coding standards (indentation, scoping, naming)
-* Incorporate GraphQL into your application
-* Must utilize Git Branching / Merging. Git Branches based on Feature Built / GitHub Project Card, minimum of 30 meaningful commits per contributor.
-
-EXPECTATIONS:
-* We expect whatever you build to have utility
-* We expect you to have market or real-world research that evidences your idea has REAL value to people.
-* We expect you to have done research on other web / mobile applications in your domain.
-* We expect you to put serious time and thought into this.
-* We expect you to report problems you are facing along the way.
-* We expect you to utilize some form of project management system.
-* We expect you to dig deep into documentation and external resources to learn what you need.
-```
 
 ### Lessons Learned
 
@@ -107,11 +135,22 @@ That said, there are times where initMDB would be better used initiated outside 
 ![lesson2](/client/public/img/use-effect.png)
 
 
-#### 3. TBD
-Description
-<br />
+#### 3. Establish Clear Communication Channels and Guidelines
 
-![lesson3](https://)
+Author: Anna
+
+Building an interactive MERN stack SPA with a group requires effective communication among team members. Clear and consistent communication helps to avoid misunderstandings, reduces development errors, and ensures that everyone is on the same page throughout the project. Here are some key aspects that we considered which significantly contributed to our successful build:
+
+- Regular Meetings: We scheduled daily meetings to discuss progress, challenges and goals. This helped maintain a shared understanding of the project's direction and allowed team members to raise concerns or suggest improvements. 
+
+- Version Control: We implemented version control to manage and track changes to our codebase, with clearly defined branching strategies to avoid conflicts and ensure a smooth collaboration process. 
+
+- Task Tracking: We utilized the projects tool within Github to track tasks, assign responsibilities, and monitor progress. This provided transparency into each team member's contributions and ensured that everyone was aware of their responsibilities. 
+
+- Peer Code Reviews: We regularly reviewed each other's code to identify bugs, ensure code quality, and promote knowledge sharing among team members. 
+
+- Addressing Challenges Openly: We felt comfortable addressing challenges openly. This included discussing roadblocks, asking for help, and sharing ideas for improvement. A collaborative and supportive atmosphere contributed to a more successful project for our team. 
+
 
 #### 4. TBD
 Description
@@ -136,7 +175,7 @@ This is a full stack project to share recipes with your family or community. If 
 ## License
 
 MIT License
-Copyright (c) 2023 Minami Mukai (Itsukaichi) / Anna Rose / Nhi Hoang / Janet Webster
+Copyright (c) 2023 Minami Mukai (Itsukaichi) / Anna Benedetti / Nhi Hoang / Janet Webster
 
 <hr />
 
@@ -146,10 +185,10 @@ Description
 - [GitHub](https://github.com/mitsukaichi/)
 - [LinkedIn](https://www.linkedin.com/in/minami-itsukaichi/)
 
-### Anna Rose
+### Anna Benedetti
 Description
-- [GitHub](https://)
-- [LinkedIn](https://)
+- [GitHub](https://github.com/abenedetti27/)
+- [LinkedIn](https://www.linkedin.com/in/anna-rose-benedetti//)
 
 ### Nhi Hoang
 Description
