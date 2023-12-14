@@ -3,16 +3,13 @@ import { initMDB, Ripple } from "mdb-ui-kit";
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries";
 import { Link, useNavigate } from "react-router-dom";
-import { DELETE_RECIPE, UPDATE_RECIPE } from "../utils/mutations";
+import { DELETE_RECIPE } from "../utils/mutations";
 import './style.css';
-
-// import { useParams } from 'react-router-dom';
 
 import Auth from "../utils/auth";
 
 initMDB({ Ripple });
 
-// import RecipeCard from "../components/RecipeCard";
 import FamilyCards from "../components/FamilyCards";
 
 function Dashboard() {
@@ -23,22 +20,13 @@ function Dashboard() {
   });
 
   const [deleteRecipe] = useMutation(DELETE_RECIPE, {
-    // Add necessary options for your mutation
-    // For example, refetchQueries to update the cache
     refetchQueries: [{ query: QUERY_USER, variables: { username: username } }],
   });
-
-  // const [updateRecipe] = useMutation(UPDATE_RECIPE, {
-  //   refetchQueries: [{ query: QUERY_USER, variables: { username: username } }],
-  // });
 
   const navigate = useNavigate();
 
   const handleEditRecipe = async (recipeId) => {
     navigate(`/editrecipe/${recipeId}`);
-    // Add logic to navigate to the edit recipe page
-    // For example, use react-router-dom's history.push
-    // history.push(`/editrecipe/${recipeId}`);
   };
 
   const [recipes, setRecipes] = useState([]);
