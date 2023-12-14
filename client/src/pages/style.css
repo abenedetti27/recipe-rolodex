@@ -47,8 +47,19 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-  color: white;
+  color: var(--lightpink);
 }
+
+footer div{
+  background-color: var(--darkpink);
+  height: 2.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: .75em;
+}
+
+
 
 .card {
   width: 30%;

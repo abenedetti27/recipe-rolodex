@@ -161,7 +161,7 @@ export default function RecipeForm() {
   
 
   return (
-    <form className="mb-5">
+    <form className="mb-5 p-1">
        <div className="col m-auto">
       <div className="col-5">
       <div data-mdb-input-init className="form-outline mb-3">
