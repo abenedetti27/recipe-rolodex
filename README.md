@@ -92,11 +92,19 @@ In order to achieve this without getting error returned from the server by tryin
 
 ![lesson 1](https://github.com/abenedetti27/recipe-rolodex/assets/45612744/9da26f3c-75a4-430d-b649-81faac5cf5c2)
 
-#### 2. TBD
-Description
+#### 2. initMDB & userEffect
+Author: Nhi
+
+Certain elements on the page will no respond intuitively using just normal javascript while working with react. Certain aspect of the code being nested within a `useEffect` will help the elements load on the page at once and not in individual chunks. 
+```
+  useEffect(() => {
+    initMDB({ Ripple, Modal });
+  });
+```
+That said, there are times where initMDB would be better used initiated outside of a `useEffect` state, it depends on the component being built. It depends on the specific use case and the behavior you want to achieve in your React component. If the initialization doesn't rely on any asynchronous or side-effect operations, and it doesn't need to be re-run in response to changes in props or state, then you might not need to use `useEffect `for that specific initialization. However, if there are dependencies involved or if the initialization should be tied to component lifecycle events, using `useEffect `is a common and appropriate pattern
 <br />
 
-![lesson2](https://)
+![lesson2](/client/public/img/use-effect.png)
 
 
 #### 3. TBD

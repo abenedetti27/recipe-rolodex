@@ -87,7 +87,7 @@ function Dashboard() {
 
       {/* Added Recipe */}
       <div className="d-flex p-3 flex-wrap" id="cardContainer">
-      <section className="container m-auto justify-content-between d-flex flex-wrap">
+      <section className="container m-auto justify-content-between d-flex flex-wrap pb-4">
         <h2>Your Recipes</h2>
         <div>
           <Link

@@ -158,11 +158,13 @@ export default function RecipeForm() {
     }
     );
   }, []);
+  
 
   return (
-    <form className="me-2">
-      <div className="row m-auto">
-        <div data-mdb-input-init className="form-outline m-2">
+    <form className="mb-5 p-1">
+       <div className="col m-auto">
+      <div className="col-5">
+      <div data-mdb-input-init className="form-outline mb-3">
           <input
             type="text"
             id="name"
@@ -174,9 +176,10 @@ export default function RecipeForm() {
             Recipe Name
           </label>
         </div>
+        </div>
 
-        <div className="col p-2">
-          <div data-mdb-input-init className="form-outline">
+        <div className="col-5 p-0">
+          <div data-mdb-input-init className="form-outline mb-3">
             <input
               type="number"
               id="cookingTime"
@@ -191,8 +194,8 @@ export default function RecipeForm() {
           </div>
         </div>
 
-        <div className="col p-2">
-          <div data-mdb-input-init className="form-outline">
+        <div className="col-5 p-0">
+          <div data-mdb-input-init className="form-outline mb-3">
             <input
               type="number"
               id="servingSize"
@@ -207,7 +210,7 @@ export default function RecipeForm() {
           </div>
         </div>
 
-        <div data-mdb-input-init className="form-outline m-2">
+        <div data-mdb-input-init className="form-outline mb-3">
           <textarea
             className="form-control"
             id="instructions"
@@ -220,7 +223,7 @@ export default function RecipeForm() {
           </label>
         </div>
 
-        <div data-mdb-input-init className="form-outline m-2">
+        <div data-mdb-input-init className="form-outline mb-3">
           <textarea
             className="form-control"
             id="ingredients"
@@ -233,7 +236,7 @@ export default function RecipeForm() {
           </label>
         </div>
 
-        <div data-mdb-input-init className="form-outline mt-4 m-auto row">
+        <div data-mdb-input-init className="form-outline m-auto row">
           <label className="visually-hidden" >
             Family
           </label>
