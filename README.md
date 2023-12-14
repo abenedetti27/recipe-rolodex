@@ -120,23 +120,19 @@ In order to achieve this without getting error returned from the server by tryin
 
 ![lesson 1](https://github.com/abenedetti27/recipe-rolodex/assets/45612744/9da26f3c-75a4-430d-b649-81faac5cf5c2)
 
-#### 2. Establish Clear Communication Channels and Guidelines
-Author: Anna
+#### 2. initMDB & userEffect
+Author: Nhi
 
-Building an interactive MERN stack SPA with a group requires effective communication among team members. Clear and consistent communication helps to avoid misunderstandings, reduces development errors, and ensures that everyone is on the same page throughout the project. Here are some key aspects that we considered which significantly contributed to our successful build:
-
-- Regular Meetings: We scheduled daily meetings to discuss progress, challenges and goals. This helped maintain a shared understanding of the project's direction and allowed team members to raise concerns or suggest improvements. 
-
-- Version Control: We implemented version control to manage and track changes to our codebase, with clearly defined branching strategies to avoid conflicts and ensure a smooth collaboration process. 
-
-- Task Tracking: We utilized the projects tool within Github to track tasks, assign responsibilities, and monitor progress. This provided transparency into each team member's contributions and ensured that everyone was aware of their responsibilities. 
-
-- Peer Code Reviews: We regularly reviewed each other's code to identify bugs, ensure code quality, and promote knowledge sharing among team members. 
-
-- Addressing Challenges Openly: We felt comfortable addressing challenges openly. This included discussing roadblocks, asking for help, and sharing ideas for improvement. A collaborative and supportive atmosphere contributed to a more successful project for our team. 
-
+Certain elements on the page will no respond intuitively using just normal javascript while working with react. Certain aspect of the code being nested within a `useEffect` will help the elements load on the page at once and not in individual chunks. 
+```
+  useEffect(() => {
+    initMDB({ Ripple, Modal });
+  });
+```
+That said, there are times where initMDB would be better used initiated outside of a `useEffect` state, it depends on the component being built. It depends on the specific use case and the behavior you want to achieve in your React component. If the initialization doesn't rely on any asynchronous or side-effect operations, and it doesn't need to be re-run in response to changes in props or state, then you might not need to use `useEffect `for that specific initialization. However, if there are dependencies involved or if the initialization should be tied to component lifecycle events, using `useEffect `is a common and appropriate pattern
 <br />
 
+![lesson2](/client/public/img/use-effect.png)
 
 
 #### 3. TBD
