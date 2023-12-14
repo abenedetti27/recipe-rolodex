@@ -196,19 +196,16 @@ Copyright (c) 2023 Minami Mukai (Itsukaichi) / Anna Benedetti / Nhi Hoang / Jane
 
 ## Authors
 ### Minami Mukai (Itsukaichi)
-Description
 - [GitHub](https://github.com/mitsukaichi/)
 - [LinkedIn](https://www.linkedin.com/in/minami-itsukaichi/)
 
 ### Anna Benedetti
-Description
 - [GitHub](https://github.com/abenedetti27/)
-- [LinkedIn](https://www.linkedin.com/in/anna-rose-benedetti//)
+- [LinkedIn](https://www.linkedin.com/in/anna-rose-benedetti/)
 
 ### Nhi Hoang
-Description
-- [GitHub](https://) 
-- [LinkedIn](https://) 
+- [GitHub](https://github.com/eviehoang/) 
+- [LinkedIn](https://www.linkedin.com/in/ynhihoang/) 
 
 ### Janet Webster
 Full Stack MERN Software Engineer.

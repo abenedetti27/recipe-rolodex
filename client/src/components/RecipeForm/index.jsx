@@ -19,6 +19,7 @@ export default function RecipeForm() {
   const [myImage, setMyImage] = useState();
   const [userFamlies, setUserFamilies] = useState([]);
   const [uploadError, setuploadError] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
       cloudinaryRef.current = window.cloudinary;
@@ -52,11 +53,28 @@ export default function RecipeForm() {
   });
 
   const handleSubmit = async () => {
-    try {
-      console.log( "formData: ", formData);
-      console.log( "myImage: ", myImage);
-      console.log( "username: ", username);
-      const { name, cookingTime, instructions, ingredients, servingSize, familyId } = formData
+    const { name, cookingTime, instructions, ingredients, servingSize, familyId } = formData
+    document.querySelectorAll('input').forEach((input) => { 
+      if(input.value === "") {
+        setErrorMessage("Please fill out all the fields");
+      }
+    });
+    document.querySelectorAll('textarea').forEach((textarea) => { 
+      if(textarea.value === "") {
+        setErrorMessage("Please fill out all the fields");
+      }
+    });
+    
+    if (!familyId || familyId === "Choose a family (Select a family to share this recipe)") {
+      setErrorMessage("Please select the family to add the recipe to.");
+      return;
+    }
+
+    if (!myImage) {
+      setErrorMessage("Please upload a photo");
+    }
+
+    try {  
       const { data, error } = await addRecipe({
         variables: {
           name: name,
@@ -107,7 +125,7 @@ export default function RecipeForm() {
       inputElement.classList.remove('active');
     }
 
-    console.log(formData);
+    setErrorMessage("");
   };
 
   const handleFamilyChange = (e) => {
@@ -270,7 +288,12 @@ export default function RecipeForm() {
           Submit Recipe
         </button>
       </div>
-      <h4 className="text-center" style={{color: "red"}}>{uploadError}</h4>
+      <div className="pt-5">
+        {uploadError  !== "" ? 
+          (<p className="text-center alert alert-danger" >{uploadError}</p>)  : ("")}
+        {errorMessage !== "" ?
+          (<p className="text-center alert alert-danger mt-5">{errorMessage}</p>) : ("")}
+      </div>
     </form>
   );
 }

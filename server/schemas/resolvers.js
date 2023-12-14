@@ -134,7 +134,6 @@ const { signToken, AuthenticationError } = require('../utils/auth');
         { name: name, photo: photo, cookingTime: cookingTime, instructions: instructions, ingredients: ingredients, servingSize: servingSize, author: author, families: familyId},
         { new: true }
       ).populate('families');
-      console.log(updateRecipe);
       return updateRecipe;
     },
 

@@ -373,11 +373,14 @@ const FamilyCard = () => {
                             Join this family
                           </button>
                         </div>
+                        
                       ) : (
                         ""
                       )}
                       {errorMessage !== "" ? (
-                        <div style={{color:"red"}}>{errorMessage}</div>
+                        <div className="mt-5"><br/>
+                          <p className="alert alert-danger">{errorMessage}</p>
+                        </div>
                       ) : ("")}
                     </div>
                   </form>
