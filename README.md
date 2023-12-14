@@ -152,11 +152,26 @@ Building an interactive MERN stack SPA with a group requires effective communica
 - Addressing Challenges Openly: We felt comfortable addressing challenges openly. This included discussing roadblocks, asking for help, and sharing ideas for improvement. A collaborative and supportive atmosphere contributed to a more successful project for our team. 
 
 
-#### 4. TBD
-Description
-<br />
+#### 4. Authorized user content access
+Author: Janet
 
-![lesson4](public/image/lesson4.png)
+Many areas throughout the application require user-authenticated dependency to pull back the appropriate data. 
+
+One example for this is the recipes made by the logged in user in their dashboard.
+
+This begins by validating the authenticated user in the dashboard page and then querying the user by their username.
+<br />
+![lesson4](/client/public/img/lesson4.png)
+
+Utilizing our useState from React, we set the recipes and then using our useEffect also from React, we are able to establish that if there is data, then to return the data related to the user.
+<br />
+![lesson4](/client/public/img/lesson4b.png)
+![lesson4](/client/public/img/lesson4c.png)
+
+Finally we map over all the recipes to return the recipes belonging to this user and display them in the dashboard with all of their necessary functionalities, otherwise we let the user know that they do not currently have any recipes yet.
+<br />
+![lesson4](/client/public/img/lesson4d.png)
+![lesson4](/client/public/img/lesson4e.png)
 
 ## Installation
 
