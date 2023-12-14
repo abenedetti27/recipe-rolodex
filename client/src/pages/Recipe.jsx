@@ -97,83 +97,80 @@ function Recipe() {
                 src={recipe.photo}
                 alt={recipe.name}
                 className="card-img-top"
+                id="recipe-image"
               />
               <div className="card-body">
                 <h1 className="card-title mb-5 mt-3">{recipe.name}</h1>
                 <div className="card-text mb-5">
                   <div className="row">
-                    <div className="col-md-6">
-                      <p className="small m-2">
-                        <span className="field-title">Cooking Time:</span>{" "}
+                    <div className="col-md-6 mb-1">
+                        <div className="field-title m-0">Cooking Time:</div>{" "}
                         {recipe.cookingTime} minutes
-                      </p>
                     </div>
-                    <div className="col-md-6">
-                      <p className="small m-2">
-                        <span className="field-title">Serving Size:</span>{" "}
+                    <div className="col-md-6 mb-1">
+                        <div className="field-title m-0">Serving Size:</div>{" "}
                         {recipe.servingSize} servings
-                      </p>
                     </div>
-                    <div className="col-md-6 mt-3 mb-3">
-                      <div className="field-title">
+                    <div className="col-md-6 mt-3 mb-2">
+                      <div className="field-title m-0">
                         Cooking Instructions:{" "}
                       </div>
                      <div className="textwrap">{recipe.instructions}
                     </div></div> 
-                    <div className="col-md-6 mt-3 mb-3">
-                      <div className="field-title">Ingredients: </div>{" "}
+                    <div className="col-md-6 mt-3 mb-2">
+                      <div className="field-title m-0">Ingredients: </div>{" "}
                      <div className="textwrap">{recipe.ingredients}</div> 
                     </div>
                   </div>
                 </div>
-                <div className="d-flex justify-content-center align-items-center">
-                  <div className="row">
-                    <div className="col m-4 p-1">
+                <div className="d-flex justify-content-center">
+                  <div className="row" >
+                    <div className="col m-auto p-1">
                       <Link to={`/familyrecipes/${family?._id}`}>
-                        <span className="badge family-badge">
-                          <i className="fas fa-users fa-2x p-1"></i> Family:{" "}
-                          {family?.name || ""}
-                        </span>
+                        <div className="badge family-badge p-auto m-2">
+                          <i className="fas fa-users fa-lg m-2"></i>
+                          <p className=" m-0">Family:{" "}
+                           {family?.name || ""}</p>
+                        </div>
                       </Link>
                     </div>
-                    <div className="col m-4 p-1">
-                      <p>
-                        <span className="badge author-badge p-1">
-                          <i className="fas fa-user fa-2x p-1"></i> Author:{" "}
-                          {recipe.author}
-                        </span>
-                      </p>
+                    <div className="col m-auto p-1">
+                       <div className="badge author-badge p-auto m-2">
+                          <i className="fas fa-user fa-lg m-2"></i>
+                          <p className=" m-0">Author:{" "}
+                          {recipe.author}</p>
+                        </div>
                     </div>
-                    <div className="col m-4 p-1">
-                      <span>
+                    <div className="col m-auto p-1">
+                      <div>
                         {loggedIn !== false ? (
                           <>
                             {pinned !== false ? (
-                              <span
-                                className="badge badge-light"
+                              <div
+                                className="badge badge-light p-auto"
                                 onClick={unpinHandler}
                               >
                                 <i
-                                  className="fa-solid fa-thumbtack fa-2x"
+                                  className="fa-solid fa-thumbtack fa-2x p-auto"
                                   style={{ color: "#F139AA" }}
                                 ></i>
-                              </span>
+                              </div>
                             ) : (
-                              <span
-                                className="badge badge-light"
+                              <div
+                                className="badge badge-light p-auto"
                                 onClick={pinHandler}
                               >
                                 <i
-                                  className="fa-solid fa-thumbtack fa-2x"
+                                  className="fa-solid fa-thumbtack fa-2x p-auto"
                                   style={{ color: "#b598a3" }}
                                 ></i>
-                              </span>
+                              </div>
                             )}
                           </>
                         ) : (
                           <></>
                         )}
-                      </span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -183,13 +180,13 @@ function Recipe() {
           <div className="m-4">
             {/* If we could find a way for this to return to previous page instead of home, that would be better. */}
             <Link to="/">
-              <span
+              <div
                 className="badge bg-secondary"
                 onClick={handleReturnToRecipes}
                 style={{ cursor: "pointer" }}
               >
                 <i className="fas fa-arrow-left-long"></i> Return to Recipes
-              </span>
+              </div>
             </Link>
           </div>
         </div>

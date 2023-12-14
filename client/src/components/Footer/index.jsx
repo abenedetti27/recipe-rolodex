@@ -5,11 +5,9 @@ initMDB({ Input });
 
 export const Footer = () => {
     return (
-        <footer className="bg-body-tertiary text-center">
-        <div className="text-center p-3" style={{ backgroundColor: 'rgba(241, 57, 170, 1)' }}>
-          © 2023 Copyright Recipe Rolodex
+        <footer>
+          <div>© 2023 Copyright Recipe Rolodex</div>
           {/* <a className="text-body" href="https://mdbootstrap.com/">MDBootstrap.com</a> */}
-        </div>
       </footer>
     )
 }
