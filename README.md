@@ -135,11 +135,22 @@ That said, there are times where initMDB would be better used initiated outside 
 ![lesson2](/client/public/img/use-effect.png)
 
 
-#### 3. TBD
-Description
-<br />
+#### 3. Establish Clear Communication Channels and Guidelines
 
-![lesson3](https://)
+Author: Anna
+
+Building an interactive MERN stack SPA with a group requires effective communication among team members. Clear and consistent communication helps to avoid misunderstandings, reduces development errors, and ensures that everyone is on the same page throughout the project. Here are some key aspects that we considered which significantly contributed to our successful build:
+
+- Regular Meetings: We scheduled daily meetings to discuss progress, challenges and goals. This helped maintain a shared understanding of the project's direction and allowed team members to raise concerns or suggest improvements. 
+
+- Version Control: We implemented version control to manage and track changes to our codebase, with clearly defined branching strategies to avoid conflicts and ensure a smooth collaboration process. 
+
+- Task Tracking: We utilized the projects tool within Github to track tasks, assign responsibilities, and monitor progress. This provided transparency into each team member's contributions and ensured that everyone was aware of their responsibilities. 
+
+- Peer Code Reviews: We regularly reviewed each other's code to identify bugs, ensure code quality, and promote knowledge sharing among team members. 
+
+- Addressing Challenges Openly: We felt comfortable addressing challenges openly. This included discussing roadblocks, asking for help, and sharing ideas for improvement. A collaborative and supportive atmosphere contributed to a more successful project for our team. 
+
 
 #### 4. TBD
 Description
