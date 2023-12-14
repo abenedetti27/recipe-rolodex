@@ -16,8 +16,9 @@ export default function RecipeForm() {
   const [myImage, setMyImage] = useState();
   const [userFamlies, setUserFamilies] = useState([]);
   const [uploadError, setuploadError] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const { loading, data, error } = useQuery(QUERY_RECIPE, {
+  const { loading, data } = useQuery(QUERY_RECIPE, {
     variables: { id: recipeId },
   });
 
@@ -53,11 +54,28 @@ export default function RecipeForm() {
 
   const handleSubmit = async () => {
     try {
-      console.log( "formData: ", formData);
-      console.log( "myImage: ", myImage);
-      console.log( "username: ", username);
       const { name, cookingTime, instructions, ingredients, servingSize, familyId } = formData;
+      document.querySelectorAll('input').forEach((input) => { 
+        if(input.value === "") {
+          setErrorMessage("Please fill out all the fields");
+          return;
+        }
+      });
+      document.querySelectorAll('textarea').forEach((textarea) => { 
+        if(textarea.value === "") {
+          setErrorMessage("Please fill out all the fields");
+          return;
+        }
+      });
       
+      if (!familyId || familyId === "Choose a family (Select a family to share this recipe)") {
+        setErrorMessage("Please select the family to add the recipe to.");
+        return;
+      }
+  
+      if (!myImage) {
+        setErrorMessage("Please upload a photo");
+      }
       // Use updateRecipe mutation instead of addRecipe
       const { data, error } = await updateRecipe({
         variables: {
@@ -74,7 +92,6 @@ export default function RecipeForm() {
         },
         // refetchQueries: [{ query: QUERY_RECIPE, variables: { username } }],
       });
-      console.log("data: ", data);
 
       if( data ){
         window.location.replace(window.location.origin + "/dashboard");
@@ -122,7 +139,7 @@ export default function RecipeForm() {
         servingSize: data.recipe.servingSize || "",
         instructions: data.recipe.instructions || "",
         ingredients: data.recipe.ingredients || "",
-        familyId: data.recipe.families._id || "",
+        familyId: data.recipe?.families._id || "",
       });
 
       setMyImage(data.recipe.photo || ""); // Set image if available
@@ -292,7 +309,12 @@ export default function RecipeForm() {
           Update Recipe
         </button>
       </div>
-      <h4 className="text-center" style={{color: "red"}}>{uploadError}</h4>
+      <div className="pt-5">
+        {uploadError  !== "" ? 
+          (<p className="text-center alert alert-danger" >{uploadError}</p>)  : ("")}
+        {errorMessage !== "" ?
+          (<p className="text-center alert alert-danger mt-5">{errorMessage}</p>) : ("")}
+      </div>
     </form>
   );
 }
