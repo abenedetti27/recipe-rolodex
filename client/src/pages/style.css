@@ -136,7 +136,8 @@ small {
 
 select {
   background-color: var(--mauve);
-  border: 0;
+  border: 0.1rem;
+  border-color: var(--darkpink);
   border-radius: 5px;
   padding: 0.55%;
 }
@@ -145,10 +146,10 @@ button {
   background-color: var(--mauve);
   color: var(--white);
   box-shadow: 0px 4px 4px var(--darkpink) / 0.2;
-  margin: auto;
+  margin: 1%;
   border-radius: 5px;
   border: 0.5px solid var(--darkpink);
-  padding: 1.25%;
+  padding: auto;
   text-align: center;
 }
 
@@ -166,13 +167,11 @@ button {
 
 .family-badge {
   background-color: var(--darkpink);
-  border-radius: 5px;
   box-shadow: 0px 4px 4px var(--mauve) / 0.2;
 }
 
 .author-badge {
   background-color: var(--mauve);
-  border-radius: 5px;
   box-shadow: 0px 4px 4px var(--darkpink) / 0.2;
   color: var(--richblack);
 }
@@ -184,6 +183,36 @@ textarea{
 .textwrap{
   white-space: pre-wrap;
 }
+
+#recipe-image{
+  width: 75%;
+  height: auto;
+  margin: auto;
+}
+
+
+
+
+/* Form Outline Custom Colors ACTIVE*/
+
+.form-outline .form-control:focus~.form-notch .form-notch-leading {
+  border-top: .1rem solid var(--darkpink);
+  border-bottom: .1rem solid var(--darkpink);
+  border-left: .1rem solid var(--darkpink);
+} 
+
+.form-outline .form-control:focus~.form-notch .form-notch-trailing {
+  border-top: .1rem solid var(--darkpink);
+  border-right: .1rem solid var(--darkpink);
+  border-bottom: .1rem solid var(--darkpink);
+} 
+
+.form-outline .form-control:focus~.form-notch .form-notch-middle {
+  border-top: 0;
+  border-bottom: .1rem solid var(--darkpink);
+} 
+
+
 
 @media (max-width: 768px) {
   #cardContainer {
