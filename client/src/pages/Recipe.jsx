@@ -111,15 +111,15 @@ function Recipe() {
                         <div className="field-title m-0">Serving Size:</div>{" "}
                         {recipe.servingSize} servings
                     </div>
-                    <div className="col-md-6 mt-3 mb-2">
-                      <div className="field-title m-0">
+                    <div className="col-md-6 mt-5 mb-2">
+                      <div className="field-title m-0  d-flex text-start">
                         Cooking Instructions:{" "}
                       </div>
-                     <div className="textwrap">{recipe.instructions}
+                     <div className="textwrap d-flex text-start">{recipe.instructions}
                     </div></div> 
-                    <div className="col-md-6 mt-3 mb-2">
-                      <div className="field-title m-0">Ingredients: </div>{" "}
-                     <div className="textwrap">{recipe.ingredients}</div> 
+                    <div className="col-md-6 mt-5 mb-2">
+                      <div className="field-title m-0 d-flex text-start">Ingredients: </div>{" "}
+                     <div className="textwrap d-flex text-start">{recipe.ingredients}</div> 
                     </div>
                   </div>
                 </div>
