@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useQuery, useLazyQuery, useMutation } from "@apollo/client";
+import { FacebookShareButton, FacebookIcon } from "react-share";
 
 import { QUERY_RECIPE, QUERY_USER } from "../utils/queries";
 import { PIN_RECIPE, UNPIN_RECIPE } from "../utils/mutations";
@@ -170,6 +171,16 @@ function Recipe() {
                         ) : (
                           <></>
                         )}
+                      </div>
+                    </div>                      
+                    <div className="col m-auto p-1">
+                      <div>
+                        <FacebookShareButton
+                          url={'https://recipe-rolodex-d7c0cb19d5d1.herokuapp.com/recipe/'+recipeId}
+                          hashtag={"#"+recipe.name}
+                        >
+                          <FacebookIcon size={32} round />
+                        </FacebookShareButton>
                       </div>
                     </div>
                   </div>
