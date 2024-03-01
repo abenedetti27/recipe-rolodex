@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useQuery, useLazyQuery, useMutation } from "@apollo/client";
-import { FacebookShareButton, FacebookIcon } from "react-share";
+import { FacebookShareButton, FacebookIcon, LinkedinShareButton, LinkedinIcon, TwitterShareButton, TwitterIcon } from "react-share";
 
 import { QUERY_RECIPE, QUERY_USER } from "../utils/queries";
 import { PIN_RECIPE, UNPIN_RECIPE } from "../utils/mutations";
@@ -186,10 +186,35 @@ function Recipe() {
                             "https://recipe-rolodex-d7c0cb19d5d1.herokuapp.com/recipe/" +
                             recipeId
                           }
-                          hashtag={"#" + recipe.name}
+                          hashtag={"#reciperolodex"}
                         >
                           <FacebookIcon size={32} round />
                         </FacebookShareButton>
+                      </div>
+                    </div>
+                    <div className="col m-auto p-1">
+                      <div>
+                        <LinkedinShareButton
+                          url={
+                            "https://recipe-rolodex-d7c0cb19d5d1.herokuapp.com/recipe/" +
+                            recipeId
+                          }
+                        >
+                          <LinkedinIcon size={32} round />
+                        </LinkedinShareButton>
+                      </div>
+                    </div>
+                    <div className="col m-auto p-1">
+                      <div>
+                        <TwitterShareButton
+                          url={
+                            "https://recipe-rolodex-d7c0cb19d5d1.herokuapp.com/recipe/" +
+                            recipeId
+                          }
+                          hashtags={["reciperolodex"]}
+                        >
+                          <TwitterIcon size={32} round />
+                        </TwitterShareButton>
                       </div>
                     </div>
                   </div>
