@@ -105,42 +105,48 @@ function Recipe() {
                 <div className="card-text mb-5">
                   <div className="row">
                     <div className="col-md-6 mb-1">
-                        <div className="field-title m-0">Cooking Time:</div>{" "}
-                        {recipe.cookingTime} minutes
+                      <div className="field-title m-0">Cooking Time:</div>{" "}
+                      {recipe.cookingTime} minutes
                     </div>
                     <div className="col-md-6 mb-1">
-                        <div className="field-title m-0">Serving Size:</div>{" "}
-                        {recipe.servingSize} servings
+                      <div className="field-title m-0">Serving Size:</div>{" "}
+                      {recipe.servingSize} servings
                     </div>
                     <div className="col-md-6 mt-5 mb-2">
                       <div className="field-title m-0  d-flex text-start">
                         Cooking Instructions:{" "}
                       </div>
-                     <div className="textwrap d-flex text-start">{recipe.instructions}
-                    </div></div> 
+                      <div className="textwrap d-flex text-start">
+                        {recipe.instructions}
+                      </div>
+                    </div>
                     <div className="col-md-6 mt-5 mb-2">
-                      <div className="field-title m-0 d-flex text-start">Ingredients: </div>{" "}
-                     <div className="textwrap d-flex text-start">{recipe.ingredients}</div> 
+                      <div className="field-title m-0 d-flex text-start">
+                        Ingredients:{" "}
+                      </div>{" "}
+                      <div className="textwrap d-flex text-start">
+                        {recipe.ingredients}
+                      </div>
                     </div>
                   </div>
                 </div>
                 <div className="d-flex justify-content-center">
-                  <div className="row" >
+                  <div className="row">
                     <div className="col m-auto p-1">
                       <Link to={`/familyrecipes/${family?._id}`}>
                         <div className="badge family-badge p-auto m-2">
                           <i className="fas fa-users fa-lg m-2"></i>
-                          <p className=" m-0">Family:{" "}
-                           {family?.name || ""}</p>
+                          <p className=" m-0">Family: {family?.name || ""}</p>
                         </div>
                       </Link>
                     </div>
                     <div className="col m-auto p-1">
-                       <div className="badge author-badge p-auto m-2">
+                      <Link to={`/authorrecipes/${recipe.author}`}>
+                        <div className="badge author-badge p-auto m-2">
                           <i className="fas fa-user fa-lg m-2"></i>
-                          <p className=" m-0">Author:{" "}
-                          {recipe.author}</p>
+                          <p className=" m-0">Author: {recipe.author}</p>
                         </div>
+                      </Link>
                     </div>
                     <div className="col m-auto p-1">
                       <div>
@@ -172,12 +178,15 @@ function Recipe() {
                           <></>
                         )}
                       </div>
-                    </div>                      
+                    </div>
                     <div className="col m-auto p-1">
                       <div>
                         <FacebookShareButton
-                          url={'https://recipe-rolodex-d7c0cb19d5d1.herokuapp.com/recipe/'+recipeId}
-                          hashtag={"#"+recipe.name}
+                          url={
+                            "https://recipe-rolodex-d7c0cb19d5d1.herokuapp.com/recipe/" +
+                            recipeId
+                          }
+                          hashtag={"#" + recipe.name}
                         >
                           <FacebookIcon size={32} round />
                         </FacebookShareButton>
