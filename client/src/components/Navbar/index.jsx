@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Logo from "../../assets/logo/logo.png";
+import Logo from "../../assets/logo/rrbanner.png";
 import { initMDB } from "mdb-ui-kit";
 import Auth from "../../utils/auth";
 
@@ -54,7 +54,7 @@ const NavBar = () => {
           <img
             src={Logo}
             alt="logo"
-            style={{ height: "200px" }}
+            style={{ height: "65px" }}
             className="d-inline-block align-top"
           />
         </Link>
@@ -67,32 +67,25 @@ const NavBar = () => {
               </Link>
             </li>
             {Auth.loggedIn() ? (
-              (
-                <> 
+              <>
                 <li className="nav-item">
                   <Link className="nav-link" to="/dashboard">
                     Dashboard
                   </Link>
                 </li>
-        
+
                 <li className="nav-item">
                   <Link className="nav-link" to="/pinnedrecipes">
                     Pinned Recipe
                   </Link>
                 </li>
-                </>
-               
-              )
+              </>
             ) : (
               <></>
             )}
           </ul>
 
-          <Link
-            to="/search"
-            className="btn"
-            style={{ width: "auto" }}
-          >
+          <Link to="/search" className="btn" style={{ width: "auto" }}>
             Search
           </Link>
 
@@ -107,11 +100,7 @@ const NavBar = () => {
             </button>
           ) : (
             // If user is not authenticated, show login button
-            <Link
-              to="/login"
-              className="btn"
-              style={{ width: "auto" }}
-            >
+            <Link to="/login" className="btn" style={{ width: "auto" }}>
               Login
             </Link>
           )}
