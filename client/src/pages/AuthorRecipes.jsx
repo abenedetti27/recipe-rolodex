@@ -16,7 +16,7 @@ function AuthorRecipes() {
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
-    if (!loading && data && data.user.recipes) {
+    if (!loading && data && data.user && data.user.recipes) {
       setRecipes(data.user.recipes);
     } else if (!loading && error) {
       console.error("Error fetching data:", error);
@@ -24,6 +24,7 @@ function AuthorRecipes() {
   }, [data, loading, error]);
 
   console.log(data);
+  console.log(username);
   if (loading) return <p>Loading...</p>;
 
   return (
