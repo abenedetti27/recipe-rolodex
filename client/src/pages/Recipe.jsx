@@ -2,7 +2,14 @@
 import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useQuery, useLazyQuery, useMutation } from "@apollo/client";
-import { FacebookShareButton, FacebookIcon, LinkedinShareButton, LinkedinIcon, TwitterShareButton, TwitterIcon } from "react-share";
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  LinkedinShareButton,
+  LinkedinIcon,
+  TwitterShareButton,
+  TwitterIcon,
+} from "react-share";
 
 import { QUERY_RECIPE, QUERY_USER } from "../utils/queries";
 import { PIN_RECIPE, UNPIN_RECIPE } from "../utils/mutations";
@@ -92,7 +99,7 @@ function Recipe() {
     <>
       {recipe ? (
         <div>
-          <div className="m-4 d-flex justify-content-center align-items-center">
+          <div className="m-4 d-flex justify-content-center align-items-center ">
             <div className="card w-75">
               <img
                 src={recipe.photo}
@@ -101,18 +108,18 @@ function Recipe() {
                 id="recipe-image"
               />
               <div className="card-body">
-                <h1 className="card-title mb-5 mt-3">{recipe.name}</h1>
-                <div className="card-text mb-5">
+                <h1 className="card-title mb-5 mt-3 print-spacing">{recipe.name}</h1>
+                <div className="card-text mb-5 print-spacing">
                   <div className="row">
-                    <div className="col-md-6 mb-1">
+                    <div className="col-md-6 mb-1 ">
                       <div className="field-title m-0">Cooking Time:</div>{" "}
                       {recipe.cookingTime} minutes
                     </div>
-                    <div className="col-md-6 mb-1">
+                    <div className="col-md-6 mb-1 ">
                       <div className="field-title m-0">Serving Size:</div>{" "}
                       {recipe.servingSize} servings
                     </div>
-                    <div className="col-md-6 mt-5 mb-2">
+                    <div className="col-md-6 mt-5 mb-2 print-spacing">
                       <div className="field-title m-0  d-flex text-start">
                         Cooking Instructions:{" "}
                       </div>
@@ -120,7 +127,7 @@ function Recipe() {
                         {recipe.instructions}
                       </div>
                     </div>
-                    <div className="col-md-6 mt-5 mb-2">
+                    <div className="col-md-6 mt-5 mb-2 print-spacing">
                       <div className="field-title m-0 d-flex text-start">
                         Ingredients:{" "}
                       </div>{" "}
@@ -132,6 +139,16 @@ function Recipe() {
                 </div>
                 <div className="d-flex justify-content-center">
                   <div className="row">
+                    <div className="col m-auto p-1 d-flex justify-content-center align-items-center">
+                      <div className="badge rounded-2 badge-danger m-2">
+                        <i
+                          className="fas fa-print py-3 px-2 fa-lg"
+                          onClick={() => window.print()}
+                          media="print"
+                        ></i>
+                      </div>
+                    </div>
+
                     <div className="col m-auto p-1">
                       <Link to={`/familyrecipes/${family?._id}`}>
                         <div className="badge family-badge p-auto m-2">
@@ -179,7 +196,7 @@ function Recipe() {
                         )}
                       </div>
                     </div>
-                    <div className="col m-auto p-1">
+                    <div className="col m-auto p-1 socmed">
                       <div>
                         <FacebookShareButton
                           url={
@@ -192,7 +209,7 @@ function Recipe() {
                         </FacebookShareButton>
                       </div>
                     </div>
-                    <div className="col m-auto p-1">
+                    <div className="col m-auto p-1 socmed">
                       <div>
                         <LinkedinShareButton
                           url={
@@ -204,7 +221,7 @@ function Recipe() {
                         </LinkedinShareButton>
                       </div>
                     </div>
-                    <div className="col m-auto p-1">
+                    <div className="col m-auto p-1 socmed">
                       <div>
                         <TwitterShareButton
                           url={
@@ -226,7 +243,7 @@ function Recipe() {
             {/* If we could find a way for this to return to previous page instead of home, that would be better. */}
             <Link to="/">
               <div
-                className="badge bg-secondary"
+                className="badge bg-secondary return-to-recipes"
                 onClick={handleReturnToRecipes}
                 style={{ cursor: "pointer" }}
               >

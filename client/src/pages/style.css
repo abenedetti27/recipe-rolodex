@@ -1,5 +1,5 @@
 /* Main Style.CSS for all */
-@import 'mdb-ui-kit/css/mdb.min.css';
+@import "mdb-ui-kit/css/mdb.min.css";
 
 :root {
   --lightpink: #f8e0e7;
@@ -50,16 +50,14 @@ footer {
   color: var(--lightpink);
 }
 
-footer div{
+footer div {
   background-color: var(--darkpink);
   height: 2.5em;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: .75em;
+  font-size: 0.75em;
 }
-
-
 
 .card {
   width: 30%;
@@ -187,43 +185,38 @@ button {
   color: var(--richblack);
 }
 
-textarea{
+textarea {
   white-space: pre-wrap;
 }
 
-.textwrap{
+.textwrap {
   white-space: pre-wrap;
 }
 
-#recipe-image{
+#recipe-image {
   width: 75%;
   height: auto;
   margin: auto;
 }
 
-
-
-
 /* Form Outline Custom Colors ACTIVE*/
 
-.form-outline .form-control:focus~.form-notch .form-notch-leading {
-  border-top: .1rem solid var(--darkpink);
-  border-bottom: .1rem solid var(--darkpink);
-  border-left: .1rem solid var(--darkpink);
-} 
+.form-outline .form-control:focus ~ .form-notch .form-notch-leading {
+  border-top: 0.1rem solid var(--darkpink);
+  border-bottom: 0.1rem solid var(--darkpink);
+  border-left: 0.1rem solid var(--darkpink);
+}
 
-.form-outline .form-control:focus~.form-notch .form-notch-trailing {
-  border-top: .1rem solid var(--darkpink);
-  border-right: .1rem solid var(--darkpink);
-  border-bottom: .1rem solid var(--darkpink);
-} 
+.form-outline .form-control:focus ~ .form-notch .form-notch-trailing {
+  border-top: 0.1rem solid var(--darkpink);
+  border-right: 0.1rem solid var(--darkpink);
+  border-bottom: 0.1rem solid var(--darkpink);
+}
 
-.form-outline .form-control:focus~.form-notch .form-notch-middle {
+.form-outline .form-control:focus ~ .form-notch .form-notch-middle {
   border-top: 0;
-  border-bottom: .1rem solid var(--darkpink);
-} 
-
-
+  border-bottom: 0.1rem solid var(--darkpink);
+}
 
 @media (max-width: 768px) {
   #cardContainer {
@@ -259,11 +252,11 @@ textarea{
     display: none;
   }
 
-  #family-card img{
+  #family-card img {
     display: none;
   }
 
-  #famFlex{
+  #famFlex {
     flex-wrap: wrap;
   }
 }
@@ -271,5 +264,35 @@ textarea{
 @media (max-width: 975px) {
   .navbar-toggler {
     margin-left: 0.1%;
+  }
+}
+
+@media print {
+  header,
+  footer,
+  nav,
+  .fa-print,
+  .socmed,
+  .return-to-recipes {
+    display: none !important;
+  }
+
+  .card {
+    width: auto;
+    border: none;
+    box-shadow: none;
+  }
+
+  .print-spacing {
+    margin-top: .75em !important;
+    margin-bottom: 0 !important;
+  }
+
+  #recipe-image {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    margin: auto;
+    padding: 0 !important;
   }
 }
