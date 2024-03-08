@@ -218,6 +218,14 @@ textarea {
   border-bottom: 0.1rem solid var(--darkpink);
 }
 
+.error-404 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Optionally, to center vertically */
+}
+
 @media (max-width: 768px) {
   #cardContainer {
     width: 68%;
