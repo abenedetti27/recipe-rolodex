@@ -13,6 +13,7 @@ import Login from "./pages/Login.jsx";
 import Recipe from "./pages/Recipe.jsx";
 import EditRecipe from "./pages/EditRecipe.jsx";
 import PinnedRecipes from "./pages/PinnedRecipe.jsx";
+import NoMatch from "./pages/NoMatch.jsx";
 // Import MDB
 // Example: Adjust import path based on package structure or documentation
 import * as mdb from "mdb-ui-kit"; // lib
@@ -23,7 +24,6 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    // error: <NoMatch />,
     children: [
       {
         index: true,
@@ -75,6 +75,10 @@ const router = createBrowserRouter([
         element: <PinnedRecipes />,
       },
     ],
+  },
+  {
+    path: "*", // This is a catch-all route
+    element: <NoMatch />,
   },
 ]);
 
