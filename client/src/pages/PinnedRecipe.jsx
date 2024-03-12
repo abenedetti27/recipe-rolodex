@@ -31,10 +31,14 @@ function PinnedRecipes() {
         let pinnedRecipeDetails = [];
         if (!recipeData.loading && recipeData.data && recipeData.data.recipes && pinnedRecipes.length) {
             for (let i = 0; i < pinnedRecipes.length; i++){
-                pinnedRecipeDetails.push(recipeData.data.recipes.find((recipe) => recipe._id === pinnedRecipes[i]))
+                const matchedrecipe = recipeData.data.recipes.find((recipe) => recipe._id === pinnedRecipes[i]);
+                // Handle the scenario where the recipe was deleted by the author
+                if (matchedrecipe !== undefined) {
+                  pinnedRecipeDetails.push(matchedrecipe);
+                }
             }
             setRecipes(pinnedRecipeDetails);
-            console.log(pinnedRecipeDetails);
+            console.log('pinnedRecipeDetails', pinnedRecipeDetails);
         }
     }, [recipeData, recipeData.loading, recipeData.data, pinnedRecipes])
 
@@ -47,7 +51,7 @@ function PinnedRecipes() {
         {recipes.length !==0 ? (
           <div className="d-flex p-3 flex-wrap" id="cardContainer">
               {recipes.map((recipe) => (
-                <div className="card mb-4" key={recipe._id}>
+                <div className="card mb-4" key={recipe?._id}>
                   <div
                     className="bg-image hover-overlay"
                     data-mdb-ripple-init
