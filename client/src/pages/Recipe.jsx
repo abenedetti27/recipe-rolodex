@@ -95,7 +95,7 @@ function Recipe() {
     setPinned(false);
   };
 
-  console.log(recipe);
+  console.log(recipe.pinCount);
 
   return (
     <>
