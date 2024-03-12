@@ -95,6 +95,8 @@ function Recipe() {
     setPinned(false);
   };
 
+  console.log(recipe);
+
   return (
     <>
       {recipe ? (

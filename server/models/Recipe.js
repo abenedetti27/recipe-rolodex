@@ -34,6 +34,10 @@ author:{
   type: String,
   required: true
 },
+pinCount: {
+  type: Number,
+  default: 0
+},
 createdAt:{
   type: Date,
   default: Date.now,
