@@ -5,7 +5,7 @@ const { signToken, AuthenticationError } = require('../utils/auth');
  const resolvers = {
   Query: {
     recipes: async () => {
-      return await Recipe.find().populate('families');
+      return await Recipe.find().populate('families').sort( { pinCount: -1 } );
     },
     recipe: async (parent, { _id }) => {
       return await Recipe.findById(_id).populate('families');

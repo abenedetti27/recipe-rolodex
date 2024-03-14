@@ -24,6 +24,7 @@ function Recipe() {
   const [family, setFamily] = useState({});
   const loggedIn = Auth.loggedIn();
   const [pinned, setPinned] = useState(false);
+  const [pinCounter, setpinCounter] = useState(0);
 
   const [pinRecipe] = useMutation(PIN_RECIPE);
   const [unpinRecipe] = useMutation(UNPIN_RECIPE);
@@ -35,6 +36,7 @@ function Recipe() {
   useEffect(() => {
     if (data) {
       setRecipe(data.recipe);
+      setpinCounter(parseInt(data.recipe.pinCount));
     }
   }, [data, loading, error]);
 
@@ -86,6 +88,7 @@ function Recipe() {
       variables: { id: recipeId },
     });
     setPinned(true);
+    setpinCounter(pinCounter + 1 );
   };
 
   const unpinHandler = async () => {
@@ -93,10 +96,9 @@ function Recipe() {
       variables: { id: recipeId },
     });
     setPinned(false);
+    setpinCounter(pinCounter - 1 );
   };
-
-  console.log(recipe.pinCount);
-
+  console.log(pinCounter);
   return (
     <>
       {recipe ? (
@@ -198,6 +200,13 @@ function Recipe() {
                         )}
                       </div>
                     </div>
+                    {/* <div className="col m-auto p-1">
+                      { pinCounter ? (                            
+                        <div>
+                          Pinned by {pinCounter} user
+                        </div>): (<></>)
+                      }
+                    </div> */}
                     <div className="col m-auto p-1 socmed">
                       <div>
                         <FacebookShareButton
