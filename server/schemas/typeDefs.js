@@ -15,6 +15,7 @@ const typeDefs = `
     author: String!
     createdAt: String!
     families: Family
+    pinCount: String!
   }
 
   type User {

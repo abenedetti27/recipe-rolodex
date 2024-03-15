@@ -49,6 +49,7 @@ export const QUERY_ALL_RECIPES = gql`
         _id
         name
       }
+      pinCount
     }
   }
 `;
@@ -68,6 +69,7 @@ export const QUERY_RECIPE = gql`
         _id
         name
       }
+      pinCount
     }
   }
 `;
@@ -106,6 +108,7 @@ export const QUERY_FAMILY_RECIPE = gql`
         _id
         name
       }
+      pinCount
     }
   }
 `;
@@ -145,6 +148,7 @@ export const QUERY_AUTHOR_RECIPES = gql`
         instructions
         photo
         servingSize
+        pinCount
       }
     }
   }
