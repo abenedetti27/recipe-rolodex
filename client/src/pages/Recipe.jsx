@@ -200,13 +200,20 @@ function Recipe() {
                         )}
                       </div>
                     </div>
-                    {/* <div className="col m-auto p-1">
-                      { pinCounter ? (                            
-                        <div>
-                          Pinned by {pinCounter} user
-                        </div>): (<></>)
-                      }
-                    </div> */}
+                    <div className="col m-auto p-1">
+                        { pinCounter ? (   
+                           pinCounter === 1 ? 
+                            (
+                              <div style={{ minWidth: 125, fontSize: 13 }}>
+                                Pinned by {pinCounter} user
+                              </div> ): (
+                              <div style={{ minWidth: 125, fontSize: 13 }}>
+                                Pinned by {pinCounter} users
+                              </div>
+                            ) )                        
+                          : (<></>)
+                        }
+                    </div>
                     <div className="col m-auto p-1 socmed">
                       <div>
                         <FacebookShareButton
