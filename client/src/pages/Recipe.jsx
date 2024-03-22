@@ -116,7 +116,7 @@ function Recipe() {
                   {recipe.name}
                 </h1>
                 <div className="d-flex justify-content-center m-auto mb-1">
-                  <div className="row">
+                  <div className="row mt-2">
                     <div className="col m-auto p-auto">
                       <Link to={`/familyrecipes/${family?._id}`}>
                         <div className="badge pink-badge p-auto m-auto">
