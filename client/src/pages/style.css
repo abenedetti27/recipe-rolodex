@@ -234,8 +234,15 @@ textarea {
 .socmed {
 margin: auto;
 padding: auto;
-
 }
+
+.print-icon{
+  color: var(--white);
+  background-color: var(--mauve);
+  width: 32px;
+  height: 32px;
+}
+
 @media (max-width: 768px) {
   #cardContainer {
     width: 68%;
@@ -296,7 +303,7 @@ padding: auto;
   nav,
   .fa-print,
   .socmed,
-  .return-to-recipes {
+  .return-to-recipes, .print-icon {
     display: none !important;
   }
 

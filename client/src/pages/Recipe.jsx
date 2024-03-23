@@ -146,20 +146,14 @@ function Recipe() {
                       {recipe.servingSize} servings
                     </div>
                     <div className="col-md-6 mb-2 print-spacing">
-                      <div className="field-title m-0">
-                        Ingredients:{" "}
-                      </div>{" "}
-                      <div className="textwrap">
-                        {recipe.ingredients}
-                      </div>
+                      <div className="field-title m-0">Ingredients: </div>{" "}
+                      <div className="textwrap">{recipe.ingredients}</div>
                     </div>
                     <div className="col-md-6 mb-2 print-spacing">
                       <div className="field-title m-0">
                         Cooking Instructions:{" "}
                       </div>
-                      <div className="textwrap">
-                        {recipe.instructions}
-                      </div>
+                      <div className="textwrap">{recipe.instructions}</div>
                     </div>
                   </div>
                 </div>
@@ -214,62 +208,64 @@ function Recipe() {
 
                     {/* Socmed Items */}
                     <div className="d-flex justify-content-center">
-                      <div className="row">
-                        <div className="col m-auto p-0">
-                          <div
-                            className="badge py-2 px-1 m-auto"
-                            style={{ color: "#b598a3" }}
-                          >
-                            <i
-                              className="fas fa-print m-1 p-1 fa-xl"
-                              onClick={() => window.print()}
-                              media="print"
-                            ></i>
+                      <div className="col">
+                        <h6 className="m-1 p-0"><b><u>Share</u></b></h6>
+                        <div className="row">
+                          <div className="col m-auto p-1 socmed">
+                            <div
+                              className="badge py-2 px-1 m-auto print-icon"
+                            >
+                              <i
+                                className="fas fa-print mt-2 p-auto fa-lg"
+                                onClick={() => window.print()}
+                                media="print"
+                              ></i>
+                            </div>
                           </div>
-                        </div>
-                        <div className="col m-auto p-1 socmed">
-                          <FacebookShareButton
-                            url={
-                              "https://recipe-rolodex-d7c0cb19d5d1.herokuapp.com/recipe/" +
-                              recipeId
-                            }
-                            hashtag={"#reciperolodex"}
-                          >
-                            <FacebookIcon
-                              size={32}
-                              bgStyle={{ fill: "#df85a9" }}
-                              borderRadius={"8px"}
-                            />
-                          </FacebookShareButton>
-                        </div>
-                        <div className="col m-auto p-1 socmed">
-                          <LinkedinShareButton
-                            url={
-                              "https://recipe-rolodex-d7c0cb19d5d1.herokuapp.com/recipe/" +
-                              recipeId
-                            }
-                          >
-                            <LinkedinIcon
-                              size={32}
-                              bgStyle={{ fill: "#df85a9" }}
-                              borderRadius={"8px"}
-                            />
-                          </LinkedinShareButton>
-                        </div>
-                        <div className="col m-auto p-1 socmed">
-                          <TwitterShareButton
-                            url={
-                              "https://recipe-rolodex-d7c0cb19d5d1.herokuapp.com/recipe/" +
-                              recipeId
-                            }
-                            hashtags={["reciperolodex"]}
-                          >
-                            <TwitterIcon
-                              size={32}
-                              bgStyle={{ fill: "#df85a9" }}
-                              borderRadius={"8px"}
-                            />
-                          </TwitterShareButton>
+                          <div className="col m-auto p-1 socmed">
+                            <FacebookShareButton
+                              url={
+                                "https://recipe-rolodex-d7c0cb19d5d1.herokuapp.com/recipe/" +
+                                recipeId
+                              }
+                              hashtag={"#reciperolodex"}
+                            >
+                              <FacebookIcon
+                                size={32}
+                                bgStyle={{ fill: "#df85a9" }}
+                                borderRadius={"8px"}
+                              />
+                            </FacebookShareButton>
+                          </div>
+                          <div className="col m-auto p-1 socmed">
+                            <LinkedinShareButton
+                              url={
+                                "https://recipe-rolodex-d7c0cb19d5d1.herokuapp.com/recipe/" +
+                                recipeId
+                              }
+                            >
+                              <LinkedinIcon
+                                size={32}
+                                bgStyle={{ fill: "#df85a9" }}
+                                borderRadius={"8px"}
+                              />
+                            </LinkedinShareButton>
+                          </div>
+                          <div className="col m-auto p-1 socmed">
+                            <TwitterShareButton
+                              url={
+                                "https://recipe-rolodex-d7c0cb19d5d1.herokuapp.com/recipe/" +
+                                recipeId
+                              }
+                              hashtags={["reciperolodex"]}
+                            >
+                              <TwitterIcon
+                                size={32}
+                                bgStyle={{ fill: "#df85a9" }}
+                                borderRadius={"8px"}
+                              />
+                            </TwitterShareButton>
+                          </div>
                         </div>
                       </div>
                     </div>
