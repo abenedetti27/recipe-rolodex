@@ -209,7 +209,7 @@ function Recipe() {
                     {/* Socmed Items */}
                     <div className="d-flex justify-content-center">
                       <div className="col">
-                        <h6 className="m-1 p-0"><b><u>Share</u></b></h6>
+                        <h6 className="m-1 p-0 socmed"><b><u>Share</u></b></h6>
                         <div className="row">
                           <div className="col m-auto p-1 socmed">
                             <div
