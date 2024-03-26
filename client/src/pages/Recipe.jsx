@@ -115,8 +115,10 @@ function Recipe() {
                 <h1 className="card-title mb-2 mt-0 print-spacing">
                   {recipe.name}
                 </h1>
+
+                {/* Group Data */}
                 <div className="d-flex justify-content-center m-auto mb-1">
-                  <div className="row mt-2">
+                  <div className="row mt-1">
                     <div className="col m-auto p-auto">
                       <Link to={`/familyrecipes/${family?._id}`}>
                         <div className="badge pink-badge p-auto m-auto">
@@ -135,6 +137,8 @@ function Recipe() {
                     </div>
                   </div>
                 </div>
+
+                {/* Cooking Information */}
                 <div className="card-text m-3 print-spacing px-4 text-start">
                   <div className="row p-3 print-spacing">
                     <div className="col-md-6 mb-3">
@@ -226,61 +230,58 @@ function Recipe() {
                   </div>
                 </div>
 
-                        {/* Pin-Unpin */}
-                        <div>
-                        <h6 className="mt-3 p-0 socmed">
-                        <b>
-                          <u>Pin Recipe</u>
-                        </b>
-                      </h6>
-                          <div className="mt-2 p-0">
-                            {loggedIn !== false ? (
-                              <>
-                                {pinned !== false ? (
-                                  <div
-                                    className="badge badge-light p-0"
-                                    onClick={unpinHandler}
-                                  >
-                                    <i
-                                      className="fa-solid fa-thumbtack fa-2x p-0"
-                                      style={{ color: "#F139AA" }}
-                                    ></i>
-                                  </div>
-                                ) : (
-                                  <div
-                                    className="badge badge-light p-0"
-                                    onClick={pinHandler}
-                                  >
-                                    <i
-                                      className="fa-solid fa-thumbtack fa-2x p-0"
-                                      style={{ color: "#b598a3" }}
-                                    ></i>
-                                  </div>
-                                )}
-                              </>
-                            ) : (
-                              <></>
-                            )}
+                {/* Pin-Unpin */}
+                <div>
+                  <h6 className="mt-3 p-0 socmed">
+                    <b>
+                      <u>Pin Recipe</u>
+                    </b>
+                  </h6>
+                  <div className="mt-2 p-0">
+                    {loggedIn !== false ? (
+                      <>
+                        {pinned !== false ? (
+                          <div
+                            className="badge badge-light p-0"
+                            onClick={unpinHandler}
+                          >
+                            <i
+                              className="fa-solid fa-thumbtack fa-2x p-0"
+                              style={{ color: "#F139AA" }}
+                            ></i>
                           </div>
-                          <div>
-                            {pinCounter ? (
-                              pinCounter === 1 ? (
-                                <div style={{ minWidth: 125, fontSize: 13 }}>
-                                  Pinned by {pinCounter} user
-                                </div>
-                              ) : (
-                                <div style={{ minWidth: 125, fontSize: 13 }}>
-                                  Pinned by {pinCounter} users
-                                </div>
-                              )
-                            ) : (
-                              <></>
-                            )}
+                        ) : (
+                          <div
+                            className="badge badge-light p-0"
+                            onClick={pinHandler}
+                          >
+                            <i
+                              className="fa-solid fa-thumbtack fa-2x p-0"
+                              style={{ color: "#b598a3" }}
+                            ></i>
                           </div>
+                        )}
+                      </>
+                    ) : (
+                      <></>
+                    )}
+                  </div>
+                  <div>
+                    {pinCounter ? (
+                      pinCounter === 1 ? (
+                        <div style={{ minWidth: 125, fontSize: 13 }}>
+                          Pinned by {pinCounter} user
                         </div>
-
-
-
+                      ) : (
+                        <div style={{ minWidth: 125, fontSize: 13 }}>
+                          Pinned by {pinCounter} users
+                        </div>
+                      )
+                    ) : (
+                      <></>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
