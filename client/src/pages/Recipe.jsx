@@ -96,7 +96,7 @@ function Recipe() {
       variables: { id: recipeId },
     });
     setPinned(false);
-    setpinCounter(pinCounter - 1);
+    setpinCounter(Math.max(0, pinCounter - 1));
   };
   console.log(pinCounter);
   return (
@@ -157,120 +157,130 @@ function Recipe() {
                     </div>
                   </div>
                 </div>
-                <div className="d-flex justify-content-center">
-                  <div className="row">
-                    <div className="col m-auto p-1">
-                      <div>
-                        {loggedIn !== false ? (
-                          <>
-                            {pinned !== false ? (
-                              <div
-                                className="badge badge-light p-auto"
-                                onClick={unpinHandler}
-                              >
-                                <i
-                                  className="fa-solid fa-thumbtack fa-2x p-auto"
-                                  style={{ color: "#F139AA" }}
-                                ></i>
-                              </div>
-                            ) : (
-                              <div
-                                className="badge badge-light p-auto"
-                                onClick={pinHandler}
-                              >
-                                <i
-                                  className="fa-solid fa-thumbtack fa-2x p-auto"
-                                  style={{ color: "#b598a3" }}
-                                ></i>
-                              </div>
-                            )}
-                          </>
-                        ) : (
-                          <></>
-                        )}
-                      </div>
-                    </div>
-                    <div className="col m-auto p-1">
-                      {pinCounter ? (
-                        pinCounter === 1 ? (
-                          <div style={{ minWidth: 125, fontSize: 13 }}>
-                            Pinned by {pinCounter} user
-                          </div>
-                        ) : (
-                          <div style={{ minWidth: 125, fontSize: 13 }}>
-                            Pinned by {pinCounter} users
-                          </div>
-                        )
-                      ) : (
-                        <></>
-                      )}
-                    </div>
 
-                    {/* Socmed Items */}
-                    <div className="d-flex justify-content-center">
-                      <div className="col">
-                        <h6 className="m-1 p-0 socmed"><b><u>Share</u></b></h6>
-                        <div className="row">
-                          <div className="col m-auto p-1 socmed">
-                            <div
-                              className="badge py-2 px-1 m-auto print-icon"
-                            >
-                              <i
-                                className="fas fa-print mt-2 p-auto fa-lg"
-                                onClick={() => window.print()}
-                                media="print"
-                              ></i>
-                            </div>
+                {/* Socmed Items */}
+                <div className="d-flex justify-content-center">
+                  <div className="d-flex justify-content-center">
+                    <div className="col">
+                      <h6 className="m-1 p-0 socmed">
+                        <b>
+                          <u>Share</u>
+                        </b>
+                      </h6>
+                      <div className="row">
+                        <div className="col m-auto p-1 socmed">
+                          <div className="badge py-2 px-1 m-auto print-icon">
+                            <i
+                              className="fas fa-print mt-2 p-auto fa-lg"
+                              onClick={() => window.print()}
+                              media="print"
+                            ></i>
                           </div>
-                          <div className="col m-auto p-1 socmed">
-                            <FacebookShareButton
-                              url={
-                                "https://recipe-rolodex-d7c0cb19d5d1.herokuapp.com/recipe/" +
-                                recipeId
-                              }
-                              hashtag={"#reciperolodex"}
-                            >
-                              <FacebookIcon
-                                size={32}
-                                bgStyle={{ fill: "#df85a9" }}
-                                borderRadius={"8px"}
-                              />
-                            </FacebookShareButton>
-                          </div>
-                          <div className="col m-auto p-1 socmed">
-                            <LinkedinShareButton
-                              url={
-                                "https://recipe-rolodex-d7c0cb19d5d1.herokuapp.com/recipe/" +
-                                recipeId
-                              }
-                            >
-                              <LinkedinIcon
-                                size={32}
-                                bgStyle={{ fill: "#df85a9" }}
-                                borderRadius={"8px"}
-                              />
-                            </LinkedinShareButton>
-                          </div>
-                          <div className="col m-auto p-1 socmed">
-                            <TwitterShareButton
-                              url={
-                                "https://recipe-rolodex-d7c0cb19d5d1.herokuapp.com/recipe/" +
-                                recipeId
-                              }
-                              hashtags={["reciperolodex"]}
-                            >
-                              <TwitterIcon
-                                size={32}
-                                bgStyle={{ fill: "#df85a9" }}
-                                borderRadius={"8px"}
-                              />
-                            </TwitterShareButton>
-                          </div>
+                        </div>
+                        <div className="col m-auto p-1 socmed">
+                          <FacebookShareButton
+                            url={
+                              "https://recipe-rolodex-d7c0cb19d5d1.herokuapp.com/recipe/" +
+                              recipeId
+                            }
+                            hashtag={"#reciperolodex"}
+                          >
+                            <FacebookIcon
+                              size={32}
+                              bgStyle={{ fill: "#df85a9" }}
+                              borderRadius={"8px"}
+                            />
+                          </FacebookShareButton>
+                        </div>
+                        <div className="col m-auto p-1 socmed">
+                          <LinkedinShareButton
+                            url={
+                              "https://recipe-rolodex-d7c0cb19d5d1.herokuapp.com/recipe/" +
+                              recipeId
+                            }
+                          >
+                            <LinkedinIcon
+                              size={32}
+                              bgStyle={{ fill: "#df85a9" }}
+                              borderRadius={"8px"}
+                            />
+                          </LinkedinShareButton>
+                        </div>
+                        <div className="col m-auto p-1 socmed">
+                          <TwitterShareButton
+                            url={
+                              "https://recipe-rolodex-d7c0cb19d5d1.herokuapp.com/recipe/" +
+                              recipeId
+                            }
+                            hashtags={["reciperolodex"]}
+                          >
+                            <TwitterIcon
+                              size={32}
+                              bgStyle={{ fill: "#df85a9" }}
+                              borderRadius={"8px"}
+                            />
+                          </TwitterShareButton>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+
+                        {/* Pin-Unpin */}
+                        <div>
+                        <h6 className="mt-3 p-0 socmed">
+                        <b>
+                          <u>Pin Recipe</u>
+                        </b>
+                      </h6>
+                          <div className="mt-2 p-0">
+                            {loggedIn !== false ? (
+                              <>
+                                {pinned !== false ? (
+                                  <div
+                                    className="badge badge-light p-0"
+                                    onClick={unpinHandler}
+                                  >
+                                    <i
+                                      className="fa-solid fa-thumbtack fa-2x p-0"
+                                      style={{ color: "#F139AA" }}
+                                    ></i>
+                                  </div>
+                                ) : (
+                                  <div
+                                    className="badge badge-light p-0"
+                                    onClick={pinHandler}
+                                  >
+                                    <i
+                                      className="fa-solid fa-thumbtack fa-2x p-0"
+                                      style={{ color: "#b598a3" }}
+                                    ></i>
+                                  </div>
+                                )}
+                              </>
+                            ) : (
+                              <></>
+                            )}
+                          </div>
+                          <div>
+                            {pinCounter ? (
+                              pinCounter === 1 ? (
+                                <div style={{ minWidth: 125, fontSize: 13 }}>
+                                  Pinned by {pinCounter} user
+                                </div>
+                              ) : (
+                                <div style={{ minWidth: 125, fontSize: 13 }}>
+                                  Pinned by {pinCounter} users
+                                </div>
+                              )
+                            ) : (
+                              <></>
+                            )}
+                          </div>
+                        </div>
+
+
+
               </div>
             </div>
           </div>
