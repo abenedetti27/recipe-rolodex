@@ -98,7 +98,6 @@ function Recipe() {
     setPinned(false);
     setpinCounter(Math.max(0, pinCounter - 1));
   };
-  console.log(pinCounter);
   return (
     <>
       {recipe ? (

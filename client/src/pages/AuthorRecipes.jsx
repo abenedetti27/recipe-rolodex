@@ -21,7 +21,7 @@ function AuthorRecipes() {
     } else if (!loading && error) {
       console.error("Error fetching data:", error);
     }
-  }, [data, loading, error, data.user, data.user.recipes]);
+  }, [data, loading, error]);
 
   console.log(data);
   console.log(username);
