@@ -88,7 +88,7 @@ function Recipe() {
       variables: { id: recipeId },
     });
     setPinned(true);
-    setpinCounter(pinCounter + 1 );
+    setpinCounter(pinCounter + 1);
   };
 
   const unpinHandler = async () => {
@@ -96,7 +96,7 @@ function Recipe() {
       variables: { id: recipeId },
     });
     setPinned(false);
-    setpinCounter(pinCounter - 1 );
+    setpinCounter(Math.max(0, pinCounter - 1));
   };
   console.log(pinCounter);
   return (
@@ -112,146 +112,174 @@ function Recipe() {
                 id="recipe-image"
               />
               <div className="card-body">
-                <h1 className="card-title mb-5 mt-3 print-spacing">{recipe.name}</h1>
-                <div className="card-text mb-5 print-spacing">
-                  <div className="row">
-                    <div className="col-md-6 mb-1 ">
-                      <div className="field-title m-0">Cooking Time:</div>{" "}
-                      {recipe.cookingTime} minutes
-                    </div>
-                    <div className="col-md-6 mb-1 ">
-                      <div className="field-title m-0">Serving Size:</div>{" "}
-                      {recipe.servingSize} servings
-                    </div>
-                    <div className="col-md-6 mt-5 mb-2 print-spacing">
-                      <div className="field-title m-0 d-flex text-start">
-                        Ingredients:{" "}
-                      </div>{" "}
-                      <div className="textwrap d-flex text-start">
-                        {recipe.ingredients}
-                      </div>
-                    </div>
-                    <div className="col-md-6 mt-5 mb-2 print-spacing">
-                      <div className="field-title m-0  d-flex text-start">
-                        Cooking Instructions:{" "}
-                      </div>
-                      <div className="textwrap d-flex text-start">
-                        {recipe.instructions}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="d-flex justify-content-center">
-                  <div className="row">
-                    <div className="col m-auto p-1 d-flex justify-content-center align-items-center">
-                      <div className="badge rounded-2 badge-danger m-2">
-                        <i
-                          className="fas fa-print py-3 px-2 fa-lg"
-                          onClick={() => window.print()}
-                          media="print"
-                        ></i>
-                      </div>
-                    </div>
+                <h1 className="card-title mb-2 mt-0 print-spacing">
+                  {recipe.name}
+                </h1>
 
-                    <div className="col m-auto p-1">
+                {/* Group Data */}
+                <div className="d-flex justify-content-center m-auto mb-1">
+                  <div className="row mt-1">
+                    <div className="col m-auto p-auto">
                       <Link to={`/familyrecipes/${family?._id}`}>
-                        <div className="badge family-badge p-auto m-2">
+                        <div className="badge pink-badge p-auto m-auto">
                           <i className="fas fa-users fa-lg m-2"></i>
                           <p className=" m-0">Family: {family?.name || ""}</p>
                         </div>
                       </Link>
                     </div>
-                    <div className="col m-auto p-1">
+                    <div className="col m-auto p-auto">
                       <Link to={`/authorrecipes/${recipe.author}`}>
-                        <div className="badge author-badge p-auto m-2">
+                        <div className="badge pink-badge p-auto m-auto">
                           <i className="fas fa-user fa-lg m-2"></i>
                           <p className=" m-0">Author: {recipe.author}</p>
                         </div>
                       </Link>
                     </div>
-                    <div className="col m-auto p-1">
-                      <div>
-                        {loggedIn !== false ? (
-                          <>
-                            {pinned !== false ? (
-                              <div
-                                className="badge badge-light p-auto"
-                                onClick={unpinHandler}
-                              >
-                                <i
-                                  className="fa-solid fa-thumbtack fa-2x p-auto"
-                                  style={{ color: "#F139AA" }}
-                                ></i>
-                              </div>
-                            ) : (
-                              <div
-                                className="badge badge-light p-auto"
-                                onClick={pinHandler}
-                              >
-                                <i
-                                  className="fa-solid fa-thumbtack fa-2x p-auto"
-                                  style={{ color: "#b598a3" }}
-                                ></i>
-                              </div>
-                            )}
-                          </>
+                  </div>
+                </div>
+
+                {/* Cooking Information */}
+                <div className="card-text m-3 print-spacing px-4 text-start">
+                  <div className="row p-3 print-spacing">
+                    <div className="col-md-6 mb-3">
+                      <div className="field-title m-0">Cooking Time:</div>{" "}
+                      {recipe.cookingTime} minutes
+                    </div>
+                    <div className="col-md-6 mb-3">
+                      <div className="field-title m-0">Serving Size:</div>{" "}
+                      {recipe.servingSize} servings
+                    </div>
+                    <div className="col-md-6 mb-2 print-spacing">
+                      <div className="field-title m-0">Ingredients: </div>{" "}
+                      <div className="textwrap">{recipe.ingredients}</div>
+                    </div>
+                    <div className="col-md-6 mb-2 print-spacing">
+                      <div className="field-title m-0">
+                        Cooking Instructions:{" "}
+                      </div>
+                      <div className="textwrap">{recipe.instructions}</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Socmed Items */}
+                <div className="d-flex justify-content-center">
+                  <div className="d-flex justify-content-center">
+                    <div className="col">
+                      <h6 className="m-1 p-0 socmed">
+                        <b>
+                          <u>Share</u>
+                        </b>
+                      </h6>
+                      <div className="row">
+                        <div className="col m-auto p-1 socmed">
+                          <div className="badge py-2 px-1 m-auto print-icon">
+                            <i
+                              className="fas fa-print mt-2 p-auto fa-lg"
+                              onClick={() => window.print()}
+                              media="print"
+                            ></i>
+                          </div>
+                        </div>
+                        <div className="col m-auto p-1 socmed">
+                          <FacebookShareButton
+                            url={
+                              "https://recipe-rolodex-d7c0cb19d5d1.herokuapp.com/recipe/" +
+                              recipeId
+                            }
+                            hashtag={"#reciperolodex"}
+                          >
+                            <FacebookIcon
+                              size={32}
+                              bgStyle={{ fill: "#df85a9" }}
+                              borderRadius={"8px"}
+                            />
+                          </FacebookShareButton>
+                        </div>
+                        <div className="col m-auto p-1 socmed">
+                          <LinkedinShareButton
+                            url={
+                              "https://recipe-rolodex-d7c0cb19d5d1.herokuapp.com/recipe/" +
+                              recipeId
+                            }
+                          >
+                            <LinkedinIcon
+                              size={32}
+                              bgStyle={{ fill: "#df85a9" }}
+                              borderRadius={"8px"}
+                            />
+                          </LinkedinShareButton>
+                        </div>
+                        <div className="col m-auto p-1 socmed">
+                          <TwitterShareButton
+                            url={
+                              "https://recipe-rolodex-d7c0cb19d5d1.herokuapp.com/recipe/" +
+                              recipeId
+                            }
+                            hashtags={["reciperolodex"]}
+                          >
+                            <TwitterIcon
+                              size={32}
+                              bgStyle={{ fill: "#df85a9" }}
+                              borderRadius={"8px"}
+                            />
+                          </TwitterShareButton>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Pin-Unpin */}
+                <div>
+                  <h6 className="mt-3 p-0 socmed">
+                    <b>
+                      <u>Pin Recipe</u>
+                    </b>
+                  </h6>
+                  <div className="mt-2 p-0">
+                    {loggedIn !== false ? (
+                      <>
+                        {pinned !== false ? (
+                          <div
+                            className="badge badge-light p-0"
+                            onClick={unpinHandler}
+                          >
+                            <i
+                              className="fa-solid fa-thumbtack fa-2x p-0"
+                              style={{ color: "#F139AA" }}
+                            ></i>
+                          </div>
                         ) : (
-                          <></>
+                          <div
+                            className="badge badge-light p-0"
+                            onClick={pinHandler}
+                          >
+                            <i
+                              className="fa-solid fa-thumbtack fa-2x p-0"
+                              style={{ color: "#b598a3" }}
+                            ></i>
+                          </div>
                         )}
-                      </div>
-                    </div>
-                    <div className="col m-auto p-1">
-                        { pinCounter ? (   
-                           pinCounter === 1 ? 
-                            (
-                              <div style={{ minWidth: 125, fontSize: 13 }}>
-                                Pinned by {pinCounter} user
-                              </div> ): (
-                              <div style={{ minWidth: 125, fontSize: 13 }}>
-                                Pinned by {pinCounter} users
-                              </div>
-                            ) )                        
-                          : (<></>)
-                        }
-                    </div>
-                    <div className="col m-auto p-1 socmed">
-                      <div>
-                        <FacebookShareButton
-                          url={
-                            "https://recipe-rolodex-d7c0cb19d5d1.herokuapp.com/recipe/" +
-                            recipeId
-                          }
-                          hashtag={"#reciperolodex"}
-                        >
-                          <FacebookIcon size={32} round />
-                        </FacebookShareButton>
-                      </div>
-                    </div>
-                    <div className="col m-auto p-1 socmed">
-                      <div>
-                        <LinkedinShareButton
-                          url={
-                            "https://recipe-rolodex-d7c0cb19d5d1.herokuapp.com/recipe/" +
-                            recipeId
-                          }
-                        >
-                          <LinkedinIcon size={32} round />
-                        </LinkedinShareButton>
-                      </div>
-                    </div>
-                    <div className="col m-auto p-1 socmed">
-                      <div>
-                        <TwitterShareButton
-                          url={
-                            "https://recipe-rolodex-d7c0cb19d5d1.herokuapp.com/recipe/" +
-                            recipeId
-                          }
-                          hashtags={["reciperolodex"]}
-                        >
-                          <TwitterIcon size={32} round />
-                        </TwitterShareButton>
-                      </div>
-                    </div>
+                      </>
+                    ) : (
+                      <></>
+                    )}
+                  </div>
+                  <div>
+                    {pinCounter ? (
+                      pinCounter === 1 ? (
+                        <div style={{ minWidth: 125, fontSize: 13 }}>
+                          Pinned by {pinCounter} user
+                        </div>
+                      ) : (
+                        <div style={{ minWidth: 125, fontSize: 13 }}>
+                          Pinned by {pinCounter} users
+                        </div>
+                      )
+                    ) : (
+                      <></>
+                    )}
                   </div>
                 </div>
               </div>

@@ -174,15 +174,17 @@ button {
   background-color: var(--darkpink);
 }
 
-.family-badge {
-  background-color: var(--darkpink);
-  box-shadow: 0px 4px 4px var(--mauve) / 0.2;
-}
 
-.author-badge {
+.pink-badge {
   background-color: var(--mauve);
   box-shadow: 0px 4px 4px var(--darkpink) / 0.2;
-  color: var(--richblack);
+  color: rgb(52, 52, 52);
+}
+
+.light-badge {
+  background-color: var(--lightpink);
+  box-shadow: 0px 4px 4px var(--darkpink) / 0.2;
+  color: rgb(52, 52, 52);
 }
 
 textarea {
@@ -194,9 +196,11 @@ textarea {
 }
 
 #recipe-image {
-  width: 75%;
-  height: auto;
+  width: 100%;
+  height: 45vh;
   margin: auto;
+  margin-top: 2em;
+  object-fit: cover;
 }
 
 /* Form Outline Custom Colors ACTIVE*/
@@ -224,6 +228,19 @@ textarea {
   align-items: center;
   justify-content: center;
   height: 100vh; /* Optionally, to center vertically */
+}
+
+/* socmed custom badge */
+.socmed {
+margin: auto;
+padding: auto;
+}
+
+.print-icon{
+  color: var(--white);
+  background-color: var(--mauve);
+  width: 32px;
+  height: 32px;
 }
 
 @media (max-width: 768px) {
@@ -273,6 +290,11 @@ textarea {
   .navbar-toggler {
     margin-left: 0.1%;
   }
+
+  #recipe-image {
+    width: 40vh;
+    height: 30vh;
+  }
 }
 
 @media print {
@@ -281,12 +303,12 @@ textarea {
   nav,
   .fa-print,
   .socmed,
-  .return-to-recipes {
+  .return-to-recipes, .print-icon {
     display: none !important;
   }
 
   .card {
-    width: auto;
+    width: 100%;
     border: none;
     box-shadow: none;
   }
@@ -294,10 +316,11 @@ textarea {
   .print-spacing {
     margin-top: .65em !important;
     margin-bottom: 0 !important;
+    padding: 0 !important;
   }
 
   #recipe-image {
-    width: 300px;
+    width: 500px;
     height: 300px;
     object-fit: cover;
     margin: auto;
